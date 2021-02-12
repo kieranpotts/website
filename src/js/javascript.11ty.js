@@ -26,6 +26,7 @@ const
     // be limited. That's okay because we're applying JS as a
     // progressive enhancement. Use `type="module"` on the
     // importing `<script>` tag.
+
     format: 'es',
 
     sourcemap: dev,
@@ -61,10 +62,9 @@ module.exports = class {
   // Rollup processing
   async render() {
 
-    const
-      bundle = await rollup.rollup(inputOpts),
-      { output } = await bundle.generate(outputOpts),
-      out = output.length && output[0];
+    const bundle = await rollup.rollup(inputOpts)
+    const { output } = await bundle.generate(outputOpts)
+    const out = output.length && output[0]
 
     let code = '';
     if (out) {
@@ -74,13 +74,13 @@ module.exports = class {
 
       // inline source map
       if (out.map) {
-        let b64 = new Buffer.from(out.map.toString());
-        code += '//# sourceMappingURL=data:application/json;base64,' + b64.toString('base64');
+        let b64 = new Buffer.from(out.map.toString())
+        code += '//# sourceMappingURL=data:application/json;base64,' + b64.toString('base64')
       }
 
     }
 
-    return code;
+    return code
 
   }
 };

@@ -15,29 +15,6 @@ const now = new Date()
  */
 module.exports = (config) => {
 
-  /* --- BROWSERSYNC CONFIG --- */
-
-  // When using `eleventy --serve`, we need to configure BrowserSync
-  // to do 404 routing.
-  config.setBrowserSyncConfig({
-    callbacks: {
-      ready: function(err, bs) {
-
-        bs.addMiddleware("*", (req, res) => {
-          const content = fs.readFileSync('dist/404.html')
-
-          // Add 404 http status code in request header.
-          res.writeHead(404, { "Content-Type": "text/html; charset=UTF-8" })
-
-          // Provides the 404 content without redirect.
-          res.write(content)
-          res.end()
-        })
-
-      }
-    }
-  })
-
   /* --- PLUGINS --- */
 
   // Main navigation
@@ -45,15 +22,14 @@ module.exports = (config) => {
 
   /* --- TRANSFORMS --- */
 
-  // Use PostCSS pipeline to transform `.css` files.
-  // Add watcher for source CSS files.
-  config.addTransform('postcss', require('./lib/transforms/postcss'));
-
   // Inline assets.
   config.addTransform('inline', require('./lib/transforms/inline'))
 
   // Minify HTML.
   config.addTransform('htmlminify', require('./lib/transforms/htmlminify'))
+
+  // CSS processing.
+  config.addTransform('postcss', require('./lib/transforms/postcss'));
 
   /* --- FILTERS --- */
 
@@ -72,11 +48,11 @@ module.exports = (config) => {
 
   /* --- COLLECTIONS --- */
 
-  // Post collection (in src/articles).
+  // Blogpost collection (in src/blog).
   // Don't publish posts until non-draft and publication date has passed.
-  config.addCollection('post', (collection) => {
+  config.addCollection('blogposts', (collection) => {
     return collection
-      .getFilteredByGlob('./src/posts/*.md')
+      .getFilteredByGlob('./src/blog/*.md')
       .filter((p) => dev || (!p.data.draft && p.date <= now))
   })
 
@@ -84,6 +60,30 @@ module.exports = (config) => {
 
   config.addWatchTarget('./src/scss/')
   config.addWatchTarget('./src/js/')
+
+  /* --- BROWSERSYNC CONFIG --- */
+
+  // When using `eleventy --serve`, we need to configure BrowserSync
+  // to do 404 routing.
+
+  config.setBrowserSyncConfig({
+    callbacks: {
+      ready: function(err, bs) {
+
+        bs.addMiddleware("*", (req, res) => {
+          const content = fs.readFileSync('dist/404.html')
+
+          // Add 404 http status code in request header.
+          res.writeHead(404, { "Content-Type": "text/html; charset=UTF-8" })
+
+          // Provides the 404 content without redirect.
+          res.write(content)
+          res.end()
+        })
+
+      }
+    }
+  })
 
   /* --- CONFIGURATION --- */
 

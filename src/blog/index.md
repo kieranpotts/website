@@ -4,10 +4,10 @@ description: A list of articles published on this site.
 layout: templates/page.njk
 eleventyNavigation:
   key: articles
-  order: 900
+  order: 500
 pagination:
-  data: collections.post
-  alias: pagelist
+  data: collections.blogposts
+  alias: blogposts
   reverse: true
   size: 3
 ---

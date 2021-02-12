@@ -1,5 +1,5 @@
 ---
-title: The sixth article
+title: The sixth article (draft)
 description: This is the sixth article.
 draft: true
 date: 2029-09-06

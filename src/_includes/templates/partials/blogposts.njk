@@ -1,7 +1,7 @@
-{% if pagelist %}
-<aside class="pagelist">
+{% if blogposts %}
+<aside class="blogposts">
 
-  {%- for post in pagelist -%}
+  {%- for post in blogposts -%}
   <article>
 
     <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
