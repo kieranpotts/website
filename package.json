@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "description": "Development dependencies and workflow automation scripts.",
+  "engines": {
+    "node": ">=14.15.0",
+    "yarn": ">=1.22.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-navigation": "^0.1.6",
+    "cross-env": "^7.0.3",
+    "cssnano": "^4.1.10",
+    "html-minifier": "^4.0.0",
+    "imagemin": "^7.0.1",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-svgo": "^8.0.0",
+    "inline-source": "^7.2.0",
+    "postcss": "^8.2.6",
+    "postcss-advanced-variables": "^3.0.1",
+    "postcss-nested": "^5.0.3",
+    "postcss-scss": "^3.0.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.38.5",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "debug": "DEBUG=* eleventy",
+    "start": "yarn run dev",
+    "dev": "cross-env ELEVENTY_ENV=development eleventy --serve",
+    "build": "cross-env ELEVENTY_ENV=production yarn run clean && eleventy",
+    "test": "echo \"Error: no tests specified\" && exit 1"
+  }
+}

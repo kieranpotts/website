@@ -1,0 +1,4 @@
+# Netlify redirect rules
+# @see https://docs.netlify.com/routing/redirects/
+
+/rebranding-javascript   /blog/rebranding-javascript   301

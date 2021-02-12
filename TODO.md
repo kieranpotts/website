@@ -1,0 +1,6 @@
+- Multi-language functionality
+- Create tag indexes
+- Generate RSS feed.xml listing all posts
+- Create sitemap.xml listing all pages
+- Build 404
+- favicon.ico

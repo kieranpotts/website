@@ -1,2 +1,3 @@
-# Website
-Source files and content for my website.
+# kieranpotts.com
+
+**Content, theme, and build and deployment configuration for my personal website.**
