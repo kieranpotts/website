@@ -15,6 +15,11 @@ const now = new Date()
  */
 module.exports = (config) => {
 
+  /* --- VERBATIM COPY --- */
+
+  // Copy over Nelify's redirects config file.
+  config.addPassthroughCopy('src/_redirects');
+
   /* --- PLUGINS --- */
 
   // Main navigation
