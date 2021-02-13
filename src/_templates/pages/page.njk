@@ -1,4 +1,4 @@
-{% extends "templates/base.njk" %}
+{% extends "pages/base.njk" %}
 
 {% block content %}
 
@@ -6,6 +6,6 @@
 
   {{ content | safe }}
 
-  {% include "templates/partials/blogposts.njk" %}
+  {% include "partials/blogposts.njk" %}
 
 {% endblock %}

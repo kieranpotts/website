@@ -28,9 +28,9 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "scripts": {
-    "build": "cross-env ELEVENTY_ENV=production yarn run clean && eleventy",
+    "build": "cross-env ELEVENTY_ENV=production yarn run clean && eleventy --config=eleventy.config.js",
     "clean": "rimraf ./dist",
-    "dev:start": "cross-env ELEVENTY_ENV=development eleventy --serve",
+    "dev:start": "cross-env ELEVENTY_ENV=development eleventy --config=eleventy.config.js --serve",
     "dev:serve": "netlify dev",
     "test": "echo \"Error: no tests specified\" && exit 1"
   }
