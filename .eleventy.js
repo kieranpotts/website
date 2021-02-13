@@ -17,8 +17,13 @@ module.exports = (config) => {
 
   /* --- VERBATIM COPY --- */
 
-  // Copy over Nelify's redirects config file.
+  // Copy over Nelify's redirects config file as-is.
   config.addPassthroughCopy('src/_redirects');
+
+  // Copy over these standard root-level files as-is.
+  eleventyConfig.addPassthroughCopy('src/favicon.ico')
+  eleventyConfig.addPassthroughCopy('src/robots.txt')
+  eleventyConfig.addPassthroughCopy('src/site.webmanifest')
 
   /* --- TEMPLATE ALIASES --- */
 
