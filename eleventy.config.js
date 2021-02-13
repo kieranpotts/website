@@ -40,6 +40,10 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy('src/robots.txt')
   eleventyConfig.addPassthroughCopy('src/site.webmanifest')
 
+  eleventyConfig.addPassthroughCopy('src/assets/favicon')
+  eleventyConfig.addPassthroughCopy('src/assets/fonts')
+  eleventyConfig.addPassthroughCopy('src/assets/images')
+
   /* --- TEMPLATE ALIASES --- */
 
   // Aliases help to make templates a bit more portable.
@@ -98,8 +102,8 @@ module.exports = (eleventyConfig) => {
    *
    * @link https://www.11ty.dev/docs/config/#add-your-own-watch-targets
    */
-  eleventyConfig.addWatchTarget('./src/scss/')
-  eleventyConfig.addWatchTarget('./src/js/')
+  // eleventyConfig.addWatchTarget('./src/scss/')
+  // eleventyConfig.addWatchTarget('./src/js/')
 
   /**
    * Override BrowserSync Server options

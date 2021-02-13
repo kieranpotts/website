@@ -10,8 +10,8 @@ module.exports = {
 
     input: 'src',
     output: 'dist',
-    layouts: '_includes/templates',
-    includes: '_includes/templates',
+    layouts: '_templates',
+    includes: '_templates',
     // data: 'data',
 
     // ⬇ These are custom and used by various utilities etc.
