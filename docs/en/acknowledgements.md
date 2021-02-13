@@ -34,4 +34,4 @@ Design ideas and some code was taken from the following Eleventy starter kits an
 
 - [YAES (yet another Eleventy starter)](https://github.com/22mahmoud/YAES) by Mahmoud Ashraf, which adds Snowpack to the development toolchain
 
-- The [source code](https://github.com/zachleat/zachleat.com) for [Zach Leatherman's website](https://www.zachleat.com/)
+- The [source code](https://github.com/zachleat/zachleat.com) for [Zach Leatherman's website](https://www.zachleat.com/), who is the lead developer on the Eleventy project
