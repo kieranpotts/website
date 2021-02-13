@@ -1,0 +1,28 @@
+/**
+ * @file      Part of the Nirvarnia web application framework.
+ * @see       {@link https://nirvarnia.com/|Nirvarnia}
+ * @copyright 2020+ Kieran Potts Consultancy Ltd.
+ * @license   Blue Oak Model License v1.0.0
+ */
+
+/**
+ * Custom selectors used throughout the baseline style sheet.
+ */
+
+/* The elements that are to be rendered bold by default. */
+@custom-selector :--bold b, strong;
+
+/* List of elements to which to apply the clearfix hack by default. */
+@custom-selector :--cleafix address, article, aside, blockquote, details, div, dl, fieldset, figure, footer, form, header, main, nav, ol, section, ul;
+
+/* The elements that are to be italicized by default. */
+@custom-selector :--italic em, i;
+
+/* Elements to be rendered using a monospace font by default. */
+@custom-selector :--monospace code, kbd, pre, samp, var;
+
+/* Monospace elements to be rendered block-level by default. */
+@custom-selector :--monospace-block pre;
+
+/* Monospace elements to be rendered inline-block by default. */
+@custom-selector :--monospace-inline code, kbd, samp, var;

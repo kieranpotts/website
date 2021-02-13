@@ -11,19 +11,23 @@
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-rss": "^1.1.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
+    "autoprefixer": "^10.2.4",
     "cross-env": "^7.0.3",
+    "cssnano": "^4.1.10",
     "html-minifier": "^4.0.0",
     "luxon": "^1.25.0",
     "netlify-cli": "^3.7.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.38.5",
-    "rollup-plugin-terser": "^7.0.2"
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
     "build": "cross-env ELEVENTY_ENV=production yarn run clean && eleventy --config=eleventy.config.js",
     "clean": "rimraf ./dist",
     "dev:start": "cross-env ELEVENTY_ENV=development eleventy --config=eleventy.config.js --serve",
     "dev:serve": "netlify dev",
+    "prod:styles": "postcss ./src/assets/styles/index.css --output ./dist/assets/styles.css",
+    "prod:scripts": "",
     "test": "echo \"Error: no tests specified\" && exit 1"
   }
 }

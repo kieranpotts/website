@@ -1,0 +1,96 @@
+/**
+ * @file      Part of the Nirvarnia web application framework.
+ * @see       {@link https://nirvarnia.com/|Nirvarnia}
+ * @copyright 2020+ Kieran Potts Consultancy Ltd.
+ * @license   Blue Oak Model License v1.0.0
+ */
+
+/**
+ * Resets for audio, video and other multimedia elements.
+ *
+ * @example
+ *
+ * TODO
+ */
+
+/* Convert all multimedia containers – images, audo and video, iframes, objects,
+and embedded pluggins – from inline to block-level.  This is how they tend to be
+used. */
+
+audio,
+video {
+  display: block;
+}
+
+/* Do not display <audio> elements if they don't have playback controls enabled.
+That's terrible for usability. */
+
+audio:not([controls]) {
+  display: none;
+}
+
+/* Block-level images are configured to fit the width of the container when they
+are larger than it.  They are also made to maintain their proportion when scaled
+down. Bicubic sampling betters the rendering of resized images in IE > 6. IE 6-9
+adds a border around images when they are inside links; border:0 sorts it. */
+
+img {
+  border: 0;
+  display: block;
+  height: auto;
+  -ms-interpolation-mode: bicubic;
+  max-width: 100%;
+}
+
+/* Making <video> elements responsive is tricky. The best solution is to set the
+max-width property to 100%.  The video itself will scale down proportionally but
+the outer video container will stay a consistent height - producing an unsightly
+letterbox effect.  Setting the video element's height to auto doesn't fix this -
+the video box just collapses to a default height. The only option it seems is to
+give <video> elements a background color so that the letterbox effect doesn't at
+least result in weird white space above and below the video.
+
+The very best solution for responsive video is Thierry Koblentz's hack - but you
+need to know the dimensions of each video for it to work:
+http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/ */
+
+video {
+  background: var(--reset-video-background-color);
+  max-width: 100%;
+}
+
+/* Canvases can be made to scale proportionally in all modern web browsers. SVGs
+are trickier, however. We can set their max-width to 100% but if their height is
+set to auto (to maintain proportion when scaled), IE will instead render a fixed
+height. Our solution, below, fixes the IE issue, but it means that SVGs, scaled-
+down, will be letterboxed, producing extra white space above/below the graphic -
+as with videos.  Note: large, dynamically-generated graphics ought to be redrawn
+anyway, when their size needs to change, e.g. on window resize. */
+
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+canvas {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* A fix for the non-standard overflow on embedded SVGs in IE9. */
+
+svg:not(:root) {
+  overflow: hidden;
+}

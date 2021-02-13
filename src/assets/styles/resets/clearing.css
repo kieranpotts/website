@@ -1,0 +1,26 @@
+/**
+ * @file      Part of the Nirvarnia web application framework.
+ * @see       {@link https://nirvarnia.com/|Nirvarnia}
+ * @copyright 2020+ Kieran Potts Consultancy Ltd.
+ * @license   Blue Oak Model License v1.0.0
+ */
+
+/**
+ * Extends browser's default style sheet with the clearfix hack.
+ *
+ * @example
+ *
+ * TODO
+ */
+
+/* Sectioning elements - such as <header> and <footer> - encapsulate any floated
+child elements. The same goes for <blockquote>, <details>, <figure>, <fieldset>,
+lists and <form> elements, which tend to have floating child elements. */
+
+:--clearfix {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
