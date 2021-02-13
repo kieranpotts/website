@@ -19,6 +19,7 @@
     "imagemin-pngquant": "^9.0.1",
     "imagemin-svgo": "^8.0.0",
     "inline-source": "^7.2.0",
+    "luxon": "^1.25.0",
     "netlify-cli": "^3.7.1",
     "postcss": "^8.2.6",
     "postcss-advanced-variables": "^3.0.1",
