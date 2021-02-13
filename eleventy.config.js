@@ -9,22 +9,16 @@ const fs = require('fs')
 
 // Import vendor dependencies.
 const pluginNavigation = require('@11ty/eleventy-navigation')
+const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 
 // Import local dependencies: shared config.
 const config = require('./shared.config.js')
 
-// Import local dependencies: transforms.
-const transformInline = require('./lib/transforms/inline')
-const transformHtmlMinify = require('./lib/transforms/htmlminify')
-const transformPostCss = require('./lib/transforms/postcss')
-
-// Import local dependencies: filters.
-const filterDateForm = require('./lib/filters/dateformat')
-const filterReadTime = require('./lib/filters/readtime')
-
-// Import local dependencies: shortcodes.
-const shortcodeNavList = require('./lib/shortcodes/navlist.js')
+// Import local dependencies.
+const filters = require('./lib/filters')
+const transforms = require('./lib/transforms')
+const shortcodes = require('./lib/shortcodes')
 
 // Other variable initializations.
 const env = process.env.ELEVENTY_ENV ?? 'production'
@@ -36,12 +30,12 @@ const now = new Date()
  */
 module.exports = (eleventyConfig) => {
 
-  /* --- VERBATIM COPY --- */
-
-  // Copy over Nelify's redirects config file as-is.
-  eleventyConfig.addPassthroughCopy('src/_redirects');
-
-  // Copy over these standard root-level files as-is.
+  /**
+   * Passthrough file copy
+   *
+   * @link https://www.11ty.io/docs/copy/
+   */
+  eleventyConfig.addPassthroughCopy('src/_redirects')
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
   eleventyConfig.addPassthroughCopy('src/robots.txt')
   eleventyConfig.addPassthroughCopy('src/site.webmanifest')
@@ -53,36 +47,41 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addLayoutAlias('page', 'pages/page.njk')
   eleventyConfig.addLayoutAlias('post', 'pages/post.njk')
 
-  /* --- PLUGINS --- */
+  /**
+   * Add plugins
+   *
+   * @link https://www.11ty.dev/docs/plugins/
+   */
+  eleventyConfig.addPlugin(pluginNavigation)
+  eleventyConfig.addPlugin(pluginRss)
+  eleventyConfig.addPlugin(pluginSyntaxHighlight)
 
-  // Main navigation
-  eleventyConfig.addPlugin( pluginNavigation )
-  eleventyConfig.addPlugin( pluginSyntaxHighlight )
+  /**
+   * Add filters
+   *
+   * @link https://www.11ty.io/docs/filters/
+   */
+  Object.keys(filters).forEach((filterName) => {
+    eleventyConfig.addFilter(filterName, filters[filterName])
+  })
 
-  /* --- TRANSFORMS --- */
+  /**
+   * Add transforms
+   *
+   * @link https://www.11ty.io/docs/config/#transforms
+   */
+  Object.keys(transforms).forEach((transformName) => {
+    eleventyConfig.addTransform(transformName, transforms[transformName])
+  })
 
-  // Inline assets.
-  eleventyConfig.addTransform('inline', transformInline)
-
-  // Minify HTML.
-  eleventyConfig.addTransform('htmlminify', transformHtmlMinify)
-
-  // CSS processing.
-  eleventyConfig.addTransform('postcss', transformPostCss);
-
-  /* --- FILTERS --- */
-
-  // Date formatting
-  eleventyConfig.addFilter('datefriendly', filterDateForm.friendly)
-  eleventyConfig.addFilter('dateymd', filterDateForm.ymd)
-
-  // Reading time
-  eleventyConfig.addFilter('readtime', filterReadTime)
-
-  /* --- SHORTCODES --- */
-
-  // Customises the main navigation
-  eleventyConfig.addShortcode('navlist', shortcodeNavList)
+  /**
+   * Add shortcodes
+   *
+   * @link https://www.11ty.io/docs/shortcodes/
+   */
+  Object.keys(shortcodes).forEach((shortcodeName) => {
+    eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
+  })
 
   /* --- COLLECTIONS --- */
 
@@ -94,8 +93,11 @@ module.exports = (eleventyConfig) => {
       .filter((p) => env === 'development' || (!p.data.draft && p.date <= now))
   })
 
-  /* --- WATCH TARGETS --- */
-
+  /**
+   * Add custom watch targets
+   *
+   * @link https://www.11ty.dev/docs/config/#add-your-own-watch-targets
+   */
   eleventyConfig.addWatchTarget('./src/scss/')
   eleventyConfig.addWatchTarget('./src/js/')
 
