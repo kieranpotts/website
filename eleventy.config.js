@@ -101,24 +101,30 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addWatchTarget('./src/scss/')
   eleventyConfig.addWatchTarget('./src/js/')
 
-  /* --- BROWSERSYNC CONFIG --- */
-
-  // When using `eleventy --serve`, we need to configure BrowserSync
-  // to do 404 routing.
-
+  /**
+   * Override BrowserSync Server options
+   *
+   * @link https://www.11ty.dev/docs/config/#override-browsersync-server-options
+   */
   eleventyConfig.setBrowserSyncConfig({
+    notify: true,
+
+    // Set calback to handle 404s in local dev environment (`eleventy --serve`).
     callbacks: {
-      ready: function(err, bs) {
+      ready: function(err, browserSync) {
 
-        bs.addMiddleware("*", (req, res) => {
-          const content = fs.readFileSync('dist/404.html')
+        // Grab 404 page content from built page.
+        const content = fs.readFileSync('dist/404.html')
 
-          // Add 404 http status code in request header.
+        browserSync.addMiddleware("*", (req, res) => {
+
+          // Return 404 HTTP status code.
           res.writeHead(404, { "Content-Type": "text/html; charset=UTF-8" })
 
-          // Provides the 404 content without redirect.
+          // Send the 404 content, without a redirect.
           res.write(content)
           res.end()
+
         })
 
       }
