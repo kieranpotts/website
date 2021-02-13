@@ -131,15 +131,32 @@ module.exports = (eleventyConfig) => {
     }
   })
 
-  /* --- CONFIGURATION --- */
-
+  /**
+   * Eleventy configuration
+   *
+   * @see https://www.11ty.dev/docs/config/
+   */
   return {
     dir: {
+
+      // @see https://www.11ty.dev/docs/config/#input-directory
       input: config.fs.input,
+
+      // @see https://www.11ty.dev/docs/config/#output-directory
       output: config.fs.output,
+
+      // @see https://www.11ty.dev/docs/config/#directory-for-layouts-(optional)
       layouts: config.fs.layouts,
+
+      // @see https://www.11ty.dev/docs/config/#directory-for-includes
       includes: config.fs.includes
-    }
+    },
+
+    // @see https://www.11ty.dev/docs/config/#template-formats
+    templateFormats: ['njk', 'md'],
+
+    // @see https://www.11ty.dev/docs/config/#default-template-engine-for-html-files
+    htmlTemplateEngine: 'njk'
   }
 
 }
