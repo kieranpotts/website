@@ -28,11 +28,15 @@ module.exports = class {
   }
 
   async render() {
-    try {
-      let dir = await fsp.stat(dest);
-      if (dir.isDirectory()) return true;
-    }
-    catch(e){}
+
+    // Always copy all images, even if the destination directory
+    // already exists.
+
+    // try {
+    //   let dir = await fsp.stat(dest);
+    //   if (dir.isDirectory()) return true;
+    // }
+    // catch(e){}
 
     console.log('optimizing images')
     await imagemin(['src/images/*', '!src/images/*.js'], {
@@ -41,5 +45,6 @@ module.exports = class {
     })
 
     return true
+
   }
 }

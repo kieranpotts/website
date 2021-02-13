@@ -7,7 +7,7 @@
 // the output.
 // Generates a source map in development environments only.
 
-const dev = (process.env.ELEVENTY_ENV === 'development')
+const env = process.env.ELEVENTY_ENV ?? 'production'
 
 const
   jsMain = 'js/main.js',
@@ -29,15 +29,15 @@ const
 
     format: 'es',
 
-    sourcemap: dev,
+    sourcemap: (env === 'development'),
     plugins: [
       terser({
         mangle: {
           toplevel: true
         },
         compress: {
-          drop_console: !dev,
-          drop_debugger: !dev
+          drop_console: !(env === 'development'),
+          drop_debugger: !(env === 'development')
         },
         output: {
           quote_style: 1

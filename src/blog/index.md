@@ -1,7 +1,7 @@
 ---
 title: Article index
 description: A list of articles published on this site.
-layout: templates/page.njk
+layout: page
 eleventyNavigation:
   key: articles
   order: 500

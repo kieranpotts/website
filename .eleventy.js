@@ -6,7 +6,7 @@
 
 const fs = require('fs')
 
-const dev = (process.env.ELEVENTY_ENV === 'development')
+const env = process.env.ELEVENTY_ENV ?? 'production'
 const now = new Date()
 
 /**
@@ -20,10 +20,18 @@ module.exports = (config) => {
   // Copy over Nelify's redirects config file.
   config.addPassthroughCopy('src/_redirects');
 
+  /* --- TEMPLATE ALIASES --- */
+
+  // Aliases help to make templates a bit more portable.
+  config.addLayoutAlias('base', 'templates/base.njk')
+  config.addLayoutAlias('page', 'templates/page.njk')
+  config.addLayoutAlias('post', 'templates/post.njk')
+
   /* --- PLUGINS --- */
 
   // Main navigation
   config.addPlugin( require('@11ty/eleventy-navigation') )
+  config.addPlugin( require('@11ty/eleventy-plugin-syntaxhighlight') )
 
   /* --- TRANSFORMS --- */
 
@@ -58,7 +66,7 @@ module.exports = (config) => {
   config.addCollection('blogposts', (collection) => {
     return collection
       .getFilteredByGlob('./src/blog/*.md')
-      .filter((p) => dev || (!p.data.draft && p.date <= now))
+      .filter((p) => env === 'development' || (!p.data.draft && p.date <= now))
   })
 
   /* --- WATCH TARGETS --- */
