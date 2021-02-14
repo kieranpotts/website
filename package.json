@@ -11,7 +11,10 @@
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-rss": "^1.1.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
     "autoprefixer": "^10.2.4",
+    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "cssnano": "^4.1.10",
     "html-minifier": "^4.0.0",
@@ -20,7 +23,9 @@
     "node-sass": "^5.0.0",
     "postcss": "^8.2.6",
     "postcss-cli": "^8.3.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
   },
   "scripts": {
     "build": "cross-env ELEVENTY_ENV=production yarn run clean && eleventy --config=eleventy.config.js",
@@ -29,6 +34,8 @@
     "dev:serve": "netlify dev",
     "prod:styles": "node-sass src/assets/styles/ --output dist/assets/styles/ && postcss ./dist/assets/styles/*.css --replace",
     "dev:styles": "node-sass src/assets/styles/ --output dist/assets/styles/ --source-map true --source-map-contents true && postcss ./dist/assets/styles/*.css --replace",
+    "prod:scripts": "webpack --mode=production",
+    "dev:scripts": "webpack --mode=development",
     "test": "echo \"Error: no tests specified\" && exit 1"
   }
 }
