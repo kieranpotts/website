@@ -6,7 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/assets/scripts'),
     filename: 'main.js'
   },
-  watch: true,
+  watch: false, // Overridden by CLI flag in development
   watchOptions: {
     aggregateTimeout: 500,
     poll: 1000,
