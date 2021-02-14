@@ -1,7 +1,13 @@
+# @see https://github.com/netlify/cli/blob/master/docs/netlify-dev.md
+
 [build]
-  command = "yarn run build"
+  command = "yarn run prod"
   publish = "dist"
   NODE_ENV = "14.15.0"
 
 [dev]
-  command = "yarn run dev:start"
+  framework = "#custom"            # We're not using any built-in dev servers (eg Eleventy's)
+  command = "yarn run dev:start"   # The command to run the local development server
+  targetPort = 4000                # The port used by Light Server
+  port = 8888                      # The port the Netlify Dev will publish to
+  autoLaunch = false               # Don't automatically load localhost:8888 in the user's default browser

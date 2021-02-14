@@ -1,0 +1,60 @@
+/**
+ * @file      Part of the Nirvarnia web application framework.
+ * @see       {@link https://nirvarnia.com/|Nirvarnia}
+ * @copyright 2020+ Kieran Potts Consultancy Ltd.
+ * @license   Blue Oak Model License v1.0.0
+ */
+
+/**
+ * Changes to the default presentation of tabular data.
+ *
+ * @example
+ *
+ * TODO
+ */
+
+/* The default border model for the <table> element is swapped from separated to
+collapsed. This more convenient for styling. In case some tables are reverted to
+the separated model, the default border-spacing is set to zero. Also, have cells
+automatically scale to best fit their content. Empty cells exist for a reason so
+we make sure they are rendered. */
+
+table {
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  table-layout: auto;
+  text-align: left;
+  vertical-align: middle;
+  width: 100%;
+}
+
+*[dir="rtl"] table {
+  text-align: right;
+}
+
+/* Allow borders, backgrounds and other such properties to be set on the <table>
+and cascade down to all child cells. */
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  background: inherit;
+  border: inherit;
+  font-weight: inherit;
+  margin: inherit;
+  padding: inherit;
+  text-align: inherit;
+  vertical-align: inherit;
+}
+
+/* Reinforce the default position of table captions. They work best at the start
+rather than the end of tables. */
+
+caption {
+  caption-side: top;
+}

@@ -102,8 +102,7 @@ module.exports = (eleventyConfig) => {
    *
    * @link https://www.11ty.dev/docs/config/#add-your-own-watch-targets
    */
-  // eleventyConfig.addWatchTarget('./src/scss/')
-  // eleventyConfig.addWatchTarget('./src/js/')
+  eleventyConfig.addWatchTarget('./src/assets')
 
   /**
    * Override BrowserSync Server options
