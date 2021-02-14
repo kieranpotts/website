@@ -40,7 +40,7 @@
     "dev:serve": "light-server -c light-server.config.json",
 
     "prod": "yarn run clean && yarn run prod:build",
-    "prod:build": "concurrently \"yarn run prod:build:pages\" \"yarn run prod:build:scripts\" \"yarn run prod:build:styles\"",
+    "prod:build": "yarn run prod:build:pages && yarn run prod:build:scripts && yarn run prod:build:styles",
     "prod:build:pages": "cross-env ELEVENTY_ENV=production eleventy --config=eleventy.config.js",
     "prod:build:scripts": "webpack --mode=production",
     "prod:build:styles": "postcss src/assets/styles/main.css --output dist/assets/styles/main.css",
