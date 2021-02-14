@@ -17,6 +17,7 @@
     "html-minifier": "^4.0.0",
     "luxon": "^1.25.0",
     "netlify-cli": "^3.7.1",
+    "node-sass": "^5.0.0",
     "postcss": "^8.2.6",
     "postcss-cli": "^8.3.1",
     "rimraf": "^3.0.2"
@@ -26,8 +27,8 @@
     "clean": "rimraf ./dist",
     "dev:start": "cross-env ELEVENTY_ENV=development eleventy --config=eleventy.config.js --serve",
     "dev:serve": "netlify dev",
-    "prod:styles": "postcss ./src/assets/styles/index.css --output ./dist/assets/styles.css",
-    "prod:scripts": "",
+    "prod:styles": "node-sass src/assets/styles/ --output dist/assets/styles/ && postcss ./dist/assets/styles/*.css --replace",
+    "dev:styles": "node-sass src/assets/styles/ --output dist/assets/styles/ --source-map true --source-map-contents true && postcss ./dist/assets/styles/*.css --replace",
     "test": "echo \"Error: no tests specified\" && exit 1"
   }
 }
