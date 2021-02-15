@@ -9,5 +9,5 @@
   framework = "#custom"            # We're not using any built-in dev servers (eg Eleventy's)
   command = "yarn run dev:start"   # The command to run the local development server
   targetPort = 4000                # The port used by Light Server
-  port = 8888                      # The port the Netlify Dev will publish to
-  autoLaunch = false               # Don't automatically load localhost:8888 in the user's default browser
+  port = 8000                      # The port the Netlify Dev will publish to
+  autoLaunch = false               # Don't automatically load localhost:8000 in the user's default browser
