@@ -17,6 +17,9 @@ trim_trailing_whitespace = true       # - No whitespace on the end of lines.
 [*.bat]                               # Windows Batch files:
 end_of_line = crlf                    # - Require \r\n line endings.
 
+[{Makefile,*.mk}]                     # Makefiles:
+indent_style = tab                    # - Require tabs for indentation.
+
 [*.md]                                # Markdown files:
 trim_trailing_whitespace = false      # - Leave trailing whitespace.
 
@@ -25,6 +28,3 @@ indent_size = 4                       # - 4-space indents are conventional.
 
 [*.py]                                # Python files:
 indent_size = 4                       # - 4-space indents are conventional.
-
-[{Makefile,*.mk}]                     # Makefiles:
-indent_style = tab                    # - Require tabs for indentation.
