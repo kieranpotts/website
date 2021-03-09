@@ -1,7 +1,5 @@
 /**
  * Configuration for the Eleventy static site generator.
- *
- * @param {*} config
  */
 
 // Import Node.js APIs.
@@ -26,7 +24,7 @@ const now = new Date()
 
 /**
  *
- * @param {*} config
+ * @param {*} eleventyConfig
  */
 module.exports = (eleventyConfig) => {
 
