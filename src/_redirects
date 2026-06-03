@@ -1,0 +1,16 @@
+#
+# Netlify redirect rules.
+# https://docs.netlify.com/routing/redirects/
+#
+
+# Permanent redirects for deleted/moved pages.
+/about                       /hello-world            301
+/blog                        /                       301
+/blog/hello-world            /hello-world            301
+/blog/rebranding-javascript  /rebranding-javascript  301
+/blog/rebranding-rest        /rethinking-rest        301
+/rebranding-rest             /rethinking-rest        301
+/contact                     /                       301
+
+# Show 404 for unmatching routes.
+/*                           /404.html               404
