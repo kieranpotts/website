@@ -177,12 +177,18 @@ Sub-steps (each independently mergeable):
 to them; feeds reachable; `lint:ci` + `linkcheck` pass.
 **Depends on:** Steps 1, 4. **Independent of Steps 8–9.**
 
-### 8. step: absorb `garden` as a content source  [AFK]
-Add `garden` repo as a content source / component. Decide its URL namespace
-(e.g. `/garden/*`) and nav.
-**Pass:** garden pages render under their namespace; `linkcheck` passes; no
-route collision with blog/home.
-**Depends on:** Step 7's mapping conventions. **Independent of Step 9.**
+### 8. step: absorb `garden` as a content source  [AFK]  ✅ DONE
+Antora-ified `garden` in place (567 pages → component `garden`, versionless;
+README → index; media → images/; 1468 `link:` → `xref:`). Wired as a public
+remote source; pages render at `/garden/<slug>`; home cross-links it.
+**Resolved along the way:** inline `image:` form + a pre-existing image-path bug
+(`caching.adoc` → `masters/`); 2 no-`./`-prefix stray links; all 12 dangling
+cross-links (5 typo-remaps, 1 un-link, 6 new seedling stubs).
+**Latent bug fixed:** `linkcheck` now runs against a live server
+(`start-server-and-test`) — the old form produced 1000+ false positives on
+absolute links and would have failed CI.
+**Pass:** `lint:ci` + `linkcheck` pass; 573 garden pages under `/garden/`.
+**Depends on:** Step 7's conventions. **Independent of Step 9.**
 
 ### 9. step: absorb `bookmarks` as a content source  [AFK]
 Add `bookmarks` repo (nested `src/` tree) as a content source / component with
