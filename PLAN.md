@@ -131,7 +131,13 @@ published when the `blog` content source lands in Step 7. The default Antora UI
 already generates `404.html`; customising its copy belongs to the deferred
 personal-UI plan.
 
-### 7. step: absorb `blog` as a content source  [AFK]
+### 7. step: absorb `blog` as a content source  [AFK]  ✅ DONE
+
+**Outcome:** blog absorbed; 12 posts render at `/blog/<slug>`; old `/<slug>`
+paths 301 to them; feeds served at `/feeds/`; `lint:ci` + `linkcheck` pass.
+Submodule sources can't be read locally, so blog is referenced by its **public**
+remote URL (no token). One content change: `/hello-world` is now the site about
+page (the blog post lives at `/blog/hello-world`).
 
 **Design change (recorded mid-step):** the `blog` repo is bare Asciidoctor, not
 an Antora component — no `antora.yml`, `link:./post` cross-links, `image::./_/
