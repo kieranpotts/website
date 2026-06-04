@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+#
+# Installs project dependencies inside the container. Run this once after
+# building the container, and again whenever package.json changes.
+#
+
+# Exit immediately on error (-e), treat unset variables as errors (-u), and
+# propagate failures through pipelines (-o pipefail).
+
+set -euo pipefail
+
+# Resolve the project root (parent of the run/ directory) and change into it.
+# This ensures docker compose always finds docker-compose.yml and that the bind
+# mount (. → /workspace) resolves to the correct host directory, regardless of
+# where this script is invoked from.
+
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+
+# Run npm install inside a one-off container (--rm removes it on exit).
+# --user passes the host user's UID and GID so that node_modules is written
+# into the bind-mounted project directory owned by the host user, making it
+# accessible to scripts run outside of the container.
+
+docker compose run --rm --user "$(id -u):$(id -g)" website npm install

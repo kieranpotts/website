@@ -7,12 +7,16 @@
   "scripts": {
     "build": "antora --stacktrace --fetch --cache-dir cache --redirect-facility static --clean site-local.yml",
     "clean": "rm -rf public cache",
-    "serve": "http-server public/ -p 8080 -c-1"
+    "serve": "http-server public/ -p 8080 -c-1",
+    "watch": "chokidar 'src/**/*' 'overlay/**/*' 'site-local.yml' -c 'npm run build'",
+    "preview": "concurrently -k -n watch,serve 'npm run watch' 'npm run serve'"
   },
   "dependencies": {
     "antora": "^3.1.10"
   },
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.0.0",
     "http-server": "^14.1.1"
   }
 }

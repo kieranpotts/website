@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+#
+# Starts the live preview server on http://localhost:8080. Watches src/,
+# overlay/, and site-local.yml for changes and rebuilds automatically. Browser
+# refresh is manual.
+#
+# Stop the server with Ctrl+C.
+#
+
+# Exit immediately on error (-e), treat unset variables as errors (-u), and
+# propagate failures through pipelines (-o pipefail).
+
+set -euo pipefail
+
+# Resolve the project root (parent of the run/ directory) and change into it.
+# This ensures docker compose always finds docker-compose.yml and that the bind
+# mount (. → /workspace) resolves to the correct host directory, regardless of
+# where this script is invoked from.
+
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+
+# Run the preview server inside a one-off container (--rm removes it on exit).
+# --service-ports publishes the port mapping defined in docker-compose.yml
+# (8080:8080), making the server accessible at http://localhost:8080 on the host.
+# --user passes the host user's UID and GID so that output files written into
+# the bind-mounted directory (public/) are owned by the host user, not root.
+#
+# Ctrl+C (SIGINT) exits with code 130; the || clause suppresses that spurious
+# error. Any other non-zero exit code still fails the script.
+
+docker compose run --rm --service-ports --user "$(id -u):$(id -g)" website npm run preview \
+  || [ "$?" -eq 130 ]
