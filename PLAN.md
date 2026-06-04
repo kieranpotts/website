@@ -190,10 +190,16 @@ absolute links and would have failed CI.
 **Pass:** `lint:ci` + `linkcheck` pass; 573 garden pages under `/garden/`.
 **Depends on:** Step 7's conventions. **Independent of Step 9.**
 
-### 9. step: absorb `bookmarks` as a content source  [AFK]
-Add `bookmarks` repo (nested `src/` tree) as a content source / component with
-its nav.
-**Pass:** bookmark sections render; `linkcheck` passes.
+### 9. step: absorb `bookmarks` as a content source  [AFK]  ✅ DONE
+Antora-ified the nested `bookmarks` tree in place (530 `README.adoc` →
+`<path>/index.adoc`, preserving the tree; 528 dir-nav links rewritten). Wired as
+a public remote source; pages render at `/bookmarks/<tree-path>/`; home
+cross-links it.
+**Resolved along the way:** Antora resolves xrefs **module-root-relative, not
+page-relative** — the naive `link:./X/` → `xref:X/index.adoc` produced 506
+"xref not found"; fixed with a per-file rewrite carrying each link's full path
+from `pages/`. Also demoted 4 stray level-0 headings in 3 pages.
+**Pass:** `lint:ci` + `linkcheck` pass; 530 bookmark pages under `/bookmarks/`.
 **Depends on:** Step 7's conventions. **Independent of Step 8.**
 
 ### 10. step: unified navigation + cross-links between sections  [AFK]
