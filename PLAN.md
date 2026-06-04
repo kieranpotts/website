@@ -224,12 +224,13 @@ correctly; HSTS present; no regression vs the old site's indexed URLs.
 **HITL because:** DNS / production cutover — needs user sign-off; the one
 externally-visible behaviour change.
 
-### 12. chore: update README + profile project table  [AFK]
-Replace the placeholder `README.md` with real build/run docs (mirror the
-workbook README's quick-start + docs sections). Update the `kieranpotts` profile
-project table status for `website` (🚧 → 🚀).
-**Pass:** README documents `./run/*` and `npm run build`; no dead references.
-**Depends on:** Step 11.
+### 12. chore: update README + profile project table  [AFK]  ✅ README DONE
+Replaced the placeholder `README.md` with real build/run docs: container +
+local quick-starts, repo structure, the four aggregated content sources, dev
+tasks, and Netlify deployment. All documented scripts/files verified present.
+**Pass:** README documents `./run/*` and `npm run build`; no dead references. ✅
+**Deferred:** the `kieranpotts` profile project-table bump (🚧 → 🚀) is best done
+once the site is live (after the Step 11 cutover), so it is left for then.
 
 ---
 
