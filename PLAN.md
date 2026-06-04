@@ -202,13 +202,17 @@ from `pages/`. Also demoted 4 stray level-0 headings in 3 pages.
 **Pass:** `lint:ci` + `linkcheck` pass; 530 bookmark pages under `/bookmarks/`.
 **Depends on:** Step 7's conventions. **Independent of Step 8.**
 
-### 10. step: unified navigation + cross-links between sections  [AFK]
-Wire top-level nav tying home + blog + garden + bookmarks together; add external
-links (LinkedIn, Bluesky, CV/résumé, email) from the `kieranpotts` profile
-README.
-**Pass:** every section reachable from home in ≤2 clicks; nav renders on all
-components; `linkcheck` clean.
+### 10. step: unified navigation + cross-links between sections  [AFK]  ✅ DONE
+Overrode the default UI's placeholder navbar via a supplemental UI partial
+(`overlay/partials/header-content.hbs`): Home, Blog, Garden, Bookmarks + an
+About dropdown with external links (LinkedIn, Bluesky, GitHub, email). Uses
+`siteRootPath` so links resolve at any depth; navbar renders on every component.
+**Pass:** every section reachable from home in 1 click; `lint:ci` + `linkcheck`
+pass.
 **Depends on:** Steps 6–9.
+**Note:** the CV/résumé link was omitted (no résumé URL surfaced in the profile);
+add it when the resume repo's published URL is known. A fuller themed nav belongs
+to the deferred personal-UI plan.
 
 ### 11. feature: production cutover to kieranpotts.com  [HITL]
 Point the apex domain at the new Netlify deploy; confirm `site.url` is the apex
