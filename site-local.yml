@@ -24,6 +24,11 @@ content:
     start_path: src
     edit_url: 'https://github.com/kieranpotts/garden/edit/dev/{path}'
 
+  - url: 'https://github.com/kieranpotts/bookmarks.git'
+    branches: dev
+    start_path: src
+    edit_url: 'https://github.com/kieranpotts/bookmarks/edit/dev/{path}'
+
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
