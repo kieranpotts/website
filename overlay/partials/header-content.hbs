@@ -1,0 +1,36 @@
+{{!
+  Custom site navbar for kieranpotts.com. Overrides the default Antora UI
+  header (which ships placeholder Products/Services menus) with the real
+  top-level sections and external links. Provided as a supplemental UI file
+  via the playbook overlay.
+}}
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{{or site.url siteRootPath}}}">{{site.title}}</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="{{{siteRootPath}}}/index.html">Home</a>
+        <a class="navbar-item" href="{{{siteRootPath}}}/blog/index.html">Blog</a>
+        <a class="navbar-item" href="{{{siteRootPath}}}/garden/index.html">Garden</a>
+        <a class="navbar-item" href="{{{siteRootPath}}}/bookmarks/index.html">Bookmarks</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="{{{siteRootPath}}}/hello-world.html">About</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="{{{siteRootPath}}}/hello-world.html">Hello, world</a>
+            <a class="navbar-item" href="https://www.linkedin.com/in/kieranpotts/">LinkedIn</a>
+            <a class="navbar-item" href="https://bsky.app/profile/kieranpotts.com">Bluesky</a>
+            <a class="navbar-item" href="https://github.com/kieranpotts">GitHub</a>
+            <a class="navbar-item" href="mailto:code@kieranpotts.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
