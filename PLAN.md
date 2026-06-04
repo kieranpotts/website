@@ -132,16 +132,44 @@ already generates `404.html`; customising its copy belongs to the deferred
 personal-UI plan.
 
 ### 7. step: absorb `blog` as a content source  [AFK]
-Add the `blog` repo as an Antora content source in both playbooks. Resolve the
-`.adoc` → Antora module mapping so existing blog URLs (`/rethinking-rest`,
-`/php-is-30`, …) are preserved exactly. Reconcile blog feeds
-(`feeds/*.xml|json`) via overlay or a feed step.
-**Pass:** every URL in the `_redirects` blog rules resolves; spot-checked posts
-render; `linkcheck` passes.
+
+**Design change (recorded mid-step):** the `blog` repo is bare Asciidoctor, not
+an Antora component — no `antora.yml`, `link:./post` cross-links, `image::./_/
+media/...` paths, root-level `/<slug>` URLs. Locked decisions: **Antora-ify the
+blog repo in place** (it stays its own repo but becomes a referenced Antora
+component); **posts move to `/blog/<slug>`** with redirects from the old
+`/<slug>` paths.
+
+**Reconciled URL scheme** (supersedes the old `_redirects` blog rules):
+- New post home: `/blog/` (component landing).
+- New post URLs: `/blog/<slug>` (e.g. `/blog/rethinking-rest`).
+- Old root-level post URLs `/<slug>` → 301 → `/blog/<slug>` (NEW rules).
+- The old rules that sent `/blog/* → /<slug>` and `/blog → /` are **removed**
+  (they assumed the inverted layout) and replaced.
+- Special cases to preserve: `/blog/rebranding-rest` and `/rebranding-rest` →
+  `/blog/rethinking-rest`; `/about` stays → `/hello-world`.
+
+Sub-steps (each independently mergeable):
+
+- **7a** `[AFK]` (in `blog` repo): add `blog/antora.yml` (component `blog`,
+  versionless), restructure `src/*.adoc` → `src/modules/ROOT/pages/`, media
+  `src/_/media/` → `src/modules/ROOT/images/`, rewrite `image::./_/media/...`
+  → `image::...`, and `link:./other-post` → `xref:other-post.adoc`. Keep the
+  bare-Asciidoctor `:docinfo:`/`:nofooter:` attrs (Antora ignores them).
+  *Pass:* `blog` builds standalone under a scratch playbook with no warnings.
+- **7b** `[AFK]` (in `website`): add `blog` as a content source in
+  `site-local.yml` + `site-ci.yml`; set component nav. *Pass:* unified
+  `lint:ci` passes; posts render at `/blog/<slug>`.
+- **7c** `[AFK]` (in `website`): rewrite `overlay/_redirects` to the reconciled
+  scheme above; add the per-post `/<slug>` → `/blog/<slug>` 301s. *Pass:* every
+  old post URL has a 301 to its new home; no rule targets a non-existent page.
+- **7d** `[AFK]`: reconcile feeds (`feeds/*.xml|json`) — serve via overlay at
+  `/blog/feeds/` (or `/feeds/`), update feed `link:` refs. *Pass:* feed files
+  published and reachable; `linkcheck` clean.
+
+**Pass (whole step):** posts render at `/blog/<slug>`; old `/<slug>` paths 301
+to them; feeds reachable; `lint:ci` + `linkcheck` pass.
 **Depends on:** Steps 1, 4. **Independent of Steps 8–9.**
-**Risk note:** blog uses bare-Asciidoctor conventions (`docinfo`, custom
-attributes) that may not map 1:1 to Antora — riskiest absorption, so it goes
-first of the three.
 
 ### 8. step: absorb `garden` as a content source  [AFK]
 Add `garden` repo as a content source / component. Decide its URL namespace
