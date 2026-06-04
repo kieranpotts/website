@@ -1,0 +1,20 @@
+site:
+  title: Kieran Potts
+  url: https://kieranpotts.com
+  start_page: ROOT::index.adoc
+
+content:
+  sources:
+  - url: .
+    branches: HEAD
+    start_path: src
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: overlay
+
+output:
+  clean: true
+  dir: public

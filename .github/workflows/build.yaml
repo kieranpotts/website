@@ -1,0 +1,55 @@
+#
+# Build and validate the site on every change to dev.
+#
+
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - dev
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and validate the site
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install Node.js using the version pinned in .nvmrc.
+      # https://github.com/actions/setup-node?tab=readme-ov-file#usage
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Audit production + dev dependencies. Blocks the workflow on
+      # high-severity findings; low/moderate findings are reported only.
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      # Antora builds the site with --log-failure-level=warn, so any broken
+      # xref, missing include, or unresolved attribute fails the job. The
+      # default UI bundle is fetched from GitLab at build time.
+      - name: Lint and build the site
+        run: npm run lint:ci
+
+      # Crawl the built site for broken internal links. External links are
+      # excluded by default (see linkcheck script in package.json).
+      - name: Check internal links
+        run: npm run linkcheck
