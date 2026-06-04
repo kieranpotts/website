@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+#
+# Serves the built site at http://localhost:8080. Run ./run/build first.
+# The server does not watch for changes or rebuild automatically.
+#
+# Stop the server with Ctrl+C.
+#
+
+# Exit immediately on error (-e), treat unset variables as errors (-u), and
+# propagate failures through pipelines (-o pipefail).
+
+set -euo pipefail
+
+# Resolve the project root (parent of the run/ directory) and change into it.
+# This ensures docker compose always finds docker-compose.yml and that the bind
+# mount (. → /workspace) resolves to the correct host directory, regardless of
+# where this script is invoked from.
+
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+
+# Run the HTTP server inside a one-off container (--rm removes it on exit).
+# --service-ports publishes the port mapping defined in docker-compose.yml
+# (8080:8080), making the server accessible at http://localhost:8080 on the host.
+# --user passes the host user's UID and GID so the process does not run as root.
+#
+# Ctrl+C (SIGINT) exits with code 130; the || clause suppresses that spurious
+# error. Any other non-zero exit code still fails the script.
+
+docker compose run --rm --service-ports --user "$(id -u):$(id -g)" website npm run serve \
+  || [ "$?" -eq 130 ]

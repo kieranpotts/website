@@ -1,0 +1,16 @@
+#
+# Defines the container service for the website. The project source is
+# bind-mounted into the container so edits on the host are reflected
+# immediately, and node_modules is written into the bind-mounted directory so
+# that it is owned by the host user and accessible from outside the container.
+#
+# Use the scripts in ./run/ rather than invoking docker compose directly.
+#
+
+services:
+  website:
+    build: .
+    volumes:
+      - .:/workspace
+    ports:
+      - "8080:8080"
