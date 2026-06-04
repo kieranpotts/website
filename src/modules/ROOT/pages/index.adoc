@@ -1,0 +1,7 @@
+= Kieran Potts
+
+Hello, world. This is the next iteration of kieranpotts.com, built with
+https://antora.org[Antora].
+
+This page is a walking skeleton: it exists to prove the build engine renders a
+page end to end. Real content lands in later steps.
