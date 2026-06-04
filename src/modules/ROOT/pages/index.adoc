@@ -1,7 +1,14 @@
 = Kieran Potts
+:description: Kieran Potts is a contract software developer based near \
+  Bristol, UK, with 20+ years building full-stack web applications for \
+  enterprise.
 
-Hello, world. This is the next iteration of kieranpotts.com, built with
-https://antora.org[Antora].
+I'm a contract software developer with 20+ years designing, building, and
+documenting full-stack web applications for enterprise. I'm based near Bristol,
+UK.
 
-This page is a walking skeleton: it exists to prove the build engine renders a
-page end to end. Real content lands in later steps.
+You can reach me by mailto:code@kieranpotts.com[email], or find me on
+https://www.linkedin.com/in/kieranpotts/[LinkedIn] and
+https://bsky.app/profile/kieranpotts.com[Bluesky].
+
+For more about me, see xref:hello-world.adoc[hello, world].

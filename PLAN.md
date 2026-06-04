@@ -122,9 +122,14 @@ decision.
 Author the hub pages as real content in `src/modules/ROOT/pages/`: home
 (`index.adoc`), `hello-world.adoc` (the `/about` + `/blog/hello-world` redirect
 target), 404 page. Match the existing site's voice (cf. `blog/src/index.adoc`).
-**Pass:** built site has `/`, `/hello-world`, `/404.html`; every redirect
-target in the contract resolves to a real page (no 404).
+**Pass:** built site has `/`, `/hello-world`, `/404.html`; every *home/about*
+redirect target resolves (`/`, `/hello-world`, `/404.html`).
 **Depends on:** Steps 1–2.
+**Note:** the blog-post redirect targets (`/rethinking-rest`,
+`/rebranding-javascript`) intentionally remain unresolved here — they are
+published when the `blog` content source lands in Step 7. The default Antora UI
+already generates `404.html`; customising its copy belongs to the deferred
+personal-UI plan.
 
 ### 7. step: absorb `blog` as a content source  [AFK]
 Add the `blog` repo as an Antora content source in both playbooks. Resolve the
