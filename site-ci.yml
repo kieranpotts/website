@@ -9,6 +9,14 @@ content:
     branches: HEAD
     start_path: src
 
+  # blog/garden/bookmarks are referenced by their (public) remote URL — they
+  # are submodules and cannot be read as local sources. No token is needed
+  # because the repositories are public.
+  - url: 'https://github.com/kieranpotts/blog.git'
+    branches: latest/dev
+    start_path: src
+    edit_url: 'https://github.com/kieranpotts/blog/edit/latest/dev/{path}'
+
 ui:
   bundle:
     url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable

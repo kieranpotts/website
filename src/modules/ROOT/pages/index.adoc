@@ -11,4 +11,6 @@ You can reach me by mailto:code@kieranpotts.com[email], or find me on
 https://www.linkedin.com/in/kieranpotts/[LinkedIn] and
 https://bsky.app/profile/kieranpotts.com[Bluesky].
 
-For more about me, see xref:hello-world.adoc[hello, world].
+For more about me, see xref:hello-world.adoc[hello, world]. I occasionally
+write about the methods and tools we use to make software — see the
+xref:blog::index.adoc[blog].
