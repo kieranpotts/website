@@ -9,3 +9,8 @@ static_files:
 - _headers
 - robots.txt
 - favicon.ico
+# Blog feeds are served at /feeds/ (their long-standing location, which existing
+# subscribers' readers poll). Sourced from the blog repo (src/feeds/).
+- feeds/rss.xml
+- feeds/atom.xml
+- feeds/feed.json

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="/_/styles/atom.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="en">
+  <title>Kieran Potts</title>
+  <subtitle>Kieran Potts is a software developer and former technology journalist. His blog is a commentary on methods and tools for developing and maintaining software systems.</subtitle>
+  <link href="https://kieranpotts.com/feeds/atom.xml" rel="self"/>
+  <link href="https://kieranpotts.com/"/>
+  <updated>2024-08-25T12:00:00Z</updated>
+  <id>https://kieranpotts.com/</id>
+  <author>
+    <name>Kieran Potts</name>
+    <email>code@kieranpotts.com</email>
+  </author>
+
+  <entry>
+    <title>The Mythical Man-Month at 50</title>
+    <link href="https://kieranpotts.com/mythical-man-month-50"/>
+    <updated>2025-12-28T00:00:00Z</updated>
+    <id>https://kieranpotts.com/mythical-man-month-50</id>
+    <content>Fred Brooks's classic book The Mythical Man-Month was published 50 years ago. It was hugely influential on the then-nascent discipline of software development. How does it stand up today?</content>
+  </entry>
+  <entry>
+    <title>The (software) quality without a name</title>
+    <link href="https://kieranpotts.com/the-quality-without-a-name"/>
+    <updated>2025-10-05T00:00:00Z</updated>
+    <id>https://kieranpotts.com/the-quality-without-a-name</id>
+    <content>The Timeless Way of Building by Christopher Alexander is a classic text on real-world architecture. In computing, it was influential in the emerging field of object-oriented programming in the late 1970s and 1980s. The book still has much to teach us about how we think about software design.</content>
+  </entry>
+  <entry>
+    <title>PHP is 30</title>
+    <link href="https://kieranpotts.com/php-is-30"/>
+    <updated>2025-06-08T00:00:00Z</updated>
+    <id>https://kieranpotts.com/php-is-30</id>
+    <content>PHP version 1.0 was announced on 8 June 1995. It quickly became a popular server-side scripting language for websites. Here's why.</content>
+  </entry>
+  <entry>
+    <title>Mental models: essential versus accidental complexity</title>
+    <link href="https://kieranpotts.com/essential-versus-accidental-complexity"/>
+    <updated>2024-12-07T00:00:00Z</updated>
+    <id>https://kieranpotts.com/essential-versus-accidental-complexity</id>
+    <content>A mental model for thinking about the relative importance of essential and accidental complexity.</content>
+  </entry>
+  <entry>
+    <title>30 years of cybercafés</title>
+    <link href="https://kieranpotts.com/30-years-of-cybercafes"/>
+    <updated>2024-09-01T00:00:00Z</updated>
+    <id>https://kieranpotts.com/30-years-of-cybercafes</id>
+    <content>Cyberia, thought to be the world's first commercially successful internet café, opened in London on 1 September 1994.</content>
+  </entry>
+  <entry>
+    <title>Requests for comments</title>
+    <link href="https://kieranpotts.com/rfcs"/>
+    <updated>2024-04-10T00:00:00Z</updated>
+    <id>https://kieranpotts.com/rfcs</id>
+    <content>Requests for Comments (RFCs) are strikingly underused in commercial software delivery. Here's why you should encourage your team to take up this mighty tool.</content>
+  </entry>
+  <entry>
+    <title>Gmail is 20</title>
+    <link href="https://kieranpotts.com/gmail-is-20"/>
+    <updated>2024-04-01T00:00:00Z</updated>
+    <id>https://kieranpotts.com/gmail-is-20</id>
+    <content>Gmail marks the start of the era of web applications. Here's why.</content>
+  </entry>
+  <entry>
+    <title>Mental models: software attributes</title>
+    <link href="https://kieranpotts.com/software-attributes"/>
+    <updated>2024-01-04T00:00:00Z</updated>
+    <id>https://kieranpotts.com/software-attributes</id>
+    <content>A mental model for thinking about the different attributes of a software system: it's functional and non-functional requirements, and it's quality.</content>
+  </entry>
+  <entry>
+    <title>Rethinking REST</title>
+    <link href="https://kieranpotts.com/rethinking-rest"/>
+    <updated>2021-05-24T00:00:00Z</updated>
+    <id>https://kieranpotts.com/rethinking-rest</id>
+    <content>What's wrong with the term "REST API", and what should we use instead?</content>
+  </entry>
+  <entry>
+    <title>Should we rebrand JavaScript?</title>
+    <link href="https://kieranpotts.com/rebranding-javascript"/>
+    <updated>2019-10-14T00:00:00Z</updated>
+    <id>https://kieranpotts.com/rebranding-javascript</id>
+    <content>Should we rebrand JavaScript? And if we did, what would we call it?</content>
+  </entry>
+  <entry>
+    <title>CentOS vs Ubuntu</title>
+    <link href="https://kieranpotts.com/centos-vs-ubuntu"/>
+    <updated>2017-09-09T00:00:00Z</updated>
+    <id>https://kieranpotts.com/centos-vs-ubuntu</id>
+    <content>CentOS and Ubuntu dominate Linux web servers. Which is best?</content>
+  </entry>
+  <entry>
+    <title>Hello, world</title>
+    <link href="https://kieranpotts.com/hello-world"/>
+    <updated>2019-08-05T00:00:00Z</updated>
+    <id>https://kieranpotts.com/hello-world</id>
+    <content>Welcome to my new blog, an exploration of the state of the software industry.</content>
+  </entry>
+
+</feed>

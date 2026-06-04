@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="/_/styles/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xml:base="https://kieranpotts.com/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kieran Potts</title>
+    <link>https://kieranpotts.com/</link>
+    <atom:link href="https://kieranpotts.com/feeds/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Kieran Potts is a software developer and former technology journalist. His blog is a commentary on methods and tools for developing and maintaining software systems.</description>
+    <language>en-US</language>
+
+    <item>
+      <title>The Mythical Man-Month at 50</title>
+      <link>https://kieranpotts.com/mythical-man-month-50</link>
+      <pubDate>Fri, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/mythical-man-month-50</guid>
+      <description>Fred Brooks's classic book The Mythical Man-Month was published 50 years ago. It was hugely influential on the then-nascent discipline of software development. How does it stand up today?</description>
+    </item>
+    <item>
+      <title>The (software) quality without a name</title>
+      <link>https://kieranpotts.com/the-quality-without-a-name</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/the-quality-without-a-name</guid>
+      <description>The Timeless Way of Building by Christopher Alexander is a classic text on real-world architecture. In computing, it was influential in the emerging field of object-oriented programming in the late 1970s and 1980s. The book still has much to teach us about how we think about software design.</description>
+    </item>
+    <item>
+      <title>PHP is 30</title>
+      <link>https://kieranpotts.com/php-is-30</link>
+      <pubDate>Sun, 8 Jun 2025 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/php-is-30</guid>
+      <description>PHP version 1.0 was announced on 8 June 1995. It quickly became a popular server-side scripting language for websites. Here's why.</description>
+    </item>
+    <item>
+      <title>Mental models: essential versus accidental complexity</title>
+      <link>https://kieranpotts.com/essential-versus-accidental-complexity</link>
+      <pubDate>Sat, 12 Dec 2024 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/essential-versus-accidental-complexity</guid>
+      <description>A mental model for thinking about the relative importance of essential and accidental complexity.</description>
+    </item>
+    <item>
+      <title>30 years of cybercafés</title>
+      <link>https://kieranpotts.com/30-years-of-cybercafes</link>
+      <pubDate>Sun, 1 Sep 2024 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/30-years-of-cybercafes</guid>
+      <description>Cyberia, thought to be the world's first commercially successful internet café, opened in London on 1 September 1994.</description>
+    </item>
+    <item>
+      <title>Requests for comments</title>
+      <link>https://kieranpotts.com/rfcs</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/rfcs</guid>
+      <description>Requests for Comments (RFCs) are strikingly underused in commercial software delivery. Here's why you should encourage your team to take up this mighty tool.</description>
+    </item>
+    <item>
+      <title>Gmail is 20</title>
+      <link>https://kieranpotts.com/gmail-is-20</link>
+      <pubDate>Mon, 1 Apr 2024 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/gmail-is-20</guid>
+      <description>Gmail marks the start of the era of web applications. Here's why.</description>
+    </item>
+    <item>
+      <title>Mental models: software attributes</title>
+      <link>https://kieranpotts.com/software-attributes</link>
+      <pubDate>Thu, 4 Jan 2024 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/software-attributes</guid>
+      <description>A mental model for thinking about the different attributes of a software system: it's functional and non-functional requirements, and it's quality.</description>
+    </item>
+    <item>
+      <title>Rethinking REST</title>
+      <link>https://kieranpotts.com/rethinking-rest</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/rethinking-rest</guid>
+      <description>What's wrong with the term "REST API", and what should we use instead?</description>
+    </item>
+    <item>
+      <title>Should we rebrand JavaScript?</title>
+      <link>https://kieranpotts.com/rebranding-javascript</link>
+      <pubDate>Mon, 14 Oct 2019 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/rebranding-javascript</guid>
+      <description>Should we rebrand JavaScript? And if we did, what would we call it?</description>
+    </item>
+    <item>
+      <title>CentOS vs Ubuntu</title>
+      <link>https://kieranpotts.com/centos-vs-ubuntu</link>
+      <pubDate>Sat, 9 Sep 2017 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/centos-vs-ubuntu</guid>
+      <description>CentOS and Ubuntu dominate Linux web servers. Which is best?</description>
+    </item>
+    <item>
+      <title>Hello, world</title>
+      <link>https://kieranpotts.com/hello-world</link>
+      <pubDate>Mon, 5 Aug 2019 00:00:00 +0000</pubDate>
+      <dc:creator>Kieran Potts</dc:creator>
+      <guid>https://kieranpotts.com/hello-world</guid>
+      <description>Welcome to my new blog, an exploration of the state of the software industry.</description>
+    </item>
+
+  </channel>
+</rss>
