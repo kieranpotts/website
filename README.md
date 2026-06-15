@@ -51,7 +51,7 @@ required); their changes appear here once **pushed** to the branches below.
 | Source | Repository | Branch | Published under |
 |--------|------------|--------|-----------------|
 | Home / about | this repo | `HEAD` | `/` |
-| Blog | [kieranpotts/blog](https://github.com/kieranpotts/blog) | `latest/dev` | `/blog/` |
+| Blog | [kieranpotts/thoughts](https://github.com/kieranpotts/thoughts) | `latest/dev` | `/blog/` |
 | Garden | [kieranpotts/garden](https://github.com/kieranpotts/garden) | `dev` | `/garden/` |
 | Bookmarks | [kieranpotts/bookmarks](https://github.com/kieranpotts/bookmarks) | `dev` | `/bookmarks/` |
 
