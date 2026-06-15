@@ -14,11 +14,19 @@
 set -euo pipefail
 
 # Resolve the project root (parent of the run/ directory) and change into it.
-# This ensures docker compose always finds docker-compose.yml and that the bind
-# mount (. → /workspace) resolves to the correct host directory, regardless of
+# This ensures docker compose always finds docker-compose.yml, regardless of
 # where this script is invoked from.
 
 cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+
+# This working tree is a git worktree: its git data lives in a sibling .bare/
+# directory, referenced by absolute path. Export WEBSITE_DIR (the parent of the
+# project root) so docker-compose.yml can mount that whole directory at the
+# same absolute path inside the container, keeping the worktree's git pointers
+# valid so Antora can read the local content source.
+
+WEBSITE_DIR="$(cd .. && pwd)"
+export WEBSITE_DIR
 
 # Run the preview server inside a one-off container (--rm removes it on exit).
 # --service-ports publishes the port mapping defined in docker-compose.yml

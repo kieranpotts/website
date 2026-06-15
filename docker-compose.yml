@@ -4,13 +4,25 @@
 # immediately, and node_modules is written into the bind-mounted directory so
 # that it is owned by the host user and accessible from outside the container.
 #
-# Use the scripts in ./run/ rather than invoking docker compose directly.
+# This repository is checked out as a git *worktree*: the working tree's `.git`
+# is a pointer file (`gitdir: …/website/.bare/worktrees/default`) and the git
+# object store lives in the sibling `.bare/` directory. Antora's local content
+# source (`url: .`) needs that git data to resolve. So rather than mounting just
+# the working tree, we mount its parent (the `website/` directory containing
+# both `.bare/` and `default/`) at the SAME absolute path inside the container.
+# That keeps the worktree's absolute gitdir pointer and `commondir` valid in the
+# container, so `/…/website/default` opens as a git repository.
+#
+# WEBSITE_DIR is the absolute host path of that parent directory; the run/
+# scripts export it. Use the scripts in ./run/ rather than invoking docker
+# compose directly.
 #
 
 services:
   website:
     build: .
     volumes:
-      - .:/workspace
+      - "${WEBSITE_DIR:?run via ./run/* scripts, which set WEBSITE_DIR}:${WEBSITE_DIR}"
+    working_dir: "${WEBSITE_DIR}/default"
     ports:
       - "8080:8080"

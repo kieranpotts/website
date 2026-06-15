@@ -5,8 +5,18 @@ site:
 
 content:
   sources:
-  - url: .
-    branches: HEAD
+  # This repo is checked out as a git worktree, so its working-tree `.git` is a
+  # pointer file, not a directory. Antora (via isomorphic-git) only recognises a
+  # local source whose `.git` is a real directory, so it cannot read the
+  # worktree directly. Instead we point at the sibling bare repo and its `dev`
+  # branch — the same mechanism used for the remote sources below.
+  #
+  # CONSEQUENCE: local builds reflect only *committed* content on `dev`.
+  # Uncommitted edits to the home/about pages under src/ will NOT appear until
+  # they are committed. (The container mounts the parent dir so `../.bare` is
+  # reachable inside it; see docker-compose.yml.)
+  - url: ../.bare
+    branches: dev
     start_path: src
 
   # blog/garden/bookmarks are submodules, so they cannot be read as local
