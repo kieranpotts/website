@@ -18,9 +18,9 @@
 /software-attributes                  /thoughts/software-attributes              301
 /the-quality-without-a-name           /thoughts/the-quality-without-a-name       301
 
-# Note: the old /hello-world blog post is NOT redirected — /hello-world is now
-# the site's about page (see /about below). The post itself lives at
-# /thoughts/hello-world.
+# Note: this is the root-level /<slug> scheme. The old blog post at
+# /hello-world now lives at /thoughts/hello-world; the about-page redirects for
+# /hello-world and /about are under "Site pages" below.
 
 # --- Historical slug changes (carried forward) ------------------------------
 # "rebranding-rest" was renamed to "rethinking-rest" long ago.
@@ -34,7 +34,10 @@
 /blog/*                               /thoughts/:splat                           301
 
 # --- Site pages -------------------------------------------------------------
-/about                                /hello-world                               301
+# The standalone about page (/hello-world) was folded into the home page, so
+# both it and /about now redirect to the site root.
+/hello-world                          /                                          301
+/about                                /                                          301
 /contact                              /                                          301
 
 # --- Catch-all --------------------------------------------------------------
