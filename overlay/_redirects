@@ -3,29 +3,35 @@
 # https://docs.netlify.com/routing/redirects/
 #
 
-# --- Blog posts moved from root-level /<slug> to /blog/<slug> ---------------
-# The blog used to publish posts at the site root. They now live under /blog/.
-# Preserve every old post URL with a 301 to its new home.
-/30-years-of-cybercafes               /blog/30-years-of-cybercafes               301
-/centos-vs-ubuntu                     /blog/centos-vs-ubuntu                     301
-/essential-versus-accidental-complexity  /blog/essential-versus-accidental-complexity  301
-/gmail-is-20                          /blog/gmail-is-20                          301
-/mythical-man-month-50                /blog/mythical-man-month-50                301
-/php-is-30                            /blog/php-is-30                            301
-/rebranding-javascript                /blog/rebranding-javascript                301
-/rethinking-rest                      /blog/rethinking-rest                      301
-/rfcs                                 /blog/rfcs                                 301
-/software-attributes                  /blog/software-attributes                  301
-/the-quality-without-a-name           /blog/the-quality-without-a-name           301
+# --- Blog posts moved from root-level /<slug> to /thoughts/<slug> -----------
+# The blog used to publish posts at the site root. They now live under
+# /thoughts/. Preserve every old post URL with a 301 to its new home.
+/30-years-of-cybercafes               /thoughts/30-years-of-cybercafes           301
+/centos-vs-ubuntu                     /thoughts/centos-vs-ubuntu                 301
+/essential-versus-accidental-complexity  /thoughts/essential-versus-accidental-complexity  301
+/gmail-is-20                          /thoughts/gmail-is-20                      301
+/mythical-man-month-50                /thoughts/mythical-man-month-50            301
+/php-is-30                            /thoughts/php-is-30                        301
+/rebranding-javascript                /thoughts/rebranding-javascript            301
+/rethinking-rest                      /thoughts/rethinking-rest                  301
+/rfcs                                 /thoughts/rfcs                             301
+/software-attributes                  /thoughts/software-attributes              301
+/the-quality-without-a-name           /thoughts/the-quality-without-a-name       301
 
 # Note: the old /hello-world blog post is NOT redirected — /hello-world is now
 # the site's about page (see /about below). The post itself lives at
-# /blog/hello-world.
+# /thoughts/hello-world.
 
 # --- Historical slug changes (carried forward) ------------------------------
 # "rebranding-rest" was renamed to "rethinking-rest" long ago.
-/rebranding-rest                      /blog/rethinking-rest                      301
-/blog/rebranding-rest                 /blog/rethinking-rest                      301
+/rebranding-rest                      /thoughts/rethinking-rest                  301
+/blog/rebranding-rest                 /thoughts/rethinking-rest                  301
+
+# --- Blog section renamed /blog/ -> /thoughts/ ------------------------------
+# The section was published at /blog/ for a time. Preserve those URLs with a
+# catch-all 301 onto the new /thoughts/ path. (Placed after the specific
+# /blog/rebranding-rest rule above so that more-specific match wins.)
+/blog/*                               /thoughts/:splat                           301
 
 # --- Site pages -------------------------------------------------------------
 /about                                /hello-world                               301

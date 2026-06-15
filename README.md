@@ -42,7 +42,7 @@ The site aggregates four content sources at build time. The blog, garden, and bo
 | Source | Repository | Branch | Published under |
 |--------|------------|--------|-----------------|
 | Home / about | this repo | `HEAD` | `/` |
-| Blog | [kieranpotts/thoughts](https://github.com/kieranpotts/thoughts) | `latest/dev` | `/blog/` |
+| Blog | [kieranpotts/thoughts](https://github.com/kieranpotts/thoughts) | `latest/dev` | `/thoughts/` |
 | Garden | [kieranpotts/garden](https://github.com/kieranpotts/garden) | `dev` | `/garden/` |
 | Bookmarks | [kieranpotts/bookmarks](https://github.com/kieranpotts/bookmarks) | `dev` | `/bookmarks/` |
 

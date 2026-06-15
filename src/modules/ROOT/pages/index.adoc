@@ -13,6 +13,6 @@ https://bsky.app/profile/kieranpotts.com[Bluesky].
 
 For more about me, see xref:hello-world.adoc[hello, world]. I occasionally
 write about the methods and tools we use to make software — see the
-xref:blog::index.adoc[blog]. I also tend a
+xref:thoughts::index.adoc[blog]. I also tend a
 xref:garden::index.adoc[digital garden] of notes and references, and keep a
 collection of xref:bookmarks::index.adoc[bookmarks].
