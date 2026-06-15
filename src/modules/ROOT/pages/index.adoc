@@ -1,22 +1,17 @@
-= Kieran Potts
-:description: About Kieran Potts — a self-taught software engineer based near \
-  Bristol, UK, with two decades of experience building software for enterprise.
+= Hello
+:description: About Kieran Potts — a self-taught software engineer \
+  based near Bristol, UK, with two decades of experience building \
+  software for enterprise.
 
-I'm a self-taught software engineer based near Bristol, UK. Over the past two
-decades I've designed, built, and documented full-stack web applications for
-enterprise — as an employee, and latterly as an independent contractor.
+I'm a self-taught software engineer based near Bristol, UK. Over the  past two decades I've designed, built, and documented full-stack web applications for enterprise — as an employee, and latterly as an independent contractor.
 
-I'm also a former technology journalist, and I still occasionally write about
-the methods and tools we use to make software, and about the state of the
-software industry more broadly.
+I'm also a former technology journalist, and I still occasionally write about the methods and tools we use to make software, and about the state of the software industry more broadly.
 
-This site collects that writing alongside my notes, bookmarks, and reference
-material — a single place for the things I want to keep, share, and return to.
-You can read my xref:thoughts::index.adoc[blog], explore my
-xref:garden::index.adoc[digital garden] of notes and references, and browse my
-collection of xref:bookmarks::index.adoc[bookmarks].
+This site collects that writing alongside my notes, bookmarks, and reference material — a single place for the things I want to keep, share, and return to.
 
-== Elsewhere
+You can read my xref:thoughts::index.adoc[blog], explore my xref:garden::index.adoc[digital garden] of notes and references, and browse my collection of xref:bookmarks::index.adoc[bookmarks].
+
+**Connect:**
 
 * Email: mailto:code@kieranpotts.com[code@kieranpotts.com]
 * LinkedIn: https://www.linkedin.com/in/kieranpotts/[in/kieranpotts]
