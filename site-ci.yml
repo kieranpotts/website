@@ -28,9 +28,14 @@ content:
     edit_url: 'https://github.com/kieranpotts/bookmarks/edit/dev/{path}'
 
 ui:
+  # The custom theme, published as a release asset of the website-ui repo and
+  # pinned by version. Keep this in sync with site-dev.yml.
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    url: https://github.com/kieranpotts/website-ui/releases/download/v0.1.0/ui-bundle.zip
     snapshot: true
+  # The overlay supplies only the site's static control files (_redirects,
+  # _headers, robots.txt, favicon.ico) and the blog feeds; the theme bakes in
+  # all UI partials. See overlay/ui.yml.
   supplemental_files: overlay
 
 output:

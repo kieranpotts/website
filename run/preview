@@ -2,7 +2,7 @@
 
 #
 # Starts the live preview server on http://localhost:8080. Watches src/,
-# overlay/, and site-local.yml for changes and rebuilds automatically. Browser
+# overlay/, and site-dev.yml for changes and rebuilds automatically. Browser
 # refresh is manual.
 #
 # Stop the server with Ctrl+C.

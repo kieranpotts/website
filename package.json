@@ -5,12 +5,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "antora --stacktrace --fetch --cache-dir cache --redirect-facility static --clean site-local.yml",
+    "build": "antora --stacktrace --fetch --cache-dir cache --redirect-facility static --clean site-dev.yml",
+    "build:ci": "antora --stacktrace --fetch --cache-dir cache --redirect-facility static --clean site-ci.yml",
     "clean": "rm -rf public cache",
     "serve": "http-server public/ -p 8080 -c-1",
-    "watch": "chokidar 'src/**/*' 'overlay/**/*' 'site-local.yml' -c 'npm run build'",
+    "watch": "chokidar 'src/**/*' 'overlay/**/*' 'site-dev.yml' -c 'npm run build'",
     "preview": "concurrently -k -n watch,serve 'npm run watch' 'npm run serve'",
-    "lint": "antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-local.yml",
+    "lint": "antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-dev.yml",
     "lint:ci": "antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-ci.yml",
     "linkcheck": "start-server-and-test 'http-server public/ -p 8080 -c-1 -s' http://localhost:8080 'linkinator http://localhost:8080/ --recurse --skip \"https?://(?!localhost)\"'"
   },

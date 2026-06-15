@@ -45,7 +45,8 @@ jobs:
 
       # Antora builds the site with --log-failure-level=warn, so any broken
       # xref, missing include, or unresolved attribute fails the job. The
-      # default UI bundle is fetched from GitLab at build time.
+      # custom UI bundle is fetched from the website-ui release pinned in
+      # site-ci.yml.
       - name: Lint and build the site
         run: npm run lint:ci
 

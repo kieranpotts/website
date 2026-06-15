@@ -6,12 +6,12 @@
 #
 # This repository is checked out as a git *worktree*: the working tree's `.git`
 # is a pointer file (`gitdir: …/website/.bare/worktrees/default`) and the git
-# object store lives in the sibling `.bare/` directory. Antora's local content
-# source (`url: .`) needs that git data to resolve. So rather than mounting just
-# the working tree, we mount its parent (the `website/` directory containing
-# both `.bare/` and `default/`) at the SAME absolute path inside the container.
-# That keeps the worktree's absolute gitdir pointer and `commondir` valid in the
-# container, so `/…/website/default` opens as a git repository.
+# object store lives in the sibling `.bare/` directory. isomorphic-git (used by
+# Antora) cannot read a worktree, so site-dev.yml's local content source points
+# at the sibling bare repo (`url: ../.bare`). For that path to resolve inside
+# the container, we mount the parent (the `website/` directory containing both
+# `.bare/` and `default/`) at the SAME absolute path inside the container,
+# rather than mounting just the working tree.
 #
 # WEBSITE_DIR is the absolute host path of that parent directory; the run/
 # scripts export it. Use the scripts in ./run/ rather than invoking docker

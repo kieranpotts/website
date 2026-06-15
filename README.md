@@ -27,9 +27,9 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `src/`: AsciiDoc content for this site. The ROOT component (home and about pages) are under `src/modules/ROOT/`.
 
-- `overlay/`: Files merged into the published output. Includes Netlify control files (`_redirects`, `_headers`) and `robots.txt`/`favicon.ico` (published to the site root via `overlay/ui.yml`), the blog feeds (`/feeds/`), webfonts, and a custom navbar partial (`partials/header-content.hbs`).
+- `overlay/`: Files merged into the published output via `supplemental_files`. Contains only the site's static control files — Netlify's `_redirects`/`_headers` and `robots.txt`/`favicon.ico` (published to the site root via `overlay/ui.yml`) and the blog feeds (`/feeds/`). The UI itself comes from the theme bundle.
 
-- `site-local.yml` / `site-ci.yml`: The Antora playbooks for local development (`http://localhost:8080`) and production (`https://kieranpotts.com`).
+- `site-dev.yml` / `site-ci.yml`: The Antora playbooks for local development (`http://localhost:8080`, reads the local git worktree via the sibling bare repo) and production (`https://kieranpotts.com`, reads the committed `HEAD`). Netlify and CI use `site-ci.yml`.
 
 - `run/`: Docker wrapper scripts for the build tasks.
 
@@ -46,13 +46,14 @@ The site aggregates four content sources at build time. The blog, garden, and bo
 | Garden | [kieranpotts/garden](https://github.com/kieranpotts/garden) | `dev` | `/garden/` |
 | Bookmarks | [kieranpotts/bookmarks](https://github.com/kieranpotts/bookmarks) | `dev` | `/bookmarks/` |
 
-The look and feel uses the stock Antora default UI for now, with the navbar overridden via the overlay.
+The look and feel comes from a custom Antora UI theme maintained in the [kieranpotts/website-ui](https://github.com/kieranpotts/website-ui) repository, published as a release asset and pinned by version in the playbooks.
 
 ## 🛠️ Development tasks
 
 ```sh
 npm run lint       # Build with --log-failure-level=warn
-                   # (fails on broken xrefs etc.).
+                   # (fails on broken xrefs etc.), against the
+                   # dev playbook (site-dev.yml).
 npm run lint:ci    # Same, against the production playbook
                    # (site-ci.yml).
 npm run linkcheck  # Serve the built site and crawl it for

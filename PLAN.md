@@ -13,13 +13,11 @@ What's left:
   rule against the live domain.
 - [ ] **Profile project table** — bump `website` 🚧 → 🚀 in the `kieranpotts`
   profile README once live.
-- [ ] **CV/résumé link** — add to the navbar (`overlay/partials/header-content.hbs`)
-  when the published résumé URL is known.
+- [ ] **CV/résumé link** — add to the navbar (the theme's `header.hbs` in the
+  website-ui repo) when the published résumé URL is known.
 
 ## Deferred (separate plans)
 
-- **Personal Antora UI bundle** — replace the default UI (iA Writer fonts are
-  already in `vendor/` and served via the overlay).
 - **Feeds rework** — proper feed generation if the hand-maintained `/feeds/`
   files need it.
 
