@@ -27,7 +27,7 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `src/content/`: AsciiDoc content for this site. The ROOT component (home and about pages) are under `src/content/modules/ROOT/`.
 
-- `src/static/`: The site's UI `supplemental_files` mount. Holds files published to the site root — Netlify's `_redirects`/`_headers`, `robots.txt`/`favicon.ico`, and the blog feeds (`/feeds/`), all listed as `static_files` in `src/static/ui.yml` — plus the site-specific partial overrides in `src/static/partials/` (`head.hbs`, `nav-menu.hbs`) that layer over the theme bundle. The rest of the UI comes from the theme bundle.
+- `src/static/`: The site's UI `supplemental_files` mount. Holds files published to the site root — Netlify's `_redirects`/`_headers`, `robots.txt`/`favicon.ico`, and the blog feeds (`/feeds/`), all listed as `static_files` in `src/static/ui.yml` — plus the site-specific partial overrides in `src/static/partials/` (`head.hbs`, `nav-menu.hbs`, `footer.hbs`) that layer over the theme bundle. The rest of the UI comes from the theme bundle.
 
 - `site-dev.yml` / `site-ci.yml`: The Antora playbooks for local development (`http://localhost:8080`, reads the local git worktree via the sibling bare repo) and production (`https://kieranpotts.com`, reads the committed `HEAD`). Netlify and CI use `site-ci.yml`.
 
