@@ -63,7 +63,21 @@ npm run clean      # Remove public/ and the Antora cache.
 
 ## 🚢 Deployment
 
-The site deploys to [Netlify](https://www.netlify.com/). The build command is `npm run build` and the publish directory is `public/` (see `netlify.toml`). The `_redirects` and `_headers` files emitted into `public/` from `src/static/` preserve the site's legacy URLs and set the HSTS policy.
+The site deploys to [Netlify](https://www.netlify.com/). The build command is `npm run build:ci` and the publish directory is `public/` (see `netlify.toml`). The `_redirects` and `_headers` files emitted into `public/` from `src/static/` preserve the site's legacy URLs and set the HSTS policy.
+
+Pushes to `latest/dev` deploy to production at [kieranpotts.com](https://kieranpotts.com).
+
+### Preview deploys
+
+Changes are previewed before they reach production via Netlify **Deploy Previews**. Work on a branch off `latest/dev` and open a pull request. Netlify builds it and posts a temporary preview URL (`deploy-preview-<n>--kieranpotts.netlify.app`). Merging the PR into `latest/dev` promotes the change to production.
+
+Notes:
+
+- Preview builds use the same `npm run build:ci` command as production, so `site.url` resolves to `https://kieranpotts.com`. On previews this only affects absolute links and the sitemap, which do not matter there.
+
+- Netlify automatically serves previews with `X-Robots-Tag: noindex` (the `_headers` file only sets HSTS, so it does not override this), keeping preview URLs out of search engines.
+
+- A website-repo preview only reflects changes in *this* repo. The blog, garden, and bookmarks are pulled from their published branches at build time, so changes there are previewed in their own repositories, not here.
 
 -----
 
