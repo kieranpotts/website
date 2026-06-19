@@ -10,12 +10,12 @@
   /* By default, wrap long lines at the viewport or 120 characters,
   whichever is narrowest. */
   "editor.wordWrap": "bounded",
-  "editor.wordWrapColumn": 120,
+  "editor.wordWrapColumn": 240,
 
   "[markdown]": {
     /* Wrap Markdown files at 72 characters. */
     "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 72,
+    "editor.wordWrapColumn": 240,
 
     /* Enable auto-formatting for Markdown files. */
     "editor.formatOnPaste": true,

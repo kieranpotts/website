@@ -3,43 +3,30 @@
 # https://docs.netlify.com/routing/redirects/
 #
 
-# --- Blog posts moved from root-level /<slug> to /thoughts/<slug> -----------
-# The blog used to publish posts at the site root. They now live under
-# /thoughts/. Preserve every old post URL with a 301 to its new home.
-/30-years-of-cybercafes               /thoughts/30-years-of-cybercafes           301
-/centos-vs-ubuntu                     /thoughts/centos-vs-ubuntu                 301
+# --- Redirect legacy root-level /<slug> blog posts -> /thoughts/<slug> ----------------------
+/hello-world                             /thoughts/hello-world                             301
+/centos-vs-ubuntu                        /thoughts/centos-vs-ubuntu                        301
+/rebranding-javascript                   /thoughts/rebranding-javascript                   301
+/rethinking-rest                         /thoughts/rethinking-rest                         301
+/software-attributes                     /thoughts/software-attributes                     301
+/gmail-is-20                             /thoughts/gmail-is-20                             301
+/rfcs                                    /thoughts/rfcs                                    301
+/30-years-of-cybercafes                  /thoughts/30-years-of-cybercafes                  301
 /essential-versus-accidental-complexity  /thoughts/essential-versus-accidental-complexity  301
-/gmail-is-20                          /thoughts/gmail-is-20                      301
-/mythical-man-month-50                /thoughts/mythical-man-month-50            301
-/php-is-30                            /thoughts/php-is-30                        301
-/rebranding-javascript                /thoughts/rebranding-javascript            301
-/rethinking-rest                      /thoughts/rethinking-rest                  301
-/rfcs                                 /thoughts/rfcs                             301
-/software-attributes                  /thoughts/software-attributes              301
-/the-quality-without-a-name           /thoughts/the-quality-without-a-name       301
+/php-is-30                               /thoughts/php-is-30                               301
+/the-quality-without-a-name              /thoughts/the-quality-without-a-name              301
+/mythical-man-month-50                   /thoughts/mythical-man-month-50                   301
 
-# Note: this is the root-level /<slug> scheme. The old blog post at
-# /hello-world now lives at /thoughts/hello-world; the about-page redirects for
-# /hello-world and /about are under "Site pages" below.
+# --- Redirect /blog/* -> /thoughts/* ------------------------------------------
+/blog/*                               /thoughts/:splat                       301
 
-# --- Historical slug changes (carried forward) ------------------------------
-# "rebranding-rest" was renamed to "rethinking-rest" long ago.
-/rebranding-rest                      /thoughts/rethinking-rest                  301
-/blog/rebranding-rest                 /thoughts/rethinking-rest                  301
+# --- Redirect historical one-off slug changes ---------------------------------
+/rebranding-rest                      /thoughts/rethinking-rest              301
+/blog/rebranding-rest                 /thoughts/rethinking-rest              301
 
-# --- Blog section renamed /blog/ -> /thoughts/ ------------------------------
-# The section was published at /blog/ for a time. Preserve those URLs with a
-# catch-all 301 onto the new /thoughts/ path. (Placed after the specific
-# /blog/rebranding-rest rule above so that more-specific match wins.)
-/blog/*                               /thoughts/:splat                           301
+# --- Redirect retired static pages to homepage --------------------------------
+/about                                /                                      301
+/contact                              /                                      301
 
-# --- Site pages -------------------------------------------------------------
-# The standalone about page (/hello-world) was folded into the home page, so
-# both it and /about now redirect to the site root.
-/hello-world                          /                                          301
-/about                                /                                          301
-/contact                              /                                          301
-
-# --- Catch-all --------------------------------------------------------------
-# Show 404 for unmatching routes.
-/*                                    /404.html                                  404
+# --- 404 ----------------------------------------------------------------------
+/*                                    /404.html                              404
