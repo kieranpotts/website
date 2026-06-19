@@ -45,7 +45,7 @@ ui:
   # (`npm run preview`); a new version is cut by tagging website-ui, after which
   # this URL is bumped. Keep this in sync with site-ci.yml.
   bundle:
-    url: https://github.com/kieranpotts/website-ui/releases/download/v0.1.0/ui-bundle.zip
+    url: https://github.com/kieranpotts/website-ui/releases/download/v0.3.0/ui-bundle.zip
     snapshot: true
   # The overlay no longer carries UI partials (the theme bakes those in); it
   # supplies only the site's static control files (_redirects, _headers,
