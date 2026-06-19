@@ -31,7 +31,7 @@ ui:
   # The custom theme, published as a release asset of the website-ui repo and
   # pinned by version. Keep this in sync with site-dev.yml.
   bundle:
-    url: https://github.com/kieranpotts/website-ui/releases/download/v0.5.0/ui-bundle.zip
+    url: https://github.com/kieranpotts/website-ui/releases/download/v0.6.0/ui-bundle.zip
     snapshot: true
   # src/static supplies the site's static control files (_redirects, _headers,
   # robots.txt, favicon.ico), the blog feeds, and the site-specific partial
