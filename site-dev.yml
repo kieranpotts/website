@@ -45,7 +45,7 @@ ui:
   # (`npm run preview`); a new version is cut by tagging website-ui, after which
   # this URL is bumped. Keep this in sync with site-ci.yml.
   bundle:
-    url: https://github.com/kieranpotts/website-ui/releases/download/v0.3.0/ui-bundle.zip
+    url: https://github.com/kieranpotts/website-ui/releases/download/v0.4.0/ui-bundle.zip
     snapshot: true
   # src/static supplies the site's static control files (_redirects, _headers,
   # robots.txt, favicon.ico), the blog feeds, and the site-specific partial

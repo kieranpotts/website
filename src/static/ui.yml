@@ -5,7 +5,9 @@
 # this directory, which is the mount root — the src/static prefix is NOT part of
 # the published path). Anything here NOT listed as a static file is treated by
 # its first path segment: partials/ holds Handlebars partials that override the
-# theme bundle (see partials/head.hbs, partials/nav-menu.hbs).
+# theme bundle (see partials/head.hbs, partials/nav-menu.hbs), and img/ holds
+# image assets that override the UI bundle's own img/ (see img/brand.svg,
+# which replaces the theme's generic navbar brand placeholder).
 #
 # The Netlify control files (_redirects, _headers) MUST be at the publish root
 # to take effect. robots.txt and favicon.ico are conventionally served from the
