@@ -1,21 +1,14 @@
 = Hello
-:description: About Kieran Potts — a self-taught software engineer \
-  based near Bristol, UK, with two decades of experience building \
+:description: About Kieran Potts — a contract software developer based \
+  in the south-west of the UK, with two decades of experience building \
   software for enterprise.
 
-🚧 Under reconstruction.
+Hello, I'm Kieran. I'm a contract software developer based in Bath, UK. I design and build cloud-based enterprise application software, with sidelines in cloud architecture and technical writing.
 
-I'm a self-taught software engineer based near Bristol, UK. Over the  past two decades I've designed, built, and documented full-stack web applications for enterprise — as an employee, and latterly as an independent contractor.
+This website aggregates content I maintain across multiple repositories. In my xref:thoughts::index.adoc[blog] I write about the methods and tools we use to make software, and about the state of the software industry more broadly. My current focus is on agentic software development.
 
-I'm also a former technology journalist, and I still occasionally write about the methods and tools we use to make software, and about the state of the software industry more broadly.
+My xref:garden::index.adoc[digital garden] is a sprawling, ever-growing collection of notes and reference material — a sort of personal wiki. And my xref:bookmarks::index.adoc[bookmarks] are everything I've found online, related to my work, that's worth holding on to.
 
-This site collects that writing alongside my notes, bookmarks, and reference material — a single place for the things I want to keep, share, and return to.
+See https://github.com/kieranpotts[GitHub] for my open source projects. Follow me on https://bsky.app/profile/kieranpotts.com[Bluesky] or https://www.linkedin.com/in/kieranpotts/[LinkedIn], or subscribe via link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or link:/feeds/feed.json[JSON Feed].
 
-You can read my xref:thoughts::index.adoc[blog], explore my xref:garden::index.adoc[digital garden] of notes and references, and browse my collection of xref:bookmarks::index.adoc[bookmarks].
-
-**Connect:**
-
-* Email: mailto:code@kieranpotts.com[code@kieranpotts.com]
-* LinkedIn: https://www.linkedin.com/in/kieranpotts/[in/kieranpotts]
-* Bluesky: https://bsky.app/profile/kieranpotts.com[@kieranpotts.com]
-* GitHub: https://github.com/kieranpotts[@kieranpotts]
+Contact me at mailto:code@kieranpotts.com[code@kieranpotts.com].
