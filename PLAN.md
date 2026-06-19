@@ -1,7 +1,7 @@
 # Website — remaining work
 
 The unified Antora site (home/about + blog + garden + bookmarks) is built and
-passing `lint:ci` + `linkcheck` on `dev`. Steps 1–10 and the README are done.
+passing `lint:ci` + `linkcheck` on `latest/dev`. Steps 1–10 and the README are done.
 What's left:
 
 - [ ] **Netlify preview deploy** — connect the repo, deploy to a branch/preview

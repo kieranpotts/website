@@ -33,7 +33,7 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `run/`: Docker wrapper scripts for the build tasks.
 
-- `.github/workflows/build.yaml`: CI config – builds and validates the site, and checks for broken internal links, on every change to `dev`.
+- `.github/workflows/build.yaml`: CI config – builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
 
 ## 📚 Content sources
 
