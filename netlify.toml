@@ -3,9 +3,9 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 #
 # The site is built with Antora into public/. The Netlify control files
-# (_redirects, _headers) are emitted into public/ from the Antora overlay
-# (see overlay/ui.yml), so Netlify picks them up automatically — they are not
-# duplicated here.
+# (_redirects, _headers) are emitted into public/ from the src/static
+# supplemental_files mount (see src/static/ui.yml), so Netlify picks them up
+# automatically — they are not duplicated here.
 #
 
 [build]

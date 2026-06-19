@@ -17,7 +17,7 @@ content:
   # reachable inside it; see docker-compose.yml.)
   - url: ../.bare
     branches: latest/dev
-    start_path: src
+    start_path: src/content
 
   # blog/garden/bookmarks are submodules, so they cannot be read as local
   # content sources (Antora rejects a submodule .git pointer file). They are
@@ -47,10 +47,10 @@ ui:
   bundle:
     url: https://github.com/kieranpotts/website-ui/releases/download/v0.3.0/ui-bundle.zip
     snapshot: true
-  # The overlay no longer carries UI partials (the theme bakes those in); it
-  # supplies only the site's static control files (_redirects, _headers,
-  # robots.txt, favicon.ico) and the blog feeds. See overlay/ui.yml.
-  supplemental_files: overlay
+  # src/static supplies the site's static control files (_redirects, _headers,
+  # robots.txt, favicon.ico), the blog feeds, and the site-specific partial
+  # overrides (head, nav-menu) that layer over the theme. See src/static/ui.yml.
+  supplemental_files: src/static
 
 output:
   clean: true

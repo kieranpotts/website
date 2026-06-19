@@ -7,7 +7,7 @@ content:
   sources:
   - url: .
     branches: HEAD
-    start_path: src
+    start_path: src/content
 
   # blog/garden/bookmarks are referenced by their (public) remote URL — they
   # are submodules and cannot be read as local sources. No token is needed
@@ -33,10 +33,10 @@ ui:
   bundle:
     url: https://github.com/kieranpotts/website-ui/releases/download/v0.3.0/ui-bundle.zip
     snapshot: true
-  # The overlay supplies only the site's static control files (_redirects,
-  # _headers, robots.txt, favicon.ico) and the blog feeds; the theme bakes in
-  # all UI partials. See overlay/ui.yml.
-  supplemental_files: overlay
+  # src/static supplies the site's static control files (_redirects, _headers,
+  # robots.txt, favicon.ico), the blog feeds, and the site-specific partial
+  # overrides (head, nav-menu) that layer over the theme. See src/static/ui.yml.
+  supplemental_files: src/static
 
 output:
   clean: true

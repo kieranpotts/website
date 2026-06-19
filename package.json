@@ -9,7 +9,7 @@
     "build:ci": "antora --stacktrace --fetch --cache-dir cache --redirect-facility static --clean site-ci.yml",
     "clean": "rm -rf public cache",
     "serve": "http-server public/ -p 8080 -c-1",
-    "watch": "chokidar 'src/**/*' 'overlay/**/*' 'site-dev.yml' -c 'npm run build'",
+    "watch": "chokidar 'src/**/*' 'site-dev.yml' -c 'npm run build'",
     "preview": "concurrently -k -n watch,serve 'npm run watch' 'npm run serve'",
     "lint": "antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-dev.yml",
     "lint:ci": "antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-ci.yml",

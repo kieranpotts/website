@@ -25,9 +25,9 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 ## 🗂️ Structure
 
-- `src/`: AsciiDoc content for this site. The ROOT component (home and about pages) are under `src/modules/ROOT/`.
+- `src/content/`: AsciiDoc content for this site. The ROOT component (home and about pages) are under `src/content/modules/ROOT/`.
 
-- `overlay/`: Files merged into the published output via `supplemental_files`. Contains only the site's static control files — Netlify's `_redirects`/`_headers` and `robots.txt`/`favicon.ico` (published to the site root via `overlay/ui.yml`) and the blog feeds (`/feeds/`). The UI itself comes from the theme bundle.
+- `src/static/`: The site's UI `supplemental_files` mount. Holds files published to the site root — Netlify's `_redirects`/`_headers`, `robots.txt`/`favicon.ico`, and the blog feeds (`/feeds/`), all listed as `static_files` in `src/static/ui.yml` — plus the site-specific partial overrides in `src/static/partials/` (`head.hbs`, `nav-menu.hbs`) that layer over the theme bundle. The rest of the UI comes from the theme bundle.
 
 - `site-dev.yml` / `site-ci.yml`: The Antora playbooks for local development (`http://localhost:8080`, reads the local git worktree via the sibling bare repo) and production (`https://kieranpotts.com`, reads the committed `HEAD`). Netlify and CI use `site-ci.yml`.
 
@@ -63,7 +63,7 @@ npm run clean      # Remove public/ and the Antora cache.
 
 ## 🚢 Deployment
 
-The site deploys to [Netlify](https://www.netlify.com/). The build command is `npm run build` and the publish directory is `public/` (see `netlify.toml`). The `_redirects` and `_headers` files emitted into `public/` from the overlay preserve the site's legacy URLs and set the HSTS policy.
+The site deploys to [Netlify](https://www.netlify.com/). The build command is `npm run build` and the publish directory is `public/` (see `netlify.toml`). The `_redirects` and `_headers` files emitted into `public/` from `src/static/` preserve the site's legacy URLs and set the HSTS policy.
 
 -----
 

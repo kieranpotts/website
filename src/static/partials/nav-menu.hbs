@@ -1,10 +1,10 @@
 {{! Navbar menu for kieranpotts.com.
 
 This overrides the theme's default `partials/nav-menu.hbs` (which would otherwise
-list one link per Antora component). It is shipped via `supplemental_files` (the
-overlay) in the site playbooks, so a supplemental partial of the same path
-replaces the one baked into the UI bundle. The theme stays generic; the site's
-menu — labels, order, and any external links — lives here.
+list one link per Antora component). It is shipped via the `src/static`
+`supplemental_files` mount in the site playbooks, so a supplemental partial of
+the same path replaces the one baked into the UI bundle. The theme stays generic;
+the site's menu — labels, order, and any external links — lives here.
 
 Internal links are Antora resource IDs resolved with `resolvePage`; external
 links are written as plain absolute URLs. }}
