@@ -4,7 +4,7 @@
   software for enterprise.
 :imagesdir: images
 
-image::avatar.svg[Kieran Potts, 160, 160, role=avatar]
+image::avatar.svg[Kieran Potts, 160, 160, role=right]
 
 Hello, I'm Kieran. I'm a contract software developer based in Bath, UK. I design and build cloud-based enterprise application software, with sidelines in cloud architecture and technical writing.
 
