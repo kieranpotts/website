@@ -3,6 +3,8 @@
   based near Bristol, UK, with two decades of experience building \
   software for enterprise.
 
+🚧 Under reconstruction.
+
 I'm a self-taught software engineer based near Bristol, UK. Over the  past two decades I've designed, built, and documented full-stack web applications for enterprise — as an employee, and latterly as an independent contractor.
 
 I'm also a former technology journalist, and I still occasionally write about the methods and tools we use to make software, and about the state of the software industry more broadly.
