@@ -39,6 +39,8 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `docs/`: Design notes recording the build's architecture decisions. See [docs/design-notes.md](docs/design-notes.md).
 
+- `AGENTS.md`: Orientation for coding agents. `CHANGELOG.md`: notable changes (seeded with the UI theme's history).
+
 - `run/`: Docker wrapper scripts for the build tasks.
 
 - `.github/workflows/build.yaml`: CI config – builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
