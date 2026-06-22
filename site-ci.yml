@@ -27,6 +27,18 @@ content:
     start_path: src
     edit_url: 'https://github.com/kieranpotts/bookmarks/edit/dev/{path}'
 
+asciidoc:
+  # Custom block-level HTML converters.
+  #
+  # The extension registers a custom html5 converter that emits clean semantic
+  # HTML for a handful of block types (paragraph, lists, image, listing, quote,
+  # section, preamble, sidebar) and delegates all other blocks to Antora's
+  # built-in converter. See src/lib/asciidoc/.
+  #
+  # Keep in sync with site-dev.yml.
+  extensions:
+  - ./src/lib/asciidoc/extension.js
+
 ui:
   # The custom theme, published as a release asset of the website-ui repo and
   # pinned by version. Keep this in sync with site-dev.yml.
