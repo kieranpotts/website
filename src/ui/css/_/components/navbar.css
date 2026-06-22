@@ -1,0 +1,238 @@
+/**
+ * NAVBAR COMPONENT
+ *
+ * The primary site navigation. The brand sits on the left and the menu
+ * inline on the right. On narrow viewports the menu collapses behind a
+ * burger button, and drops down as a full-width list beneath the bar
+ * (the `is-open` state is toggled by `40-navbar.js`).
+ */
+
+/*
+Center-align so everything lines up.
+*/
+
+/*
+No vertical padding here – the bar's height is set entirely by its tallest
+child. The toggle and menu carry their own vertical padding (below) to hold
+their normal line-height size and spacing from the bar's edges; the brand
+carries none, so it can stretch (via `align-self: stretch` below) to the
+bar's complete height.
+*/
+
+.NavBar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: calc(min(80ch, round(down, 100%, 1ch)));
+  padding: 0 2ch;
+  row-gap: calc(var(--line-height) / 2);
+  width: 100%;
+}
+
+/*
+A fixed height (matching the toggle/menu's own line-height + padding box,
+below) rather than `align-self: stretch` – stretch would resolve against
+the flex line's cross-size, which an oversized source image (eg. a 1000px
+square PNG dropped in as the logo) would otherwise inflate, growing the
+whole bar to match it. `overflow: hidden` then clips the image to this
+fixed box no matter its intrinsic size.
+*/
+
+.NavBar__Brand {
+  display: inline-flex;
+  height: calc(var(--line-height) * 2);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+/*
+`object-fit: contain` scales the image down (never up) to fit within this
+fixed box, preserving its aspect ratio, however large or differently-shaped
+the source file is.
+*/
+
+.NavBar__BrandImage {
+  display: block;
+  height: calc(100% - 4px);
+  margin: 2px 0;
+  object-fit: contain;
+  width: auto;
+}
+
+/*
+BURGER BUTTON
+Shown only on mobile (hidden at >=800px, below).
+Pin to the right edge of the bar. `margin-left: auto` keeps the
+button hard right whether the menu is hidden (closed) or wrapped
+onto its own full-width row (open). Vertical padding holds it at its
+normal line-height size and spacing from the bar's top/bottom edges, now
+that `.NavBar` itself carries none.
+*/
+
+.NavBar__Toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  height: var(--line-height);
+  justify-content: center;
+  margin-left: auto;
+  padding: calc(var(--line-height) / 2) 0;
+  width: auto;
+}
+
+/*
+The hamburger icon. `flex: none` stops the SVG from
+collapsing the icon inside the flex button.
+*/
+
+svg.NavBar__ToggleIcon {
+  flex: none;
+  height: var(--line-height);
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-width: var(--border-thickness);
+  width: var(--line-height);
+}
+
+/*
+The menu is a bullet-less list. It takes a full row
+of the wrapping flex bar (`flex-basis: 100%`) so it sits
+beneath the brand and button, and stacks its items
+vertically.
+*/
+
+.NavBar__Menu {
+  flex-basis: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.NavBar__Menu:not(.is-open) {
+  display: none;
+}
+
+/*
+Right-align the stacked items, under the burger button. `.NavBar` no longer
+carries its own vertical padding (see above), so this wrapped second row
+supplies its own top spacing (margin-top, as before) and bottom spacing
+(padding-bottom) to match.
+*/
+
+.NavBar__Menu.is-open {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(var(--line-height) / 2);
+  padding-bottom: calc(var(--line-height) / 2);
+  row-gap: calc(var(--line-height) / 2);
+}
+
+.NavBar__Menu a {
+  text-transform: uppercase;
+}
+
+/*
+On hover/focus, the text menu items show the same accent underline as
+links inside `.AsciiDoc`. (The social icon item is excluded, and the brand
+is an icon too — it dims instead, like the social icon below.)
+*/
+
+.NavBar__Menu > li:not(.NavBar__Social) > a:hover,
+.NavBar__Menu > li:not(.NavBar__Social) > a:focus {
+  text-decoration: underline;
+  text-decoration-color: var(--color-hyperlink-underline);
+  text-decoration-thickness: var(--border-thickness);
+  text-underline-offset: 0.3em;
+}
+
+/*
+The social (GitHub) item carries an inline SVG icon rather than
+a text label The icon has no text baseline, so on the baseline-aligned
+desktop menu it would sit misaligned with the text items. `align-self: center`
+centers this one item on the menu line instead.
+*/
+
+.NavBar__Social a {
+  align-items: center;
+  display: inline-flex;
+  text-decoration: none;
+}
+
+/*
+Collapse the inherited line-height so the item box hugs the icon; otherwise
+the icon floats at the top of a tall line box and reads as elevated.
+*/
+
+@media screen and (min-width: 800px) {
+  .NavBar__Social {
+    line-height: 0;
+  }
+}
+
+/*
+The icon inherits the link's ink color (overriding the `fill: none` reset)
+and brightens to the accent on hover/focus, matching the link behavior. The
+glyph is nudged onto the text baseline of the adjacent menu items.
+It is sized in `em` so it scales with the adjacent menu text rather than the
+(small) root font-size that `--line-height` is based on. `flex: none` stops
+the SVG from collapsing inside the shrink-wrapped inline-flex link.
+*/
+
+.NavBar__Icon {
+  fill: currentColor;
+  flex: none;
+  width: 1em;
+}
+
+.NavBar__Social a:hover .NavBar__Icon,
+.NavBar__Social a:focus .NavBar__Icon {
+  fill: var(--color-accent);
+}
+
+/*
+DESKTOP
+At >=800px the burger is hidden and the menu is always shown as an
+inline horizontal list on the right, regardless of the `is-open` state.
+Push the whole menu to the right edge of the bar (the brand stays left),
+and right-align the items within it. Vertical padding holds it at its
+normal line-height size and spacing from the bar's top/bottom edges, now
+that `.NavBar` itself carries none – matching the toggle's mobile padding,
+so the bar is the same total height on both breakpoints, and the brand
+(stretched to fill it) doesn't jump size when the layout switches.
+*/
+
+@media screen and (min-width: 800px) {
+  .NavBar__Toggle {
+    display: none;
+  }
+
+  .NavBar__Menu,
+  .NavBar__Menu:not(.is-open),
+  .NavBar__Menu.is-open {
+    align-items: baseline;
+    column-gap: 2ch;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-top: 0;
+    padding: calc(var(--line-height) / 2) 0;
+    row-gap: 0;
+  }
+
+  /*
+  On the baseline-aligned horizontal menu the icon (no text baseline) would
+  sit low. Center just this item on the line. (On the mobile dropdown it instead
+  follows the column's right-alignment, so this is desktop-only.)
+  */
+
+  .NavBar__Social {
+    align-self: center;
+  }
+}

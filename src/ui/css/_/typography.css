@@ -1,0 +1,20 @@
+/**
+ * TYPOGRAPHY
+ *
+ * A minimal typography layer, just setting some global defaults on bare
+ * elements. Most typographic styles are set vie components.
+ */
+
+body {
+  font-family: var(--font-family-default);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height);
+}
+
+strong, b, dfn {
+  font-weight: var(--font-weight-bold);
+}
+
+small {
+  color: var(--color-text-light);
+}

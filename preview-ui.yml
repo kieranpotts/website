@@ -1,0 +1,37 @@
+#
+# Standalone preview playbook for the in-repo UI theme (src/ui/). Builds a small
+# sample site from the theme's own showcase pages, so the UI can be developed
+# without a full site build.
+#
+#   npm run preview:ui   (bundles the theme, then builds this into www/)
+#
+
+site:
+  title: Website UI Preview
+  start_page: preview::index.adoc
+
+content:
+  sources:
+
+  # Read from the ./tmp snapshot, not ./src/ui/preview/ directly.
+  # This repo is a Git worktree, which Antora's aggregator cannot open. The
+  # `previewSrc` gulp task copies the current ./src/ui/preview/ working tree
+  # into ./tmp/ (a plain Git repo) and commits it before each build, so
+  # uncommitted showcase edits appear in the preview without a manual commit.
+  # See gulpfile.js.
+
+  - url: ./tmp
+    branches: HEAD
+
+ui:
+  bundle:
+    # The locally built theme. Resolved relative to this playbook (project root).
+    url: ./src/ui/dist
+    snapshot: true
+
+output:
+  clean: true
+  dir: www
+
+runtime:
+  fetch: false

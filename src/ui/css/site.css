@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/**
+ * Main entry point to the website's stylesheet.
+ *
+ * The stylesheet is split into layers, imported in order of increasing
+ * specificity and reach. Earlier layers set far-reaching defaults. Later
+ * layers narrow to to specific elements, components, and one-off helpers.
+ *
+ * Keeping the cascade flowing downward avoids specificity battles.
+ *
+ *   fonts       @font-face declarations.
+ *   properties  Design tokens.
+ *   resets      Cross-browser normalization.
+ *   typography  Bare-element text styling.
+ *   layout      Page-level structure.
+ *   components  Reusable UI components, eg. NavBar.
+ *   utilities   Single-purpose helpers; highest specificity, may use !important.
+ */
+
+@import url('./_/fonts.css');
+@import url('./_/properties.css');
+@import url('./_/resets.css');
+@import url('./_/typography.css');
+@import url('./_/controls.css');
+@import url('./_/layout.css');
+@import url('./_/components/asciidoc.css');
+@import url('./_/components/breadcrumbs.css');
+@import url('./_/components/footer.css');
+@import url('./_/components/form.css');
+@import url('./_/components/navbar.css');
+@import url('./_/components/toc.css');
+@import url('./_/utilities.css');

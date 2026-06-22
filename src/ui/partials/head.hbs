@@ -1,9 +1,3 @@
-{{! Document <head> contents for kieranpotts.com.
-This overrides the theme's default `partials/head.hbs`, shipped via the
-`src/static` `supplemental_files` mount in the site playbooks — a supplemental
-partial of the same path replaces the one baked into the UI bundle, keeping
-the theme generic. This adds the site's feed `<link>` tags. }}
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{#if page.title}}{{{page.title}}} :: {{/if}}{{site.title}}</title>

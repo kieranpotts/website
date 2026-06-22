@@ -1,0 +1,6 @@
+#
+# UI bundle manifest.
+# `static_files` lists files that Antora copies to the site root verbatim.
+#
+
+static_files: []

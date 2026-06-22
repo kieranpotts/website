@@ -1,0 +1,46 @@
+/**
+ * LAYOUT
+ */
+
+/*
+PAGE CENTERING
+`round(down, 100%, 1ch)` snaps the column to a whole number
+of character cells, so content aligns to the monospace grid
+*/
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.MAIN {
+  max-width: calc(min(80ch, round(down, 100%, 1ch)));
+  overflow-x: hidden;
+  /* padding: calc(var(--line-height) / 2) 2ch var(--line-height) 2ch; */
+  padding: 0 2ch;
+  position: relative;
+  width: 100%;
+}
+
+.HEADER {
+  border-bottom: var(--border-thickness) solid var(--color-border);
+  width: 100%;
+}
+
+/*
+Breadcrumb section always fills its space even when
+there is no nested Breadcrumb component to render.
+*/
+
+.BREADCRUMBS {
+  margin: 0;
+  min-height: calc(var(--line-height) * 2);
+}
+
+.FOOTER {
+  border-top: var(--border-thickness) solid var(--color-border);
+  margin: calc(var(--line-height) * 2) 0 0;
+  padding: var(--line-height) 0;
+}

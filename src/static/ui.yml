@@ -3,11 +3,11 @@
 #
 # Paths listed under static_files are published to the site root (relative to
 # this directory, which is the mount root — the src/static prefix is NOT part of
-# the published path). Anything here NOT listed as a static file is treated by
-# its first path segment: partials/ holds Handlebars partials that override the
-# theme bundle (see partials/head.hbs, partials/nav-menu.hbs), and img/ holds
-# image assets that override the UI bundle's own img/ (see img/brand.svg,
-# which replaces the theme's generic navbar brand placeholder).
+# the published path).
+#
+# This mount carries only true static files. The UI theme (partials, brand
+# image, CSS/JS) is built in-repo from src/ui/ and consumed via the playbooks'
+# ui.bundle, not layered in here.
 #
 # The Netlify control files (_redirects, _headers) MUST be at the publish root
 # to take effect. robots.txt and favicon.ico are conventionally served from the

@@ -15,5 +15,12 @@ public
 cache
 node_modules
 
+# Built UI theme (emitted by `npm run bundle:ui` from src/ui/).
+src/ui/dist
+
+# Standalone theme preview output and its throwaway Git snapshot.
+www
+tmp
+
 # Local Netlify folder.
 .netlify

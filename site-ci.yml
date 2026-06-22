@@ -40,14 +40,16 @@ asciidoc:
   - ./src/lib/asciidoc/extension.js
 
 ui:
-  # The custom theme, published as a release asset of the website-ui repo and
-  # pinned by version. Keep this in sync with site-dev.yml.
+  # The custom theme is built in-repo from src/ui/ (see gulpfile.js). The site
+  # build runs `npm run bundle:ui` first, emitting the unzipped UI into
+  # src/ui/dist/, which Antora consumes directly as a local UI source. Keep this
+  # in sync with site-dev.yml.
   bundle:
-    url: https://github.com/kieranpotts/website-ui/releases/download/v0.6.0/ui-bundle.zip
+    # Resolved relative to this playbook (the project root).
+    url: ./src/ui/dist
     snapshot: true
   # src/static supplies the site's static control files (_redirects, _headers,
-  # robots.txt, favicon.ico), the blog feeds, and the site-specific partial
-  # overrides (head, nav-menu) that layer over the theme. See src/static/ui.yml.
+  # robots.txt, favicon.ico) and the blog feeds. See src/static/ui.yml.
   supplemental_files: src/static
 
 output:
