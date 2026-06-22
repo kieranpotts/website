@@ -52,6 +52,14 @@ content:
     start_path: src
     edit_url: 'https://github.com/kieranpotts/bookmarks/edit/latest/dev/{path}'
 
+antora:
+  # Site-level extensions (NOT Asciidoctor extensions — see asciidoc.extensions
+  # below). The feeds extension generates /feeds/{rss.xml,atom.xml,feed.json}
+  # from the aggregated blog content at build time. See src/lib/feeds/.
+  # Keep in sync with site-ci.yml.
+  extensions:
+  - ./src/lib/feeds/extension.js
+
 asciidoc:
   # Custom block-level HTML converters.
   #

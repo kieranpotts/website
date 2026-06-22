@@ -24,11 +24,13 @@ The build aggregates the home/about pages (in this repo) with the blog, digital 
 
 - `src/content/`: AsciiDoc content for this site (the ROOT component — home and about pages).
 
-- `src/static/`: `supplemental_files` mount — files published to the site root (`_redirects`, `_headers`, `robots.txt`, `favicon.ico`, the `feeds/`). See `src/static/ui.yml`.
+- `src/static/`: `supplemental_files` mount — files published to the site root (`_redirects`, `_headers`, `robots.txt`, `favicon.ico`, and the feeds' `.xsl` stylesheets). See `src/static/ui.yml`.
 
 - `src/ui/`: The custom Antora UI theme. Built by `gulpfile.js` into `src/ui/dist/` (git-ignored) and consumed by the playbooks. `src/ui/preview/` is a standalone showcase. See `src/ui/README.md`.
 
 - `src/lib/asciidoc/`: Custom AsciiDoc block converters that emit semantic HTML (`<figure>`, `<blockquote>`, etc.), wired in via the playbooks' `asciidoc.extensions`. See `src/lib/asciidoc/README.md`.
+
+- `src/lib/feeds/`: Antora extension (playbooks' `antora.extensions`) that generates the RSS/Atom/JSON feeds from the aggregated blog content at build time. See `src/lib/feeds/README.md`.
 
 - `site-dev.yml` / `site-ci.yml`: Antora playbooks for local development and production. Netlify and CI use `site-ci.yml`.
 

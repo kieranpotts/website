@@ -19,10 +19,13 @@ static_files:
 - _headers
 - robots.txt
 - favicon.ico
-- feeds/rss.xml
-- feeds/atom.xml
-- feeds/feed.json
-# XSLT stylesheets that render the RSS/Atom feeds as a readable HTML page in the
-# browser. Referenced from the feeds' <?xml-stylesheet?> instruction.
+# The feed documents themselves (rss.xml, atom.xml, feed.json) are NOT static —
+# they are generated from the aggregated blog content at build time by the feeds
+# extension (see src/lib/feeds/ and antora.extensions in the playbooks).
+#
+# These XSLT stylesheets are the static browser presentation layer for the
+# generated feeds: opening /feeds/rss.xml in a browser applies the matching .xsl
+# (referenced from the feed's <?xml-stylesheet?> instruction) to render a
+# readable HTML page.
 - feeds/rss.xsl
 - feeds/atom.xsl

@@ -27,11 +27,13 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `src/content/`: AsciiDoc content for this site. The ROOT component (home and about pages) are under `src/content/modules/ROOT/`.
 
-- `src/static/`: The site's `supplemental_files` mount. Holds files published to the site root — Netlify's `_redirects`/`_headers`, `robots.txt`/`favicon.ico`, and the blog feeds (`/feeds/`), all listed as `static_files` in `src/static/ui.yml`.
+- `src/static/`: The site's `supplemental_files` mount. Holds files published to the site root — Netlify's `_redirects`/`_headers`, `robots.txt`/`favicon.ico`, and the feeds' XSLT stylesheets (`/feeds/*.xsl`), all listed as `static_files` in `src/static/ui.yml`. (The feed documents themselves are generated — see `src/lib/feeds/`.)
 
 - `src/ui/`: The custom Antora UI theme (layouts, partials, CSS, JS, fonts, brand image), built in-repo by `gulpfile.js` into `src/ui/dist/` and consumed by the playbooks. See [src/ui/README.md](src/ui/README.md).
 
 - `src/lib/asciidoc/`: Custom AsciiDoc block converters that emit semantic HTML (`<figure>`, `<blockquote>`, etc.). See [src/lib/asciidoc/README.md](src/lib/asciidoc/README.md).
+
+- `src/lib/feeds/`: Antora extension that generates the RSS/Atom/JSON feeds (`/feeds/`) from the aggregated blog content at build time. See [src/lib/feeds/README.md](src/lib/feeds/README.md).
 
 - `site-dev.yml` / `site-ci.yml`: The Antora playbooks for local development (`http://localhost:8080`, reads the local git worktree via the sibling bare repo) and production (`https://kieranpotts.com`, reads the committed `HEAD`). Netlify and CI use `site-ci.yml`.
 
