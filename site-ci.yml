@@ -18,14 +18,14 @@ content:
     edit_url: 'https://github.com/kieranpotts/thoughts/edit/latest/dev/{path}'
 
   - url: 'https://github.com/kieranpotts/garden.git'
-    branches: dev
+    branches: latest/dev
     start_path: src
-    edit_url: 'https://github.com/kieranpotts/garden/edit/dev/{path}'
+    edit_url: 'https://github.com/kieranpotts/garden/edit/latest/dev/{path}'
 
   - url: 'https://github.com/kieranpotts/bookmarks.git'
-    branches: dev
+    branches: latest/dev
     start_path: src
-    edit_url: 'https://github.com/kieranpotts/bookmarks/edit/dev/{path}'
+    edit_url: 'https://github.com/kieranpotts/bookmarks/edit/latest/dev/{path}'
 
 asciidoc:
   # Custom block-level HTML converters.

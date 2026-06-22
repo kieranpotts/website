@@ -43,8 +43,8 @@ The site aggregates four content sources at build time. The blog, garden, and bo
 |--------|------------|--------|-----------------|
 | Home / about | this repo | `HEAD` | `/` |
 | Blog | [kieranpotts/thoughts](https://github.com/kieranpotts/thoughts) | `latest/dev` | `/thoughts/` |
-| Garden | [kieranpotts/garden](https://github.com/kieranpotts/garden) | `dev` | `/garden/` |
-| Bookmarks | [kieranpotts/bookmarks](https://github.com/kieranpotts/bookmarks) | `dev` | `/bookmarks/` |
+| Garden | [kieranpotts/garden](https://github.com/kieranpotts/garden) | `latest/dev` | `/garden/` |
+| Bookmarks | [kieranpotts/bookmarks](https://github.com/kieranpotts/bookmarks) | `latest/dev` | `/bookmarks/` |
 
 The look and feel comes from a custom Antora UI theme maintained in the [kieranpotts/website-ui](https://github.com/kieranpotts/website-ui) repository, published as a release asset and pinned by version in the playbooks.
 
