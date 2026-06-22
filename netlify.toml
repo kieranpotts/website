@@ -11,9 +11,9 @@
 [build]
   # Builds with site-ci.yml (npm run build:ci): it reads the repo's committed
   # HEAD (Netlify does a normal clone, not the local git worktree that
-  # site-dev.yml works around) and pins the published website-ui theme bundle.
-  # site.url is kieranpotts.com; on branch/deploy previews that only affects
-  # absolute links and the sitemap, which do not matter on previews.
+  # site-dev.yml works around). site.url is kieranpotts.com; on branch/deploy
+  # previews that only affects absolute links and the sitemap, which do not
+  # matter on previews.
   command = "npm run build:ci"
   publish = "public"
 

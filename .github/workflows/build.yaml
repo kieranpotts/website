@@ -44,9 +44,7 @@ jobs:
         run: npm audit --audit-level=high
 
       # Antora builds the site with --log-failure-level=warn, so any broken
-      # xref, missing include, or unresolved attribute fails the job. The
-      # custom UI bundle is fetched from the website-ui release pinned in
-      # site-ci.yml.
+      # xref, missing include, or unresolved attribute fails the job.
       - name: Lint and build the site
         run: npm run lint:ci
 
