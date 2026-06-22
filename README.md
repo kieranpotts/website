@@ -43,7 +43,11 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `run/`: Docker wrapper scripts for the build tasks.
 
-- `.github/workflows/build.yaml`: CI config – builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
+- `.github/workflows/`: CI and automation.
+  - `build.yaml`: Builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
+  - `netlify-nightly-build.yaml`: Triggers a Netlify production rebuild nightly (02:00 UTC) via a build hook, so new content pushed to the blog/garden/bookmarks sub-repositories is pulled in even without a change to this repo. Requires the `NETLIFY_BUILD_HOOK` secret.
+  - `validate-commit-messages.yaml`: Validates commit-message format on every push (all branches).
+  - `sync-labels.yaml`: Syncs this repo's issue labels nightly (04:00 UTC) from [kieranpotts/.github](https://github.com/kieranpotts/.github), the source of truth for label config across the personal repositories.
 
 ## 📚 Content sources
 
@@ -84,6 +88,8 @@ npm run clean      # Remove public/, the Antora cache, the
 The site deploys to [Netlify](https://www.netlify.com/). The build command is `npm run build:ci` and the publish directory is `public/` (see `netlify.toml`). The `_redirects` and `_headers` files emitted into `public/` from `src/static/` preserve the site's legacy URLs and set the HSTS policy.
 
 Pushes to `latest/dev` deploy to production at [kieranpotts.com](https://kieranpotts.com).
+
+Production is also rebuilt nightly (02:00 UTC) by the `netlify-nightly-build.yaml` workflow, which POSTs to a Netlify build hook (stored in the `NETLIFY_BUILD_HOOK` secret). This pulls in new content pushed to the blog/garden/bookmarks sub-repositories, which would otherwise only reach production on the next change to this repo. It can also be run manually from the GitHub Actions UI.
 
 Netlify Deploy Previews are built from PRs. Work on a branch off `latest/dev` and open a pull request. Netlify automatically builds the branch and posts a temporary preview URL (`deploy-preview-<n>--kieranpotts.netlify.app`). Merging the PR into `latest/dev` promotes the change to production.
 
