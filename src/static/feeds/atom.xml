@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="/_/styles/atom.xsl" type="text/xsl"?>
+<?xml-stylesheet href="/feeds/atom.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="en">
   <title>Kieran Potts</title>
   <subtitle>Kieran Potts is a software developer and former technology journalist. His blog is a commentary on methods and tools for developing and maintaining software systems.</subtitle>

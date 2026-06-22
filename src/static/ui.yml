@@ -22,3 +22,7 @@ static_files:
 - feeds/rss.xml
 - feeds/atom.xml
 - feeds/feed.json
+# XSLT stylesheets that render the RSS/Atom feeds as a readable HTML page in the
+# browser. Referenced from the feeds' <?xml-stylesheet?> instruction.
+- feeds/rss.xsl
+- feeds/atom.xsl
