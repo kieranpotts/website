@@ -19,11 +19,24 @@ content:
     branches: latest/dev
     start_path: src/content
 
-  # blog/garden/bookmarks are submodules, so they cannot be read as local
-  # content sources (Antora rejects a submodule .git pointer file). They are
-  # referenced by their (public) remote URL instead. The playbook reads the
-  # pushed branch, so changes in those repos must be pushed before they appear
-  # here.
+  # blog/garden/bookmarks are referenced by their (public) remote URL, even in
+  # this dev playbook. The playbook reads the pushed branch, so changes in those
+  # repos must be pushed before they appear here.
+  #
+  # WHY NOT LOCAL? Each lives in a sibling worktree checkout
+  # (../../garden/.bare, etc.), so in principle we could point at those bare
+  # repos the same way this playbook reads the website's own ../.bare — Antora
+  # would then pick up local *committed* (unpushed) commits without a push.
+  # We deliberately don't, because it does not pay for its complexity:
+  #   * It would still only show committed content, not uncommitted working-tree
+  #     edits — so it saves a push, not a commit. (Rendering uncommitted edits
+  #     would need the throwaway-tmp-repo snapshot hack; more moving parts.)
+  #   * The Docker workflow (./run/*) only bind-mounts the website/ directory, so
+  #     ../../garden/.bare resolves OUTSIDE the mount and is invisible in the
+  #     container. Supporting it would mean widening the bind mount to the whole
+  #     dev root and reworking the run/ scripts — broadening the container's
+  #     filesystem access for a marginal gain.
+  # Net: keep these remote; push sub-repo changes to see them locally.
   - url: 'https://github.com/kieranpotts/thoughts.git'
     branches: latest/dev
     start_path: src
