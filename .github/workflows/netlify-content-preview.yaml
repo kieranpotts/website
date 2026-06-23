@@ -16,7 +16,7 @@
 #    a draft accidentally publishing to the live site.
 #
 # 2. In GitHub, go to Repository -> Settings -> Secrets and variables ->
-#    Actions, and create a repository secret named `NETLIFY_BUILD_HOOK` with
+#    Actions, and create a repository secret named `NETLIFY_PREVIEW_HOOK` with
 #    that build hook's URL. (Shared with netlify-nightly-build.yaml if that
 #    secret already exists and points at the right context — otherwise use a
 #    differently named secret so the two don't collide.)
@@ -48,14 +48,14 @@ jobs:
         env:
           # Passed via env (not interpolated into the script) so an unset secret
           # is an empty string we can check, rather than a blank URL curl POSTs to.
-          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+          NETLIFY_PREVIEW_HOOK: ${{ secrets.NETLIFY_PREVIEW_HOOK }}
           THOUGHTS_BRANCH: ${{ inputs.thoughts_branch }}
         run: |
-          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
-            echo "::error::NETLIFY_BUILD_HOOK secret is not set. See the workflow header for setup instructions." >&2
+          if [ -z "$NETLIFY_PREVIEW_HOOK" ]; then
+            echo "::error::NETLIFY_PREVIEW_HOOK secret is not set. See the workflow header for setup instructions." >&2
             exit 1
           fi
           curl --fail --silent --show-error -X POST \
             -H "Content-Type: application/json" \
             -d "$(node -e "process.stdout.write(JSON.stringify({trigger_title: 'thoughts-preview', thoughts_branch: process.env.THOUGHTS_BRANCH}))")" \
-            "$NETLIFY_BUILD_HOOK"
+            "$NETLIFY_PREVIEW_HOOK"

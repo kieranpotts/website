@@ -50,7 +50,7 @@ npm run preview  # Watch + serve, rebuilding on change.
 - `.github/workflows/`: CI and automation.
   - `build.yaml`: Builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
   - `netlify-nightly-build.yaml`: Triggers a Netlify production rebuild nightly (02:00 UTC) via a build hook, so new content pushed to the blog/garden/bookmarks sub-repositories is pulled in even without a change to this repo. Requires the `NETLIFY_BUILD_HOOK` secret.
-  - `netlify-content-preview.yaml`: Manually triggered (`workflow_dispatch`) — builds a one-off Netlify preview of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post before merging its PR. Requires a `NETLIFY_BUILD_HOOK` secret pointing at a dedicated non-production Netlify context (see the workflow's header comment for one-time setup).
+  - `netlify-content-preview.yaml`: Manually triggered (`workflow_dispatch`) — builds a one-off Netlify preview of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post before merging its PR. Requires a `NETLIFY_PREVIEW_HOOK` secret pointing at a dedicated non-production Netlify context (see the workflow's header comment for one-time setup).
   - `validate-commit-messages.yaml`: Validates commit-message format on every push (all branches).
   - `sync-labels.yaml`: Syncs this repo's issue labels nightly (04:00 UTC) from [kieranpotts/.github](https://github.com/kieranpotts/.github), the source of truth for label config across the personal repositories.
 
