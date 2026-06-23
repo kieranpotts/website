@@ -16,7 +16,7 @@
   # matter on previews.
   #
   # Builds triggered via the content-preview build hook (see
-  # .github/workflows/netlify-content-preview.yaml) carry a JSON payload in
+  # .github/workflows/netlify-preview.yaml) carry a JSON payload in
   # INCOMING_HOOK_BODY. Extract its thoughts_branch into THOUGHTS_BRANCH,
   # which site-ci.yml's content-preview extension uses to override the
   # thoughts content source's branch for that build only. Normal builds

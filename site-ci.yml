@@ -16,7 +16,7 @@ content:
   # thoughts' branch here is the default (latest/dev); the content-preview
   # extension (./src/lib/content-preview/extension.js) overrides it at build
   # time from THOUGHTS_BRANCH, when set, for one-off draft previews. See
-  # .github/workflows/netlify-content-preview.yaml.
+  # .github/workflows/netlify-preview.yaml.
   - url: 'https://github.com/kieranpotts/thoughts.git'
     branches: latest/dev
     start_path: src

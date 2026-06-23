@@ -50,7 +50,7 @@ npm run preview  # Watch + serve, rebuilding on change.
 - `.github/workflows/`: CI and automation.
   - `build.yaml`: Builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
   - `netlify-nightly-build.yaml`: Triggers a Netlify production rebuild nightly (02:00 UTC) via a build hook, so new content pushed to the blog/garden/bookmarks sub-repositories is pulled in even without a change to this repo. Requires the `NETLIFY_BUILD_HOOK` secret.
-  - `netlify-content-preview.yaml`: Manually triggered (`workflow_dispatch`) — builds a one-off Netlify preview of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post before merging its PR. Requires a `NETLIFY_PREVIEW_HOOK` secret pointing at a dedicated non-production Netlify context (see the workflow's header comment for one-time setup).
+  - `netlify-preview.yaml`: Manually triggered (`workflow_dispatch`) — builds a one-off Netlify preview of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post before merging its PR. Requires a `NETLIFY_PREVIEW_HOOK` secret pointing at a dedicated non-production Netlify context — see [Replicating the Netlify configuration](#replicating-the-netlify-configuration).
   - `validate-commit-messages.yaml`: Validates commit-message format on every push (all branches).
   - `sync-labels.yaml`: Syncs this repo's issue labels nightly (04:00 UTC) from [kieranpotts/.github](https://github.com/kieranpotts/.github), the source of truth for label config across the personal repositories.
 
@@ -113,7 +113,33 @@ To preview an unmerged `thoughts` branch within the aggregated site — rather t
 1. Push the draft branch to `kieranpotts/thoughts`.
 2. In this repo on GitHub, go to **Actions → Netlify Preview → Run workflow**.
 3. Enter the `thoughts` branch name in the `thoughts_branch` input, and run.
-4. The build deploys to the `latest/netlify-preview` Netlify branch-deploy context, at `https://latest-preview--kieranpotts.netlify.app` (Netlify slugifies the `/` to `-`) — not the production URL.
+4. The workflow's job summary prints the preview URL once triggered: `https://latest-netlify-preview--kieranpotts.netlify.app` (the `latest/netlify-preview` Netlify branch-deploy context, slugified — `/` becomes `-`). This is *not* the production URL; it doesn't confirm the build has finished or succeeded, just where it will land.
+
+#### Replicating the Netlify configuration
+
+The preview workflow depends on Netlify dashboard configuration that isn't stored in this repo. To set it up from scratch (eg. on a new Netlify site, or after losing access to the original):
+
+1. **Create the `latest/netlify-preview` branch** in this repo (it can be identical to `latest/dev` — the content-preview extension overrides the `thoughts` source at build time regardless of what's on this branch):
+   ```sh
+   git push origin latest/dev:latest/netlify-preview
+   ```
+
+2. **Add it as a branch-deploy context, without making it production:**
+   - Netlify dashboard → this site → **Site configuration → Build & deploy → Continuous deployment**.
+   - Confirm **Production branch** is `latest/dev` (this is what keeps branch deploys off the live domain).
+   - Under **Branch deploys**, add `latest/netlify-preview` (either via "Let me add individual branches" or "All").
+
+3. **Create a build hook scoped to that branch:**
+   - **Site configuration → Build & deploy → Build hooks → Add build hook**.
+   - Name it (eg. `content-preview`); set **Branch to build** to `latest/netlify-preview`.
+   - Save and copy the generated URL.
+
+4. **Store the hook URL as a GitHub secret:**
+   - This repo on GitHub → **Settings → Secrets and variables → Actions → New repository secret**.
+   - Name: `NETLIFY_PREVIEW_HOOK`. Value: the URL from step 3.
+   - Keep this distinct from `NETLIFY_BUILD_HOOK` (used by `netlify-nightly-build.yaml`) — that one targets production, this one targets the preview branch context. Reusing the same hook for both would make the nightly job rebuild the preview context instead of production, or vice versa.
+
+No Netlify API token or site ID is needed — the build hook URL alone is enough to trigger a build via `curl`.
 
 This requires the one-time Netlify setup described in `netlify-content-preview.yaml`'s header comment (a `latest/netlify-preview` branch-deploy context plus its own build hook secret). See `src/lib/content-preview/` for how the override is applied at build time.
 
