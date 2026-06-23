@@ -11,7 +11,7 @@
 # To set up (one-time):
 #
 # 1. In Netlify, create a dedicated branch-deploy context (NOT production) —
-#    eg. a permanent `content-preview` branch in this repo — and a build hook
+#    eg. a permanent `latest/netlify-preview` branch in this repo — and a build hook
 #    against that context. Building against a non-production context avoids
 #    a draft accidentally publishing to the live site.
 #

@@ -106,7 +106,16 @@ Notes:
 
 - A website-repo preview only reflects changes in *this* repo. The blog, garden, and bookmarks are pulled from their published branches at build time, so changes there are previewed in their own repositories, not here.
 
-- To preview a draft `thoughts` branch within the aggregated site (rather than waiting for it to land on `latest/dev`), manually run the `Netlify Content Preview` workflow (Actions tab) with the branch name. See `netlify-content-preview.yaml` and `src/lib/content-preview/`.
+### Previewing a draft `thoughts` branch
+
+To preview an unmerged `thoughts` branch within the aggregated site — rather than waiting for it to land on `latest/dev` — trigger the `Netlify Content Preview` workflow:
+
+1. Push the draft branch to `kieranpotts/thoughts`.
+2. In this repo on GitHub, go to **Actions → Netlify Content Preview → Run workflow**.
+3. Enter the `thoughts` branch name in the `thoughts_branch` input, and run.
+4. The build deploys to the `latest/netlify-preview` Netlify branch-deploy context, at `https://latest-preview--kieranpotts.netlify.app` (Netlify slugifies the `/` to `-`) — not the production URL.
+
+This requires the one-time Netlify setup described in `netlify-content-preview.yaml`'s header comment (a `latest/netlify-preview` branch-deploy context plus its own build hook secret). See `src/lib/content-preview/` for how the override is applied at build time.
 
 ## 🎨 Design notes
 
