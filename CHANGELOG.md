@@ -6,6 +6,7 @@
 - feature: custom AsciiDoc block converters (`src/lib/asciidoc/`) emitting semantic HTML (`<figure>`, `<blockquote>`, `<aside>`, etc.)
 - feature: reintroduce small inline font style (theme, post-0.6.0)
 - feature: improve spacing around list items (theme, post-0.6.0)
+- feature: reintegrate umami analytics
 
 ---
 
