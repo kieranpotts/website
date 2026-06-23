@@ -12,6 +12,11 @@ content:
   # blog/garden/bookmarks are referenced by their (public) remote URL — they
   # are submodules and cannot be read as local sources. No token is needed
   # because the repositories are public.
+  #
+  # thoughts' branch here is the default (latest/dev); the content-preview
+  # extension (./src/lib/content-preview/extension.js) overrides it at build
+  # time from THOUGHTS_BRANCH, when set, for one-off draft previews. See
+  # .github/workflows/netlify-content-preview.yaml.
   - url: 'https://github.com/kieranpotts/thoughts.git'
     branches: latest/dev
     start_path: src
@@ -31,9 +36,15 @@ antora:
   # Site-level extensions (NOT Asciidoctor extensions — see asciidoc.extensions
   # below). The feeds extension generates /feeds/{rss.xml,atom.xml,feed.json}
   # from the aggregated blog content at build time. See src/lib/feeds/.
-  # Keep in sync with site-dev.yml.
+  #
+  # The content-preview extension overrides the thoughts content source's
+  # branch from THOUGHTS_BRANCH, when set, for one-off draft previews. It is a
+  # no-op on normal builds, where that var is unset. Only registered here —
+  # not in site-dev.yml — since manual content previews are a CI/Netlify
+  # concern, not a local-dev one.
   extensions:
   - ./src/lib/feeds/extension.js
+  - ./src/lib/content-preview/extension.js
 
 asciidoc:
   # Custom block-level HTML converters.

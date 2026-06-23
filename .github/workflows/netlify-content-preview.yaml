@@ -1,0 +1,61 @@
+#
+# Manually trigger a Netlify build that previews a draft branch of the
+# `thoughts` repo, instead of always building from latest/dev.
+#
+# Use this to eyeball a new blog post before merging its PR in `thoughts`.
+# Netlify's own Deploy Previews only cover changes to *this* repo (the
+# website-repo PR build); they can't see content-repo branches at all,
+# because the playbooks always pull thoughts/garden/bookmarks from
+# latest/dev. This workflow is the manual escape hatch for that.
+#
+# To set up (one-time):
+#
+# 1. In Netlify, create a dedicated branch-deploy context (NOT production) —
+#    eg. a permanent `content-preview` branch in this repo — and a build hook
+#    against that context. Building against a non-production context avoids
+#    a draft accidentally publishing to the live site.
+#
+# 2. In GitHub, go to Repository -> Settings -> Secrets and variables ->
+#    Actions, and create a repository secret named `NETLIFY_BUILD_HOOK` with
+#    that build hook's URL. (Shared with netlify-nightly-build.yaml if that
+#    secret already exists and points at the right context — otherwise use a
+#    differently named secret so the two don't collide.)
+#
+# How it works: this posts a JSON body to the Netlify build hook. Netlify
+# exposes that body to the build as INCOMING_HOOK_BODY; netlify.toml's build
+# command extracts `thoughts_branch` from it into THOUGHTS_BRANCH, which the
+# content-preview Antora extension (src/lib/content-preview/extension.js)
+# then uses to override the thoughts content source's branch for that build
+# only. See site-ci.yml.
+#
+
+name: Netlify Content Preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      thoughts_branch:
+        description: 'Branch on kieranpotts/thoughts to preview (eg. a draft post branch)'
+        required: true
+        type: string
+
+jobs:
+  trigger-netlify-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Netlify content preview build
+        env:
+          # Passed via env (not interpolated into the script) so an unset secret
+          # is an empty string we can check, rather than a blank URL curl POSTs to.
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+          THOUGHTS_BRANCH: ${{ inputs.thoughts_branch }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
+            echo "::error::NETLIFY_BUILD_HOOK secret is not set. See the workflow header for setup instructions." >&2
+            exit 1
+          fi
+          curl --fail --silent --show-error -X POST \
+            -H "Content-Type: application/json" \
+            -d "$(node -e "process.stdout.write(JSON.stringify({trigger_title: 'thoughts-preview', thoughts_branch: process.env.THOUGHTS_BRANCH}))")" \
+            "$NETLIFY_BUILD_HOOK"

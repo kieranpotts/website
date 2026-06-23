@@ -35,6 +35,8 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `src/lib/feeds/`: Antora extension that generates the RSS/Atom/JSON feeds (`/feeds/`) from the aggregated blog content at build time. See [src/lib/feeds/README.md](src/lib/feeds/README.md).
 
+- `src/lib/content-preview/`: Antora extension that overrides the `thoughts` content source's branch from `THOUGHTS_BRANCH`, when set, for one-off draft previews. No-op on normal builds. See [🚢 Deployment](#-deployment).
+
 - `site-dev.yml` / `site-ci.yml`: The Antora playbooks for local development (`http://localhost:8080`, reads the local git worktree via the sibling bare repo) and production (`https://kieranpotts.com`, reads the committed `HEAD`). Netlify and CI use `site-ci.yml`.
 
 - `gulpfile.js`: Builds the `src/ui/` theme into `src/ui/dist/`. Runs automatically before the Antora build.
@@ -48,6 +50,7 @@ npm run preview  # Watch + serve, rebuilding on change.
 - `.github/workflows/`: CI and automation.
   - `build.yaml`: Builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
   - `netlify-nightly-build.yaml`: Triggers a Netlify production rebuild nightly (02:00 UTC) via a build hook, so new content pushed to the blog/garden/bookmarks sub-repositories is pulled in even without a change to this repo. Requires the `NETLIFY_BUILD_HOOK` secret.
+  - `netlify-content-preview.yaml`: Manually triggered (`workflow_dispatch`) — builds a one-off Netlify preview of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post before merging its PR. Requires a `NETLIFY_BUILD_HOOK` secret pointing at a dedicated non-production Netlify context (see the workflow's header comment for one-time setup).
   - `validate-commit-messages.yaml`: Validates commit-message format on every push (all branches).
   - `sync-labels.yaml`: Syncs this repo's issue labels nightly (04:00 UTC) from [kieranpotts/.github](https://github.com/kieranpotts/.github), the source of truth for label config across the personal repositories.
 
@@ -102,6 +105,8 @@ Notes:
 - Netlify automatically serves previews with `X-Robots-Tag: noindex` (the `_headers` file only sets HSTS, so it does not override this), keeping preview URLs out of search engines.
 
 - A website-repo preview only reflects changes in *this* repo. The blog, garden, and bookmarks are pulled from their published branches at build time, so changes there are previewed in their own repositories, not here.
+
+- To preview a draft `thoughts` branch within the aggregated site (rather than waiting for it to land on `latest/dev`), manually run the `Netlify Content Preview` workflow (Actions tab) with the branch name. See `netlify-content-preview.yaml` and `src/lib/content-preview/`.
 
 ## 🎨 Design notes
 
