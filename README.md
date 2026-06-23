@@ -108,10 +108,10 @@ Notes:
 
 ### Previewing a draft `thoughts` branch
 
-To preview an unmerged `thoughts` branch within the aggregated site — rather than waiting for it to land on `latest/dev` — trigger the `Netlify Content Preview` workflow:
+To preview an unmerged `thoughts` branch within the aggregated site — rather than waiting for it to land on `latest/dev` — trigger the `Netlify Preview` workflow:
 
 1. Push the draft branch to `kieranpotts/thoughts`.
-2. In this repo on GitHub, go to **Actions → Netlify Content Preview → Run workflow**.
+2. In this repo on GitHub, go to **Actions → Netlify Preview → Run workflow**.
 3. Enter the `thoughts` branch name in the `thoughts_branch` input, and run.
 4. The build deploys to the `latest/netlify-preview` Netlify branch-deploy context, at `https://latest-preview--kieranpotts.netlify.app` (Netlify slugifies the `/` to `-`) — not the production URL.
 

@@ -29,7 +29,7 @@
 # only. See site-ci.yml.
 #
 
-name: Netlify Content Preview
+name: Netlify Preview
 
 on:
   workflow_dispatch:
