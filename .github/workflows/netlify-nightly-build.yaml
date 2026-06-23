@@ -41,3 +41,10 @@ jobs:
           curl --fail --silent --show-error -X POST \
             -H "Content-Type: application/json" \
             "$NETLIFY_BUILD_HOOK"
+
+      # This doesn't confirm the triggered build has finished or succeeded —
+      # just where it will land once it does.
+      - name: Print site URL
+        run: |
+          echo "Netlify production rebuild triggered." >> "$GITHUB_STEP_SUMMARY"
+          echo "Site (once the build finishes): https://kieranpotts.com" >> "$GITHUB_STEP_SUMMARY"

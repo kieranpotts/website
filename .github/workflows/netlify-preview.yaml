@@ -59,3 +59,13 @@ jobs:
             -H "Content-Type: application/json" \
             -d "$(node -e "process.stdout.write(JSON.stringify({trigger_title: 'thoughts-preview', thoughts_branch: process.env.THOUGHTS_BRANCH}))")" \
             "$NETLIFY_PREVIEW_HOOK"
+
+      # Netlify branch-deploy URLs are deterministic: the deploy context's
+      # branch name (here, always the fixed `latest/netlify-preview` Netlify
+      # branch — see the header comment), slugified by replacing each
+      # non-alphanumeric run with a single hyphen. This doesn't confirm the
+      # triggered build has finished or succeeded — just where it will land.
+      - name: Print preview URL
+        run: |
+          echo "Netlify build triggered for thoughts branch '${{ inputs.thoughts_branch }}'." >> "$GITHUB_STEP_SUMMARY"
+          echo "Preview (once the build finishes): https://latest-netlify-preview--kieranpotts.netlify.app" >> "$GITHUB_STEP_SUMMARY"
