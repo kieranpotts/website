@@ -5,9 +5,9 @@
 
 **🚧 UNDER RECONSTRUCTION** — I'm rebuilding this website. Some links and pages may be broken.
 
-I'm Kieran. I'm a contract software developer based in Bath, UK. I design and build cloud-based enterprise application software, with sidelines in cloud architecture and technical writing.
+I'm Kieran. I'm a contract software developer based in Bath, UK. I design and build cloud-based enterprise application software, with sidelines in software architecture and technical writing.
 
-This website aggregates content I maintain across multiple repositories. In my xref:thoughts::index.adoc[blog] I write about the methods and tools we use to make software, and about the state of the software industry more broadly. My current focus is on agentic software development. My xref:garden::index.adoc[digital garden] is a sprawling, ever-growing collection of notes and reference material — a sort of personal wiki. And my xref:bookmarks::index.adoc[bookmarks] are everything I've found online, related to my work, that's worth holding on to.
+This website aggregates content I maintain across multiple repositories. In my xref:thoughts::index.adoc[blog] I write about the methods and tools we use to make software, and about the state of the software industry more broadly. My xref:garden::index.adoc[digital garden] is a sprawling, ever-growing collection of notes and reference material — a sort of personal wiki. And my xref:bookmarks::index.adoc[bookmarks] are everything I've found online, related to my work, that's worth holding on to.
 
 See https://github.com/kieranpotts[GitHub] for my open source projects. Follow me on https://bsky.app/profile/kieranpotts.com[Bluesky] or https://www.linkedin.com/in/kieranpotts/[LinkedIn], or subscribe via link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or link:/feeds/feed.json[JSON Feed].
 
