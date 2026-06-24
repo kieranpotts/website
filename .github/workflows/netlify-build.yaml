@@ -13,7 +13,7 @@
 #    URL as the value.
 #
 
-name: Netlify Nightly Build
+name: Netlify Build
 
 on:
   schedule:

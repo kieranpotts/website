@@ -40,7 +40,7 @@ The build aggregates the home/about pages (in this repo) with the blog, digital 
 
 - `docs/`: Design notes (architecture decisions).
 
-- `.github/workflows/`: CI and automation. `build.yaml` builds, validates, and link-checks the site on every change to `latest/dev`. `netlify-nightly-build.yaml` triggers a nightly (02:00 UTC) Netlify rebuild via a build hook to pull in new sub-repository content (`NETLIFY_BUILD_HOOK` secret). `validate-commit-messages.yaml` validates commit-message format on every push. `sync-labels.yaml` syncs issue labels nightly (04:00 UTC) from `kieranpotts/.github`.
+- `.github/workflows/`: CI and automation. `build.yaml` builds, validates, and link-checks the site on every change to `latest/dev`. `netlify-build.yaml` triggers a nightly (02:00 UTC) Netlify rebuild via a build hook to pull in new sub-repository content (`NETLIFY_BUILD_HOOK` secret). `validate-commit-messages.yaml` validates commit-message format on every push. `sync-labels.yaml` syncs issue labels nightly (04:00 UTC) from `kieranpotts/.github`.
 
 ## Tools
 

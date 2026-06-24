@@ -49,7 +49,7 @@ npm run preview  # Watch + serve, rebuilding on change.
 
 - `.github/workflows/`: CI and automation.
   - `build.yaml`: Builds and validates the site, and checks for broken internal links, on every change to `latest/dev`.
-  - `netlify-nightly-build.yaml`: Triggers a Netlify production rebuild nightly (02:00 UTC) via a build hook, so new content pushed to the blog/garden/bookmarks sub-repositories is pulled in even without a change to this repo. Requires the `NETLIFY_BUILD_HOOK` secret.
+  - `netlify-build.yaml`: Triggers a Netlify production rebuild nightly (02:00 UTC) via a build hook, so new content pushed to the blog/garden/bookmarks sub-repositories is pulled in even without a change to this repo. Requires the `NETLIFY_BUILD_HOOK` secret.
   - `netlify-preview.yaml`: Manually triggered (`workflow_dispatch`) — builds a one-off Netlify preview of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post before merging its PR. Requires a `NETLIFY_PREVIEW_HOOK` secret pointing at a dedicated non-production Netlify context — see [Replicating the Netlify configuration](#replicating-the-netlify-configuration).
   - `validate-commit-messages.yaml`: Validates commit-message format on every push (all branches).
   - `sync-labels.yaml`: Syncs this repo's issue labels nightly (04:00 UTC) from [kieranpotts/.github](https://github.com/kieranpotts/.github), the source of truth for label config across the personal repositories.
@@ -94,7 +94,7 @@ The site deploys to [Netlify](https://www.netlify.com/). The build command is `n
 
 Pushes to `latest/dev` deploy to production at [kieranpotts.com](https://kieranpotts.com).
 
-Production is also rebuilt nightly (02:00 UTC) by the `netlify-nightly-build.yaml` workflow, which POSTs to a Netlify build hook (stored in the `NETLIFY_BUILD_HOOK` secret). This pulls in new content pushed to the blog/garden/bookmarks sub-repositories, which would otherwise only reach production on the next change to this repo. It can also be run manually from the GitHub Actions UI.
+Production is also rebuilt nightly (02:00 UTC) by the `netlify-build.yaml` workflow, which POSTs to a Netlify build hook (stored in the `NETLIFY_BUILD_HOOK` secret). This pulls in new content pushed to the blog/garden/bookmarks sub-repositories, which would otherwise only reach production on the next change to this repo. It can also be run manually from the GitHub Actions UI.
 
 Netlify Deploy Previews are built from PRs. Work on a branch off `latest/dev` and open a pull request. Netlify automatically builds the branch and posts a temporary preview URL (`deploy-preview-<n>--kieranpotts.netlify.app`). Merging the PR into `latest/dev` promotes the change to production.
 
@@ -137,7 +137,7 @@ The preview workflow depends on Netlify dashboard configuration that isn't store
 4. **Store the hook URL as a GitHub secret:**
    - This repo on GitHub → **Settings → Secrets and variables → Actions → New repository secret**.
    - Name: `NETLIFY_PREVIEW_HOOK`. Value: the URL from step 3.
-   - Keep this distinct from `NETLIFY_BUILD_HOOK` (used by `netlify-nightly-build.yaml`) — that one targets production, this one targets the preview branch context. Reusing the same hook for both would make the nightly job rebuild the preview context instead of production, or vice versa.
+   - Keep this distinct from `NETLIFY_BUILD_HOOK` (used by `netlify-build.yaml`) — that one targets production, this one targets the preview branch context. Reusing the same hook for both would make the nightly job rebuild the preview context instead of production, or vice versa.
 
 No Netlify API token or site ID is needed — the build hook URL alone is enough to trigger a build via `curl`.
 

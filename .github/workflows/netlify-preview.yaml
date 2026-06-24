@@ -17,9 +17,7 @@
 #
 # 2. In GitHub, go to Repository -> Settings -> Secrets and variables ->
 #    Actions, and create a repository secret named `NETLIFY_PREVIEW_HOOK` with
-#    that build hook's URL. (Shared with netlify-nightly-build.yaml if that
-#    secret already exists and points at the right context — otherwise use a
-#    differently named secret so the two don't collide.)
+#    that build hook's URL.
 #
 # How it works: this posts a JSON body to the Netlify build hook. Netlify
 # exposes that body to the build as INCOMING_HOOK_BODY; netlify.toml's build
