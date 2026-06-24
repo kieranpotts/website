@@ -3,7 +3,7 @@
   in the south-west of the UK, with two decades of experience building \
   software for enterprise.
 
-**🚧 UNDER RECONSTRUCTION** — I'm rebuilding this website. Some links and pages may be broken.
+**🚧 UNDER RECONSTRUCTION**
 
 I'm Kieran. I'm a contract software developer based in Bath, UK. I work across three disciplines — software architecture, computer programming, and technical writing — to design, build, and document cloud-based enterprise application software.
 
