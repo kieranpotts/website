@@ -43,9 +43,6 @@
   these tokens are references elsewhere in the theme – the base colors are
   never referenced directly.
 
-  The accent is a subtle signature color used for link underlines, footnote
-  markers, and a few other things.
-
   The text selection background/foreground are NOT flipped between
   light and dark modes. The highlight text (`<mark>`) is a softer,
   translucent version of the same yellow. The alpha lets it tint over
@@ -55,7 +52,6 @@
   Everything else is monochrome.
   */
 
-  --base-accent: hsl(176, 100%, 36%);    /* signature color */
   --base-ink: hsl(0, 0%, 15%);           /* primary text, borders, bullets */
   --base-ink-muted: hsl(0, 0%, 50%);     /* secondary/light text */
   --base-ink-faint: hsl(0, 0%, 75%);     /* placeholder text */
@@ -72,7 +68,6 @@
   in dark mode.
   */
 
-  --color-accent: var(--base-accent);
   --color-header-background: var(--base-page-muted);
   --color-page-background: var(--base-page);
   --color-text-default: var(--base-ink);
@@ -90,16 +85,16 @@
 
   /*
   LINKS + OUTLINES
-  Ink-colored text with an accent underline and outline.
+  Ink-colored text with an ink-colored underline and outline.
   */
 
   --color-hyperlink-active: inherit;
   --color-hyperlink-default: inherit;
   --color-hyperlink-focus: inherit;
   --color-hyperlink-hover: inherit;
-  --color-hyperlink-underline: var(--color-accent);
+  --color-hyperlink-underline: var(--color-text-default);
   --color-hyperlink-visited: inherit;
-  --color-outline: var(--color-accent);
+  --color-outline: var(--color-text-default);
 
   /*
   VIDEO BACKGROUND
@@ -197,13 +192,10 @@
 DARK MODE
 Color inversions happen here. The four base palette tones
 are flipped, and every semantic `--color-*` token follows.
-The accent is also brightened a little to keep it punch
-against the near-black backdrop.
 */
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --base-accent: hsl(176, 70%, 50%);  /* brighter teal for dark bg */
     --base-ink: hsl(0, 0%, 90%);        /* primary text, borders, bullets */
     --base-ink-muted: hsl(0, 0%, 60%);  /* secondary/light text */
     --base-ink-faint: hsl(0, 0%, 35%);  /* placeholder text */

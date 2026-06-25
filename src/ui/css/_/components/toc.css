@@ -111,7 +111,7 @@ On hover, reveal underline.
 
 .TOC__List a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--color-accent);
+  text-decoration-color: var(--color-hyperlink-underline);
   text-decoration-thickness: var(--border-thickness);
   text-underline-offset: 0.3em;
 }

@@ -574,19 +574,13 @@ LINKS
 /*
 FOOTNOTES
 In-text reference markers are rendered inline – required resetting
-`sup` defaults. Tint the marker link with the accent (the `[ ]` brackets
-stay ink).
+`sup` defaults.
 */
 
 .AsciiDoc sup.footnote,
 .AsciiDoc sup.footnoteref {
   font-size: 100%;
   top: 0;
-}
-
-.AsciiDoc sup.footnote > a,
-.AsciiDoc sup.footnoteref > a {
-  color: var(--color-accent);
 }
 
 /*

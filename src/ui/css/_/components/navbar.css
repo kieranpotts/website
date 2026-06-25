@@ -174,9 +174,8 @@ the icon floats at the top of a tall line box and reads as elevated.
 }
 
 /*
-The icon inherits the link's ink color (overriding the `fill: none` reset)
-and brightens to the accent on hover/focus, matching the link behavior. The
-glyph is nudged onto the text baseline of the adjacent menu items.
+The icon inherits the link's ink color (overriding the `fill: none` reset).
+The glyph is nudged onto the text baseline of the adjacent menu items.
 It is sized in `em` so it scales with the adjacent menu text rather than the
 (small) root font-size that `--line-height` is based on. `flex: none` stops
 the SVG from collapsing inside the shrink-wrapped inline-flex link.
@@ -186,11 +185,6 @@ the SVG from collapsing inside the shrink-wrapped inline-flex link.
   fill: currentColor;
   flex: none;
   width: 1em;
-}
-
-.NavBar__Social a:hover .NavBar__Icon,
-.NavBar__Social a:focus .NavBar__Icon {
-  fill: var(--color-accent);
 }
 
 /*
