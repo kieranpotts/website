@@ -442,12 +442,15 @@ an uppercase label — drawn from the icon's `title` attribute via `attr()`.
 
 /*
 QUOTE & VERSE BLOCKS
-Quoteblock wraps a real `<blockquote>`.
-Verseblock keeps line breaks in a `<pre class="content">`.
-Both may carry an attribution.
+Our custom quote template (see ../../lib/asciidoc/templates/quote.js) emits
+a bare `<blockquote>`, with the attribution as its last `<p>` – no
+`.quoteblock`/`.attribution` wrapper. Verseblock is unmodified, so it still
+goes through Asciidoctor's stock converter and keeps line breaks in a
+`<pre class="content">`, with a `.quoteblock`/`.attribution` wrapper of
+its own.
 */
 
-.AsciiDoc .quoteblock,
+.AsciiDoc blockquote,
 .AsciiDoc .verseblock {
   border-left: var(--border-thickness) solid var(--color-text-default);
   margin: var(--line-height) 0;
@@ -458,9 +461,14 @@ Both may carry an attribution.
   line-height: var(--line-height);
 }
 
+.AsciiDoc blockquote > p {
+  margin: 0 0 calc(var(--line-height) * 0.5);
+}
+
+.AsciiDoc blockquote > p:last-child,
 .AsciiDoc .attribution {
   color: var(--color-text-default);
-  margin-top: calc(var(--line-height) * 0.5);
+  margin: calc(var(--line-height) * 0.5) 0 0 0;
 }
 
 .AsciiDoc .attribution cite {
