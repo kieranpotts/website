@@ -94,8 +94,8 @@ at the same level.
 }
 
 .AsciiDoc ul li {
-  padding-left: 2.75ch;
-  text-indent: -2.75ch;
+  padding-left: 2ch;
+  text-indent: -2ch;
 }
 
 .AsciiDoc ol ul,
