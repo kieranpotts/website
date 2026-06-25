@@ -1,4 +1,8 @@
 <article class="DOCUMENT">
-  {{> title}}
+  {{#unless page.noheader}}
+    <div class="TITLE">
+      {{> title}}
+    </div>
+  {{/unless}}
   {{> contents}}
 </article>

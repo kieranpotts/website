@@ -1,7 +1,7 @@
 'use strict'
 
 /**
- * Renders a byline ("By <author> · <date>") from an AsciiDoc author
+ * Renders a byline ("<author> · <date>") from an AsciiDoc author
  * attribute, eg. "Kieran Potts, 24 May 2021". The date substring is matched
  * with the same `D Month YYYY` pattern used by the feed builder (see
  * src/lib/feeds/posts.js) so the two stay in sync. Returns an empty string
@@ -32,5 +32,5 @@ module.exports = (author) => {
     dateHtml = ` &middot; <time datetime="${iso}">${m[1]} ${m[2]} ${m[3]}</time>`
   }
 
-  return `By ${escapeHtml(name)}${dateHtml}`
+  return `${escapeHtml(name)}${dateHtml}`
 }

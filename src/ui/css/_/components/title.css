@@ -9,11 +9,15 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.05rem;
   line-height: var(--line-height);
-  margin: calc(var(--line-height) * 4) 0 var(--line-height);
+  margin: 0 0 calc(var(--line-height) * 0.5);
   text-transform: uppercase;
+}
+
+.Title h1:last-child {
+  margin: 0;
 }
 
 .Title p {
   color: var(--color-text-light);
-  margin-bottom: calc(var(--line-height) * 2);
+  margin: 0;
 }
