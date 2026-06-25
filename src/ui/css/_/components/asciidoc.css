@@ -94,8 +94,8 @@ at the same level.
 }
 
 .AsciiDoc ul li {
-  padding-left: 1.5ch;
-  text-indent: -1.5ch;
+  padding-left: 1.6ch;
+  text-indent: -1.6ch;
 }
 
 .AsciiDoc ol ul,
@@ -134,16 +134,14 @@ The item text stays ink.
 }
 
 /*
-LISTS - EXTENDED MARKUP
-The Asciidoctor processor wraps every list item's text in a `<p>`
-(always, even for a single line), and wraps each list in a
-`<div class="ulist">` / `<div class="olist">`.
+A `+` continuation line (eg. a `.small` byline date under a list item's
+link) renders as inline text after a `<br>`, so it does not pick up the
+li's hanging text-indent. Make it a block and align it manually.
 */
 
-.AsciiDoc .ulist li > p,
-.AsciiDoc .olist li > p {
-  display: inline;
-  margin: 0;
+.AsciiDoc li > .small {
+  display: block;
+  margin-left: 1.6ch;
 }
 
 /*
