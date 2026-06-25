@@ -1,0 +1,19 @@
+/**
+ * TITLE
+ *
+ * Wraps the page's `<h1>` and, for blog posts, the byline beneath it.
+ */
+
+.Title h1 {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.05rem;
+  line-height: var(--line-height);
+  margin: calc(var(--line-height) * 4) 0 var(--line-height);
+  text-transform: uppercase;
+}
+
+.Title p {
+  color: var(--color-text-light);
+  margin-bottom: calc(var(--line-height) * 2);
+}
