@@ -337,6 +337,7 @@ filling the full width of their container.
 
 .AsciiDoc figcaption {
   display: block;
+  margin: calc(var(--line-height) * 0.5) 0;
   text-align: center;
 }
 
