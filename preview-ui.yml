@@ -29,6 +29,10 @@ ui:
     url: ./src/ui/dist
     snapshot: true
 
+asciidoc:
+  extensions:
+  - ./src/lib/asciidoc/extension.js
+
 output:
   clean: true
   dir: www
