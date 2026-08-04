@@ -59,9 +59,12 @@ find node_modules/mermaid/dist/chunks/mermaid.esm.min -name '*.mjs' ! -name '*.m
 ## 👀 Previewing the theme
 
 ```sh
-npm run preview:ui   # Build the showcase (src/ui/preview/) into www/.
+npm run preview:ui         # Build the showcase (src/ui/preview/) into www/.
+npm run preview:ui:serve   # Same, then serve www/ at :8081.
 ```
 
-This builds the sample pages in `preview/` against the freshly built theme, so the UI can be developed without a full site build. Open `www/index.html`.
+This builds the sample pages in `preview/` against the freshly built theme, so the UI can be developed without a full site build.
+
+Serve `www/` over HTTP rather than opening `www/index.html` directly with a `file://` URL — browsers refuse to load ES modules (`<script type="module">`, dynamic `import()`) from `file://` origins, and the Mermaid diagram sample (see [../../docs/diagrams.md](../../docs/diagrams.md)) depends on exactly that, so it silently fails to render under `file://`. `preview:ui:serve` does this for you; otherwise run any static file server (e.g. `npx http-server www -p 8081`) yourself.
 
 Because this repo is checked out as a Git worktree (which Antora's aggregator cannot read directly), the build first snapshots `preview/` into a throwaway `tmp/` Git repo. Both `www/` and `tmp/` are git-ignored. See [../../gulpfile.js](../../gulpfile.js) for details.

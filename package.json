@@ -13,6 +13,7 @@
     "watch": "chokidar 'src/**/*' 'site-dev.yml' -c 'npm run build'",
     "preview": "concurrently -k -n watch,serve 'npm run watch' 'npm run serve'",
     "preview:ui": "gulp preview",
+    "preview:ui:serve": "npm run preview:ui && http-server www -p 8081 -c-1",
     "lint": "npm run bundle:ui && antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-dev.yml",
     "lint:ci": "npm run bundle:ui && antora --stacktrace --fetch --cache-dir cache --log-failure-level=warn site-ci.yml",
     "lint:css": "gulp lint",

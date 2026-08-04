@@ -21,7 +21,15 @@ flowchart TD
 This renders as an SVG diagram in the browser.
 
 See `src/ui/preview/modules/ROOT/pages/asciidoc.adoc` for an example,
-and use `npm run preview:ui` to see it rendered.
+and use `npm run preview:ui:serve` to see it rendered (serves the built
+showcase over HTTP at `:8081`).
+
+Rendering depends on ES modules (`<script type="module">`, dynamic
+`import()`) — browsers block these from loading over `file://`, so opening
+`www/index.html` directly, or any other built page, in a `file://` URL will
+silently fail to render diagrams. Always view the showcase (and the real
+site) through a local HTTP server. `npm run preview:ui:serve` (see
+`src/ui/README.md`) does this for the showcase automatically.
 
 ## Design decision
 
