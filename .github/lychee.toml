@@ -1,0 +1,22 @@
+# Config for the lychee link checker used by check-links.yaml.
+# See https://lychee.cli.rs/usage/config/ for all options.
+#
+# lychee has no recursive-crawl mode (as of 2026, still unreleased —
+# https://github.com/lycheeverse/lychee/issues/78) so check-links.yaml
+# points it at the site's sitemap.xml instead, which lychee reads as a list
+# of pages, each checked for its own broken links.
+
+# Retry transient failures before reporting them as broken.
+max_retries = 3
+retry_wait_time = 5
+
+# Some sites (eg. LinkedIn) block automated HEAD/GET requests from CI
+# runners even though the link is fine for real visitors.
+exclude = [
+  "^mailto:",
+  "^https://(www\\.)?linkedin\\.com",
+]
+
+# Accept these on top of 2xx, since some servers use them for pages that
+# still exist but require auth or rate-limit crawlers.
+accept = ["200..=299", "403", "429"]

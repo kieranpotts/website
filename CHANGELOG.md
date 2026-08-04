@@ -9,10 +9,13 @@
 - feature: reintegrate umami analytics
 - feature: light/dark mode toggle
 - feature: download résumé
+- maintenance github workflow to check production website for broken links
 
 ---
 
-The entries below predate the merge and record the history of the UI theme, formerly the standalone `kieranpotts/website-ui` repository. They are retained here as the theme is now part of this repo.
+The entries below predate the merge and record the history of the UI theme,
+formerly the standalone `kieranpotts/website-ui` repository. They are retained
+here as the theme is now part of this repo.
 
 ## [0.6.0] - 2025-06-19
 
