@@ -11,6 +11,16 @@
   <link rel="canonical" href="{{page.canonicalUrl}}">
 {{/if}}
 <link rel="stylesheet" href="{{{uiRootPath}}}/css/site.css">
+<script>
+  (function () {
+    try {
+      var theme = localStorage.getItem('theme')
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', theme)
+      }
+    } catch (e) {}
+  })()
+</script>
 <script src="{{{uiRootPath}}}/js/site.js" defer></script>
 <script type="module" src="{{{uiRootPath}}}/js/vendor/mermaid/init.js"></script>
 <link rel="alternate" type="application/rss+xml" title="{{site.title}}" href="{{{siteRootPath}}}/feeds/rss.xml">

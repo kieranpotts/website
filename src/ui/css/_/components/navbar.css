@@ -188,6 +188,46 @@ the SVG from collapsing inside the shrink-wrapped inline-flex link.
 }
 
 /*
+THEME TOGGLE
+Same footprint as the GitHub link (`.NavBar__Social`), but a `<button>`
+rather than an `<a>`, since it triggers a page-local state change instead
+of navigating. It swaps between a sun and a moon glyph depending on which
+mode is currently active, so the icon always shows the *current* mode
+rather than the mode a click would switch to.
+*/
+
+.NavBar__ThemeToggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 0;
+}
+
+.NavBar__Icon--dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .NavBar__Icon--light {
+    display: none;
+  }
+
+  :root:not([data-theme='light']) .NavBar__Icon--dark {
+    display: block;
+  }
+}
+
+:root[data-theme='dark'] .NavBar__Icon--light {
+  display: none;
+}
+
+:root[data-theme='dark'] .NavBar__Icon--dark {
+  display: block;
+}
+
+/*
 DESKTOP
 At >=800px the burger is hidden and the menu is always shown as an
 inline horizontal list on the right, regardless of the `is-open` state.

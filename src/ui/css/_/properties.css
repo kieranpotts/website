@@ -203,3 +203,28 @@ are flipped, and every semantic `--color-*` token follows.
     --base-page-muted: hsl(0, 0%, 14%); /* tinted surfaces: header, code */
   }
 }
+
+/*
+MANUAL OVERRIDE
+The theme toggle (`40-theme-toggle.js`) sets `data-theme` on the root
+element once the visitor picks a mode explicitly, overriding the OS
+preference above regardless of which way `prefers-color-scheme` falls.
+*/
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --base-ink: hsl(0, 0%, 15%);
+  --base-ink-muted: hsl(0, 0%, 50%);
+  --base-ink-faint: hsl(0, 0%, 75%);
+  --base-page: hsl(0, 0%, 100%);
+  --base-page-muted: hsl(0, 0%, 96%);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --base-ink: hsl(0, 0%, 90%);
+  --base-ink-muted: hsl(0, 0%, 60%);
+  --base-ink-faint: hsl(0, 0%, 35%);
+  --base-page: hsl(0, 0%, 8%);
+  --base-page-muted: hsl(0, 0%, 14%);
+}
