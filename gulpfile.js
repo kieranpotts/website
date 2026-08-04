@@ -54,7 +54,7 @@ function js () {
 }
 
 function vendorJs () {
-  return src(`${SRC}/js/vendor/**/*.js`, { allowEmpty: true })
+  return src(`${SRC}/js/vendor/**/*.{js,mjs}`, { allowEmpty: true })
     .pipe(dest(`${DIST}/js/vendor`))
 }
 

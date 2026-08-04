@@ -318,6 +318,48 @@ Literal text written using the indentation style:
     drwxr-xr-x 15 user  staff   480 Jul  1 11:45 ..
     -rw-r--r--  1 user  staff  1024 Jul  1 12:00 document.adoc
 
+== Diagrams
+
+=== Mermaid
+
+`[mermaid]` blocks are rendered client-side, in the browser, into an SVG
+diagram. See `docs/diagrams.md` in the main repo for the rationale.
+
+[mermaid]
+....
+flowchart TD
+  subgraph video_subscriptions [video subscriptions]
+    subgraph user_management [user management]
+      subscribers
+    end
+    subgraph video_streaming [video streaming]
+      videos
+      viewers
+    end
+    subgraph billing
+      accounts["accounts"]
+      payment_details["payment details"]
+      subscription_plans["subscription plans"]
+    end
+  end
+....
+
+=== PlantUML (not supported)
+
+`[plantuml]` blocks are recognised syntactically but are not rendered as
+diagrams — there is no bundleable, client-side-only PlantUML renderer (real
+PlantUML rendering needs a Java runtime or a hosted rendering service, and
+this theme only ships assets that are bundled locally, not loaded from a
+CDN or third-party server). The block content is shown as plain text, same
+as any other literal/listing block:
+
+[plantuml]
+....
+@startuml
+A -> B
+@enduml
+....
+
 == Admonitions
 
 NOTE: This is a note admonition. It provides additional information that might be helpful.

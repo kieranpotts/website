@@ -531,6 +531,21 @@ CODE & LITERAL BLOCKS
 }
 
 /*
+MERMAID DIAGRAMS
+Rendered client-side (src/ui/js/vendor/mermaid/) into the <pre
+data-mermaid> left by the `[mermaid]` block template. Until rendered,
+or if JS is unavailable, the raw diagram source is shown as plain
+text via the LITERAL/LISTING rule above.
+*/
+
+.AsciiDoc figure.Mermaid svg {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/*
 IMAGE BLOCKS & INLINE IMAGES
 */
 

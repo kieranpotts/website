@@ -9,6 +9,12 @@ We override only the block types in `templates/index.js`. Every other block type
 - `templates/`: One file per block type, each exporting a
   `({ node }) => htmlString` function. `index.js` maps Asciidoctor node names (as returned by `node.getNodeName()`) to these functions.
 
+  `listing` and `literal` both special-case blocks with an AsciiDoc style of
+  `mermaid` (i.e. `[mermaid]`, however delimited) — shared in `templates/mermaid.js`
+  — to render Mermaid diagrams client-side instead of as plain text. See
+  [../../../docs/diagrams.md](../../../docs/diagrams.md) for the rationale
+  and how it fits together with the theme's `src/ui/js/vendor/mermaid/`.
+
 - `converter.js`: Installs the templates onto Asciidoctor's HTML5 converter as `$convert_<type>` method overrides.
 
 - `extension.js`: The entry point listed under `asciidoc.extensions` in the playbooks. Calls into `converter.js`.

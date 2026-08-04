@@ -21,6 +21,7 @@ module.exports = {
   preamble: require('./preamble'),
   image: require('./image'),
   listing: require('./listing'),
+  literal: require('./literal'),
   quote: require('./quote'),
   sidebar: require('./sidebar'),
 }
