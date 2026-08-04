@@ -37,7 +37,10 @@ jobs:
             --verbose
             --no-progress
             --config .github/lychee.toml
-            https://kieranpotts.com/sitemap.xml
+            https://kieranpotts.com/sitemap-bookmarks.xml
+            https://kieranpotts.com/sitemap-garden.xml
+            https://kieranpotts.com/sitemap-ROOT.xml
+            https://kieranpotts.com/sitemap-thoughts.xml
           format: markdown
           output: lychee-report.md
           fail: true

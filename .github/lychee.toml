@@ -2,9 +2,13 @@
 # See https://lychee.cli.rs/usage/config/ for all options.
 #
 # lychee has no recursive-crawl mode (as of 2026, still unreleased —
-# https://github.com/lycheeverse/lychee/issues/78) so check-links.yaml
-# points it at the site's sitemap.xml instead, which lychee reads as a list
-# of pages, each checked for its own broken links.
+# https://github.com/lycheeverse/lychee/issues/78), and it doesn't follow
+# sitemap-index files either — it only reads <loc> entries as pages to
+# check, so pointing it at the top-level sitemap.xml just checks the 4
+# nested sitemap URLs rather than the pages inside them. So
+# check-broken-links.yaml passes each of the 4 nested urlset sitemaps
+# (sitemap-bookmarks.xml, sitemap-garden.xml, sitemap-ROOT.xml,
+# sitemap-thoughts.xml) directly.
 
 # Retry transient failures before reporting them as broken.
 max_retries = 3
