@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+#
+# Removes build output and caches: public/, cache/, src/ui/dist/, www/, tmp/.
+#
+
+# Exit immediately on error (-e), treat unset variables as errors (-u), and
+# propagate failures through pipelines (-o pipefail).
+
+set -euo pipefail
+
+# Resolve the project root (parent of the run/ directory) and change into it.
+# This ensures docker compose always finds docker-compose.yml, regardless of
+# where this script is invoked from.
+
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
+
+# This working tree is a git worktree: its git data lives in a sibling .bare/
+# directory, referenced by absolute path. Export WEBSITE_DIR (the parent of the
+# project root) so docker-compose.yml can mount that whole directory at the
+# same absolute path inside the container, keeping the worktree's git pointers
+# valid so Antora can read the local content source.
+
+WEBSITE_DIR="$(cd .. && pwd)"
+export WEBSITE_DIR
+
+# Run the clean inside a one-off container (--rm removes it on exit).
+# --user passes the host user's UID and GID so that the bind-mounted
+# directory's ownership is preserved after removal.
+
+docker compose run --rm --user "$(id -u):$(id -g)" website npm run clean

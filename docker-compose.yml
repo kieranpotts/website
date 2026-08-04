@@ -26,3 +26,4 @@ services:
     working_dir: "${WEBSITE_DIR}/default"
     ports:
       - "8080:8080"
+      - "8081:8081"
