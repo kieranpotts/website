@@ -7,6 +7,8 @@
 - feature: reintroduce small inline font style (theme, post-0.6.0)
 - feature: improve spacing around list items (theme, post-0.6.0)
 - feature: reintegrate umami analytics
+- feature: light/dark mode toggle
+- feature: download résumé
 
 ---
 
