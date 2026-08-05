@@ -1,13 +1,19 @@
 # AsciiDoc custom templates
 
-Custom block-level HTML for the site's AsciiDoc content. These converters replace the `<div class="…">`-heavy markup that Asciidoctor emits by default, swapping it for lean, semantic HTML (`<figure>`, `<blockquote>`, `<aside>`, bare `<h2 id>`, etc.).
+Custom block-level HTML for the site's AsciiDoc content. These converters
+replace the `<div class="…">`-heavy markup that Asciidoctor emits by default,
+swapping it for lean, semantic HTML (`<figure>`, `<blockquote>`, `<aside>`,
+bare `<h2 id>`, etc.).
 
-We override only the block types in `templates/index.js`. Every other block type falls back to Antora's native Asciidoctor rendering, unchanged.
+We override only the block types in `templates/index.js`. Every other block
+type falls back to Antora's native Asciidoctor rendering, unchanged.
 
 ## 🗂️ Layout
 
-- `templates/`: One file per block type, each exporting a
-  `({ node }) => htmlString` function. `index.js` maps Asciidoctor node names (as returned by `node.getNodeName()`) to these functions.
+- `templates/` \
+  One file per block type, each exporting a
+  `({ node }) => htmlString` function. `index.js` maps Asciidoctor
+  node names (as returned by `node.getNodeName()`) to these functions.
 
   `listing` and `literal` both special-case blocks with an AsciiDoc style of
   `mermaid` (i.e. `[mermaid]`, however delimited) — shared in `templates/mermaid.js`
@@ -15,13 +21,18 @@ We override only the block types in `templates/index.js`. Every other block type
   [../../../docs/diagrams.md](../../../docs/diagrams.md) for the rationale
   and how it fits together with the theme's `src/ui/js/vendor/mermaid/`.
 
-- `converter.js`: Installs the templates onto Asciidoctor's HTML5 converter as `$convert_<type>` method overrides.
+- `converter.js` \
+  Installs the templates onto Asciidoctor's HTML5 converter as
+  `$convert_<type>` method overrides.
 
-- `extension.js`: The entry point listed under `asciidoc.extensions` in the playbooks. Calls into `converter.js`.
+- `extension.js` \
+  The entry point listed under `asciidoc.extensions` in the playbooks.
+  Calls into `converter.js`.
 
 ## 🔌 How it's wired
 
-The playbooks ([site-dev.yml](../../../site-dev.yml), [site-ci.yml](../../../site-ci.yml)) register the extension:
+The playbooks ([site-dev.yml](../../../site-dev.yml),
+[site-ci.yml](../../../site-ci.yml)) register the extension:
 
 ```yaml
 asciidoc:
@@ -29,7 +40,10 @@ asciidoc:
   - ./src/lib/asciidoc/extension.js
 ```
 
-Antora calls each extension's exported `register` function once per converted file, before it builds that file's document converter. We use that hook to define our `$convert_<type>` overrides (idempotently — the install runs once and guards against repeats).
+Antora calls each extension's exported `register` function once per converted
+file, before it builds that file's document converter. We use that hook to
+define our `$convert_<type>` overrides (idempotently — the install runs once
+and guards against repeats).
 
 ## 📚 References
 
