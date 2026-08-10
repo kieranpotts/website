@@ -501,8 +501,7 @@ optionally opening with a `.title` div when the block has a title – no
   margin-top: 0;
 }
 
-.AsciiDoc aside > p:last-child,
-.AsciiDoc aside > ul:last-child {
+.AsciiDoc aside > *:last-child {
   margin-bottom: 0;
 }
 
