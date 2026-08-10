@@ -45,10 +45,9 @@ content:
   # standards is not authored in Antora's shape (see
   # ./src/lib/standards-content/README.md) — the standards-content extension
   # below reshapes it into modules/ROOT/{pages,partials,images} at build time.
-  - url: 'https://github.com/kieranpotts/standards.git'
-    branches: latest/dev
+  - url: /tmp/claude-1000/-home-kieran-dev-personal-kieranpotts--github-default/0cf14b69-1b8c-4338-87bf-b1f4328a3461/scratchpad/standards-test/clone
+    branches: HEAD
     start_path: src
-    edit_url: 'https://github.com/kieranpotts/standards/edit/latest/dev/{path}'
 
   - url: 'https://github.com/kieranpotts/garden.git'
     branches: latest/dev
