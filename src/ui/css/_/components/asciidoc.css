@@ -345,7 +345,7 @@ filling the full width of their container.
   display: block;
   object-fit: contain;
   overflow: hidden;
-  width: 100%;
+  margin: 0 auto;
 }
 
 /*
