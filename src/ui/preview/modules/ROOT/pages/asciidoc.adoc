@@ -145,8 +145,6 @@ AsciiDoc is highly configurable and extensible, with excellent toolchain support
 
 == Tables
 
-=== Simple table
-
 |===
 |Name |Age |City
 
@@ -162,8 +160,6 @@ AsciiDoc is highly configurable and extensible, with excellent toolchain support
 |35
 |Tokyo
 |===
-
-=== Advanced tables
 
 .Table with striped rows, column-width controls, and a footer
 [cols="1,2,1,2",options="footer",stripes=even]
