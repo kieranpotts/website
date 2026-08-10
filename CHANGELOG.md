@@ -18,6 +18,7 @@
 - Fix styling for AsciiDoc asides.
 - AsciiDoc rendering: fix "undefined" element IDs.
 - Fix inconsistency of presentation between rich and simple sidebar content.
+- Refactor: merge templates for sidebars and example blocks.
 
 -----
 

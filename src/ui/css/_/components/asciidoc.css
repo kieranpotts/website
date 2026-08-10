@@ -478,26 +478,11 @@ its own.
 
 /*
 SIDEBAR & EXAMPLE BLOCKS
-Our custom sidebar template (see ../../lib/asciidoc/templates/sidebar.js)
-emits a bare `<aside>`, optionally opening with a `.title` div when the
-block has a title – no `.sidebarblock`/`.content` wrapper.
+Our custom aside template (see ../../lib/asciidoc/templates/aside.js)
+handles both sidebar and example blocks, emitting a bare `<aside>`,
+optionally opening with a `.title` div when the block has a title – no
+`.sidebarblock`/`.exampleblock`/`.content` wrapper.
 */
-
-.AsciiDoc .exampleblock {
-  border: var(--border-thickness) solid var(--color-border);
-  margin: var(--line-height) 0;
-  padding: calc(var(--line-height) * 0.5) 2ch;
-}
-
-.AsciiDoc .exampleblock .title {
-  margin-top: 0;
-}
-
-.AsciiDoc .exampleblock .content > :last-child,
-.AsciiDoc .exampleblock .content > :last-child > :last-child,
-.AsciiDoc .exampleblock .content > :last-child > :last-child > :last-child {
-  margin-bottom: 0;
-}
 
 .AsciiDoc aside {
   border: var(--border-thickness) solid var(--color-border);

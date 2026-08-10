@@ -1,5 +1,8 @@
 /**
- * Custom rendering of AsciiDoc sidebars.
+ * Custom rendering for AsciiDoc `sidebar` (`****`) and `example` (`====`)
+ * blocks. Both node types share this template — see ./index.js — as
+ * they're styled identically: a bare `<aside>`, optionally opening with
+ * a `.title` div.
  */
 module.exports = ({ node }) => {
   const id = node.getId()

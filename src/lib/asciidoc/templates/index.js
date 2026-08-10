@@ -23,5 +23,6 @@ module.exports = {
   listing: require('./listing'),
   literal: require('./literal'),
   quote: require('./quote'),
-  sidebar: require('./sidebar'),
+  sidebar: require('./aside'),
+  example: require('./aside'),
 }
