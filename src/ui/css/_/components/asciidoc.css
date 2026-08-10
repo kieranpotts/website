@@ -479,8 +479,8 @@ its own.
 /*
 SIDEBAR & EXAMPLE BLOCKS
 Our custom sidebar template (see ../../lib/asciidoc/templates/sidebar.js)
-emits a bare `<aside>`, optionally opening with an `<h2 id>` when the block
-has a title – no `.sidebarblock`/`.content` wrapper.
+emits a bare `<aside>`, optionally opening with a `.title` div when the
+block has a title – no `.sidebarblock`/`.content` wrapper.
 */
 
 .AsciiDoc .exampleblock {
@@ -505,7 +505,7 @@ has a title – no `.sidebarblock`/`.content` wrapper.
   padding: calc(var(--line-height) * 0.5) 2ch;
 }
 
-.AsciiDoc aside > h2 {
+.AsciiDoc aside > .title {
   margin-top: 0;
 }
 

@@ -2,14 +2,13 @@
  * Custom rendering of AsciiDoc sidebars.
  */
 module.exports = ({ node }) => {
-  const level = 2
   const id = node.getId()
   const title = node.getTitle()
 
   let html = ''
 
-  html += '<aside>'
-  if (title) html += `<h${level}${id ? ` id="${id}"` : ''}>${title}</h${level}>`
+  html += `<aside${id ? ` id="${id}"` : ''}>`
+  if (title) html += `<div class="title">${title}</div>`
   html += node.getContent()
   html += '</aside>'
 
