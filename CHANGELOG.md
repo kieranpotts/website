@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-08-10
+
 - Add bookmarks content source. 
 - Add résumé as a download link.
 - Add light/dark mode toggle.
