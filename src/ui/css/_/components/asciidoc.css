@@ -511,9 +511,9 @@ A bare grouping block with no chrome of its own.
 
 /*
 CODE & LITERAL BLOCKS
-Our custom listing/literal templates (see ../../lib/asciidoc/templates/
-listing.js, literal.js) emit a bare `<figure><pre>…</pre></figure>` – no
-`.listingblock`/`.literalblock`/`.content` wrapper. The background matches
+Our custom code template (see ../../lib/asciidoc/templates/code.js), shared
+by listing and literal blocks, emits a bare `<figure><pre>…</pre></figure>`
+– no `.listingblock`/`.literalblock`/`.content` wrapper. The background matches
 inline code (see INLINE CODE, above) and hugs the text rather than filling
 the figure's full width: the `<pre>` is sized to its content (up to the
 container width), with padding inside it, so the tint only ever extends
