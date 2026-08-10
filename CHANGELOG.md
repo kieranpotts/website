@@ -12,6 +12,7 @@
 - Add light/dark mode toggle.
 - Add link to download résumé.
 - Add GitHub workflow to check production website for broken links.
+- Fix missing headings from sidebars.
 
 -----
 
