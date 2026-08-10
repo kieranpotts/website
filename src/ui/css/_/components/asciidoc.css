@@ -252,22 +252,23 @@ again, eg. for verse blocks.
 
 /*
 INLINE CODE
-A tinted box with hairline border and grid-aligned padding, so
-a code span stands out within prose. Block code (inside `<pre>`)
-opts back out – see blow.
+A tinted box with grid-aligned padding, so a code span stands out
+within prose. The background is darkened slightly beyond the shared
+`--color-text-code-background` token, since that token is also used for
+the lighter `pre` background. Block code (inside `<pre>`) opts back out
+– see below.
 */
 
 .AsciiDoc code {
-  background: var(--color-text-code-background);
-  border: var(--border-thickness) solid var(--color-border);
+  background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
   color: var(--color-text-code-foreground);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-bold);
   padding: 0 0.5ch;
 }
 
 .AsciiDoc pre code {
   background: none;
-  border: 0;
+  font-weight: var(--font-weight-regular);
   padding: 0;
   white-space: inherit;
 }
