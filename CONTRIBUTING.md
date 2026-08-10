@@ -83,7 +83,7 @@ can run things directly through a local Node install.
 - `.github/workflows/` \
   CI and automation. The important ones are:
 
-  - `build.yaml` \
+  - `verify-build.yaml` \
     Builds and validates the site, and checks for broken internal links, on
     every change to `latest/dev`.
 

@@ -2,7 +2,7 @@
 # Build and validate the site on every change to latest/dev.
 #
 
-name: Build
+name: Verify Build
 
 on:
   pull_request:

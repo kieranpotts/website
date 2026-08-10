@@ -1,6 +1,6 @@
 # GitHub Actions workflows
 
-- `build.yaml` \
+- `verify-build.yaml` \
   Builds and validates the site, and checks for broken internal links, on
   every change to `latest/dev`.
 
