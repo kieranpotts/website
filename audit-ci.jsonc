@@ -1,0 +1,28 @@
+// Config for audit-ci (https://github.com/IBM/audit-ci), used by the
+// "Audit dependencies" CI step in place of a plain `npm audit`.
+//
+// Blocks the build on high/critical-severity findings, same as before, but
+// allowlists specific advisories that have no available fix and are judged
+// low-risk for this project. Remove an entry once its advisory is fixed
+// upstream (re-run `npm audit` locally to confirm) so audit-ci starts
+// enforcing it again.
+{
+  "$schema": "https://raw.githubusercontent.com/IBM/audit-ci/main/docs/schema.json",
+  "high": true,
+
+  // js-yaml quadratic-complexity DoS advisories, pulled in transitively via
+  // @antora/content-aggregator, @antora/playbook-builder, and
+  // @antora/ui-loader. No fix is available yet from Antora (still on
+  // js-yaml 4.x); a forced upgrade to @antora/cli 2.3.4 was tried and
+  // rejected because it introduced a critical prototype-pollution
+  // vulnerability (convict) and a duplicate, inconsistent Antora install.
+  //
+  // Accepted risk: exploitation requires attacker-controlled YAML input.
+  // The only YAML this build parses is the Antora playbooks and
+  // content-source config files we author ourselves - not untrusted input.
+  "allowlist": [
+    "GHSA-h67p-54hq-rp68",
+    "GHSA-52cp-r559-cp3m",
+    "GHSA-5p4m-2wfm-xmqj"
+  ]
+}
