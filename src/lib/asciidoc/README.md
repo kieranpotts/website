@@ -14,6 +14,10 @@ type falls back to Antora's native Asciidoctor rendering, unchanged.
   One file per block type, each exporting a
   `({ node }) => htmlString` function. `index.js` maps Asciidoctor
   node names (as returned by `node.getNodeName()`) to these functions.
+  Some related block types share a single file (`aside.js` for
+  `sidebar`/`example`, since they render identically); `listing` and
+  `literal` are kept as separate files even though their current output
+  is nearly identical, since they're expected to diverge in styling.
 
   `listing` and `literal` both special-case blocks with an AsciiDoc style of
   `mermaid` (i.e. `[mermaid]`, however delimited) — shared in `templates/mermaid.js`

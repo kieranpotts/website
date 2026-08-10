@@ -19,10 +19,7 @@ const isMermaid = (node) => node.getStyle() === "mermaid";
 const renderMermaid = (node) => {
   let html = "";
 
-  // The `code` class matches the code.js template's figures, so the raw
-  // source gets the same box styling as any other listing/literal block
-  // until (or unless) it's replaced with an SVG diagram.
-  html += '<figure class="mermaid code">';
+  html += '<figure class="mermaid">';
   html += `<pre data-mermaid>${escapeHtml(node.getSource())}</pre>`;
   if (node.getTitle()) {
     html += `<figcaption>${node.getTitle()}</figcaption>`;

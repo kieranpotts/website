@@ -327,9 +327,9 @@ to load, its alt text will be rendered in its place.
 /*
 FIGURES
 Baseline styles shared by every `<figure>` our templates emit – images
-(`.image`), code (`.code`), and Mermaid diagrams (`.mermaid`) alike. See
-CODE & LITERAL BLOCKS and MERMAID DIAGRAMS, below, for the type-specific
-rules layered on top.
+(`.image`), listing/literal code (`.listing`/`.literal`), and Mermaid
+diagrams (`.mermaid`) alike. See CODE & LITERAL BLOCKS and MERMAID
+DIAGRAMS, below, for the type-specific rules layered on top.
 */
 
 .AsciiDoc figure {
@@ -367,8 +367,6 @@ so cell text stays on the line grid.
 .AsciiDoc table {
   border-collapse: collapse;
   margin: 0 0 calc(var(--line-height) * 2);
-  position: relative;
-  top: calc(var(--line-height) / 2);
   width: calc(round(down, 100%, 1ch));
 }
 
@@ -519,22 +517,26 @@ A bare grouping block with no chrome of its own.
 
 /*
 CODE & LITERAL BLOCKS
-Our custom code template (see ../../lib/asciidoc/templates/code.js), shared
-by listing and literal blocks, emits `<figure class="code"><pre>…</pre>
-</figure>` – no `.listingblock`/`.literalblock`/`.content` wrapper. The
-`.code` class scopes this padding/background away from image figures,
-which don't share it. The background matches inline code (see INLINE
-CODE, above) and hugs the text rather than filling the figure's full
-width: the `<pre>` is sized to its content (up to the container width),
-with padding inside it, so the tint only ever extends as far as the
-longest line.
+Our custom ../../lib/asciidoc/templates/listing.js and literal.js
+templates emit `<figure class="listing">` and `<figure class="literal">`
+respectively, each wrapping a bare `<pre>…</pre>` – no
+`.listingblock`/`.literalblock`/`.content` wrapper. The rules below
+target both classes together; split them out to diverge the two. This
+also scopes the padding/background away from image figures, which don't
+share it. The background matches inline code (see INLINE CODE, above)
+and hugs the text rather than filling the figure's full width: the
+`<pre>` is sized to its content (up to the container width), with
+padding inside it, so the tint only ever extends as far as the longest
+line.
 */
 
-.AsciiDoc figure.code {
+.AsciiDoc figure.listing,
+.AsciiDoc figure.literal {
   background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
 }
 
-.AsciiDoc figure.code > pre {
+.AsciiDoc figure.listing > pre,
+.AsciiDoc figure.literal > pre {
   display: inline-block;
   font-weight: var(--font-weight-bold);
   max-width: 100%;
@@ -544,10 +546,14 @@ longest line.
 /*
 MERMAID DIAGRAMS
 Rendered client-side (src/ui/js/vendor/mermaid/) into the <pre
-data-mermaid> left by the `[mermaid]` block template. Until rendered,
-or if JS is unavailable, the raw diagram source is shown as plain
-text via the LITERAL/LISTING rule above.
+data-mermaid> left by the `[mermaid]` block template. Unlike listing/
+literal blocks, this figure has no background – the diagram is centered
+on the page background instead.
 */
+
+.AsciiDoc figure.mermaid {
+  text-align: center;
+}
 
 .AsciiDoc figure.mermaid svg {
   display: block;
