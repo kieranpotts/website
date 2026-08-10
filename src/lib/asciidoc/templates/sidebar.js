@@ -8,7 +8,6 @@ module.exports = ({ node }) => {
 
   let html = ''
 
-  html += '<hr />'
   html += '<aside>'
   if (title) html += `<h${level} id="${id}">${title}</h${level}>`
   html += node.getContent()
