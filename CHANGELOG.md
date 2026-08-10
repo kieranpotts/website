@@ -13,6 +13,7 @@
 - Add link to download résumé.
 - Add GitHub workflow to check production website for broken links.
 - Fix missing headings from sidebars.
+- Fix AsciiDoc embedded image and video sizing and centering.
 
 -----
 
