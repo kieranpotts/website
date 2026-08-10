@@ -4,26 +4,22 @@
 
 - Add bookmarks content source. 
 - Add résumé as a download link.
+- Add light/dark mode toggle.
 - Integrate the UI theme into this repo (`src/ui/`).
 - Retire the separate `kieranpotts/website-ui` repository and workflow.
 - Add custom AsciiDoc block converters (`src/lib/asciidoc/`) that emit semantic
   HTML — `<figure>`, `<blockquote>`, `<aside>`, etc.
-- Reintroduce small inline font style.
-- Improve spacing around list items.
+- Various style improvements, including:
+  - Reintroduce small inline font style.
+  - Improve spacing around list items.
+  - Fix missing headings from sidebars.
+  - Fix "undefined" element IDs.
+  - Fix AsciiDoc embedded image and video sizing and centering.
+  - Fix inconsistency of presentation between rich and simple sidebar content.
+  - Evolve styling of sidebars (asides).
+  - Evolve presentation of inline code.
 - Reintegrate Umami analytics.
-- Add light/dark mode toggle.
-- Add link to download résumé.
 - Add GitHub workflow to check production website for broken links.
-- Fix missing headings from sidebars.
-- Fix AsciiDoc embedded image and video sizing and centering.
-- Remove `<hr/>` before `<aside>` in AsciiDoc content.
-- Fix styling for AsciiDoc asides.
-- AsciiDoc rendering: fix "undefined" element IDs.
-- Fix inconsistency of presentation between rich and simple sidebar content.
-- Refactor: merge templates for sidebars and example blocks.
-- Consolidate template and refine the style of listing and litertal blocks.
-- Adjust presentation of inline code.
-- Custom AsciiDoc templates for processing all in-use AsciiDoc block types.
 - Add `./run/release` automation script.
 
 -----
