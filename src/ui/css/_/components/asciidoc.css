@@ -255,8 +255,9 @@ INLINE CODE
 A tinted box with grid-aligned padding, so a code span stands out
 within prose. The background is darkened slightly beyond the shared
 `--color-text-code-background` token, since that token is also used for
-the lighter `pre` background. Block code (inside `<pre>`) opts back out
-– see below.
+the lighter `pre` background. Code inside a `<pre>` (block code) opts
+back out of its own background/padding here – it picks up matching
+styling from the `<pre>` itself instead, see CODE & LITERAL BLOCKS below.
 */
 
 .AsciiDoc code {
@@ -268,7 +269,6 @@ the lighter `pre` background. Block code (inside `<pre>`) opts back out
 
 .AsciiDoc pre code {
   background: none;
-  font-weight: var(--font-weight-regular);
   padding: 0;
   white-space: inherit;
 }
@@ -511,19 +511,21 @@ A bare grouping block with no chrome of its own.
 
 /*
 CODE & LITERAL BLOCKS
+Our custom listing/literal templates (see ../../lib/asciidoc/templates/
+listing.js, literal.js) emit a bare `<figure><pre>…</pre></figure>` – no
+`.listingblock`/`.literalblock`/`.content` wrapper. The background matches
+inline code (see INLINE CODE, above) and hugs the text rather than filling
+the figure's full width: the `<pre>` is sized to its content (up to the
+container width), with padding inside it, so the tint only ever extends
+as far as the longest line.
 */
 
-.AsciiDoc .listingblock > .content,
-.AsciiDoc .literalblock > .content {
-  background: var(--color-text-pre-background);
-  border: var(--border-thickness) solid var(--color-border);
-  margin: var(--line-height) 0;
+.AsciiDoc figure > pre {
+  background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
+  max-width: 100%;
   padding: var(--line-height) 2ch;
-}
-
-.AsciiDoc .listingblock > .content > pre,
-.AsciiDoc .literalblock > .content > pre {
-  margin: 0;
 }
 
 /*
