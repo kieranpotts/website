@@ -42,9 +42,6 @@ content:
     start_path: src
     edit_url: 'https://github.com/kieranpotts/thoughts/edit/latest/dev/{path}'
 
-  # standards is not authored in Antora's shape (see
-  # ./src/lib/standards-content/README.md) — the standards-content extension
-  # below reshapes it into modules/ROOT/{pages,partials,images} at build time.
   - url: 'https://github.com/kieranpotts/standards.git'
     branches: latest/dev
     start_path: src
@@ -67,7 +64,6 @@ antora:
   # Keep in sync with site-ci.yml.
   extensions:
   - ./src/lib/feeds/extension.js
-  - ./src/lib/standards-content/extension.js
 
 asciidoc:
   # Custom block-level HTML converters.
