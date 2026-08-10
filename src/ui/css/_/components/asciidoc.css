@@ -146,56 +146,46 @@ li's hanging text-indent. Make it a block and align it manually.
 
 /*
 DESCRIPTION LISTS
-Bold the term and indent the description by whole character units.
+Our custom ../../lib/asciidoc/templates/dlist.js template emits a bare
+`<dl><dt>…</dt><dd>…</dd></dl>` – no `.dlist` wrapper. Bold the term and
+indent the description by whole character units.
 */
 
-.AsciiDoc .dlist dl {
+.AsciiDoc dl {
   margin: 0 0 var(--line-height);
 }
 
-.AsciiDoc .dlist dt {
+.AsciiDoc dt {
   font-weight: var(--font-weight-bold);
 }
 
-.AsciiDoc .dlist dd {
+.AsciiDoc dd {
   margin: 0 0 var(--line-height) 2ch;
 }
 
-.AsciiDoc .dlist dd > p {
+.AsciiDoc dd > p {
   margin: 0;
 }
 
 /*
-QUESTION & ANSWER
-Number the questions and keep answers flush under them.
+QUESTION & ANSWER LISTS
+dlist.js's `[qanda]` branch emits a plain `<ol class="qanda">`, so it
+already picks up the generic `.AsciiDoc ol` numbering above; only the
+question line needs its own emphasis here.
 */
 
-.AsciiDoc .qlist.qanda ol {
-  counter-reset: question;
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.AsciiDoc .qlist.qanda > ol > li::before {
-  content: none;
-  counter-increment: none;
-}
-
-.AsciiDoc .qlist.qanda > ol > li {
-  counter-increment: question;
-}
-
-.AsciiDoc .qlist.qanda > ol > li > p:first-child::before {
-  content: counter(question) ". ";
+.AsciiDoc ol.qanda > li > .question {
   font-weight: var(--font-weight-bold);
 }
 
 /*
 CALLOUT LISTS (colist) & CALLOUT NUMBERS (conum)
-A conum is an inline reference marker, shown as an inverted,
-bordered box holding its number. The colist below the
-code pairs each number with its explanation in a
-borderless table.
+A conum is an inline reference marker in a code block, shown as an
+inverted, bordered box holding its number. Our custom
+../../lib/asciidoc/templates/colist.js template emits a bare
+`<ol class="colist">` pairing each number with its explanation – no
+table wrapper. Its markers are restyled here to match the conum badges
+above, rather than the dotted-decimal counters used by ordinary `<ol>`s.
 */
 
 .AsciiDoc .conum[data-value] {
@@ -219,17 +209,29 @@ borderless table.
   display: none;
 }
 
-.AsciiDoc .colist table {
-  margin: 0 0 var(--line-height);
-  position: static;
-  top: 0;
-  width: auto;
+.AsciiDoc ol.colist {
+  counter-reset: callout;
+  list-style-type: none;
+  padding-left: 0;
 }
 
-.AsciiDoc .colist td {
-  border: none;
-  padding: 0 1ch 0 0;
-  vertical-align: top;
+.AsciiDoc ol.colist > li {
+  padding-left: 0;
+  text-indent: 0;
+}
+
+.AsciiDoc ol.colist > li::before {
+  background: var(--color-text-default);
+  color: var(--color-page-background);
+  content: counter(callout);
+  counter-increment: callout;
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
+  height: 2ch;
+  line-height: calc(2ch - var(--border-thickness) * 2);
+  margin-right: 1ch;
+  text-align: center;
+  width: 2ch;
 }
 
 /*
@@ -364,6 +366,12 @@ border thickness on every edge and padding computed
 so cell text stays on the line grid.
 */
 
+/*
+Our custom ../../lib/asciidoc/templates/table.js template emits a bare
+`<table>` – no `.tableblock` classes, `<colgroup>`, or per-cell
+`<p class="tableblock">` wrapper.
+*/
+
 .AsciiDoc table {
   border-collapse: collapse;
   margin: 0 0 calc(var(--line-height) * 2);
@@ -399,73 +407,48 @@ the cell open beyond its padding.
 
 /*
 ADMONITIONS (note, tip, important, caution, warning)
-Rather than icons, we use a left rule plus the admonition's name as
-an uppercase label — drawn from the icon's `title` attribute via `attr()`.
+Our custom ../../lib/asciidoc/templates/admonition.js template emits a
+bare `<div class="admonition <type>">` – no `.admonitionblock`/icon-table
+wrapper. Rather than an icon, the type name is a plain-text `.label`,
+with a left rule to set the block off from surrounding prose.
 */
 
-.AsciiDoc .admonitionblock {
-  margin: var(--line-height) 0;
-}
-
-.AsciiDoc .admonitionblock > table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.AsciiDoc .admonitionblock td {
-  border: none;
-  padding: 0;
-  vertical-align: top;
-}
-
-.AsciiDoc .admonitionblock td.icon {
-  padding-right: 2ch;
-  width: 12ch;
-}
-
-.AsciiDoc .admonitionblock td.icon .fa {
-  font-style: normal;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-}
-
-.AsciiDoc .admonitionblock td.icon .fa::before {
-  content: attr(title);
-}
-
-.AsciiDoc .admonitionblock td.content {
+.AsciiDoc .admonition {
   border-left: var(--border-thickness) solid var(--color-border);
+  margin: var(--line-height) 0;
   padding-left: 2ch;
 }
 
-.AsciiDoc .admonitionblock td.content > :first-child,
-.AsciiDoc .admonitionblock td.content > :first-child > :first-child {
+.AsciiDoc .admonition > .label {
+  font-weight: var(--font-weight-bold);
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.AsciiDoc .admonition > .title {
   margin-top: 0;
 }
 
-.AsciiDoc .admonitionblock td.content > :last-child,
-.AsciiDoc .admonitionblock td.content > :last-child > :last-child {
+.AsciiDoc .admonition > :last-child {
   margin-bottom: 0;
 }
 
 /*
 QUOTE & VERSE BLOCKS
-Our custom quote template (see ../../lib/asciidoc/templates/quote.js) emits
-a bare `<blockquote>`, with the attribution as its last `<p>` – no
-`.quoteblock`/`.attribution` wrapper. Verseblock is unmodified, so it still
-goes through Asciidoctor's stock converter and keeps line breaks in a
-`<pre class="content">`, with a `.quoteblock`/`.attribution` wrapper of
-its own.
+Our custom quote.js and verse.js templates both emit a bare
+`<blockquote>`, with the attribution as its last `<p>` (– Author, with an
+optional `<cite>` on its own line) – no `.quoteblock`/`.verseblock`/
+`.attribution` wrapper. verse.js additionally wraps its content in a
+`<pre>` so line breaks are preserved verbatim, as poetry/lyrics require.
 */
 
-.AsciiDoc blockquote,
-.AsciiDoc .verseblock {
+.AsciiDoc blockquote {
   border-left: var(--border-thickness) solid var(--color-text-default);
   margin: var(--line-height) 0;
   padding-left: 2ch;
 }
 
-.AsciiDoc .verseblock pre.content {
+.AsciiDoc blockquote > pre {
   line-height: var(--line-height);
 }
 
@@ -473,13 +456,12 @@ its own.
   margin: 0 0 calc(var(--line-height) * 0.5);
 }
 
-.AsciiDoc blockquote > p:last-child,
-.AsciiDoc .attribution {
+.AsciiDoc blockquote > p:last-child {
   color: var(--color-text-default);
   margin: calc(var(--line-height) * 0.5) 0 0 0;
 }
 
-.AsciiDoc .attribution cite {
+.AsciiDoc blockquote > p:last-child cite {
   display: block;
 }
 
@@ -507,12 +489,12 @@ optionally opening with a `.title` div when the block has a title – no
 
 /*
 OPEN BLOCK
-A bare grouping block with no chrome of its own.
+Our custom ../../lib/asciidoc/templates/open.js template emits the block's
+content unwrapped – no `.openblock` div – unless it carries an id or role,
+in which case those are preserved on a `<div>` so they stay addressable/
+stylable. There's no baseline chrome to style here: an open block with a
+role is meant to be styled by that role's own rule, added as needed.
 */
-
-.AsciiDoc .openblock {
-  margin: var(--line-height) 0;
-}
 
 /*
 CODE & LITERAL BLOCKS

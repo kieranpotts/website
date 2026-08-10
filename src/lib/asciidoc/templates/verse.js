@@ -1,14 +1,14 @@
- /**
- * Custom rendering of quote blocks. See verse.js for the closely-related
- * verse block, which preserves line breaks verbatim instead of flowing
- * content as paragraphs.
+/**
+ * Custom rendering of verse blocks. Unlike quote.js, content is wrapped in
+ * a `<pre>` (not paragraphs) so line breaks in the source are preserved
+ * verbatim, as verse (poetry, song lyrics) requires.
  */
 module.exports = ({ node }) => {
   const attr = node.attributes["$$smap"];
   let html = "";
 
   html += "<blockquote>";
-  html += node.getContent();
+  html += `<pre>${node.getContent()}</pre>`;
   if (attr["attribution"] || attr["citetitle"]) {
     html += "<p>";
     if (attr["attribution"]) html += `– ${attr["attribution"]}`;

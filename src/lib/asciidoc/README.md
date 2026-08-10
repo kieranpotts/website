@@ -5,8 +5,12 @@ replace the `<div class="…">`-heavy markup that Asciidoctor emits by default,
 swapping it for lean, semantic HTML (`<figure>`, `<blockquote>`, `<aside>`,
 bare `<h2 id>`, etc.).
 
-We override only the block types in `templates/index.js`. Every other block
-type falls back to Antora's native Asciidoctor rendering, unchanged.
+We aim to override every block type this site's content actually uses (see
+`src/ui/preview/modules/ROOT/pages/asciidoc.adoc` for the reference set),
+listed in `templates/index.js` — so presentation is controlled entirely by
+our own markup/CSS, not whatever wrapper classes Asciidoctor's stock
+converter happens to emit. Any block type NOT listed there falls back to
+Antora's native Asciidoctor rendering, unchanged.
 
 ## 🗂️ Layout
 
@@ -18,6 +22,14 @@ type falls back to Antora's native Asciidoctor rendering, unchanged.
   `sidebar`/`example`, since they render identically); `listing` and
   `literal` are kept as separate files even though their current output
   is nearly identical, since they're expected to diverge in styling.
+
+  Nested content is only ever pulled through `node.getContent()`
+  (rendered blocks) and, where an item's principal line isn't itself a
+  block, `.getText()` — never Antora/Asciidoctor's default converter.
+  For list items and description-list terms/descriptions, `.getText()`
+  is the principal line and `.getContent()` is nested blocks
+  (continuation paragraphs, sub-lists); both must be concatenated, or
+  nested content is silently dropped.
 
   `listing` and `literal` both special-case blocks with an AsciiDoc style of
   `mermaid` (i.e. `[mermaid]`, however delimited) — shared in `templates/mermaid.js`
