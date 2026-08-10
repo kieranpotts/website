@@ -16,6 +16,7 @@
 - Fix AsciiDoc embedded image and video sizing and centering.
 - Remove `<hr/>` before `<aside>` in AsciiDoc content.
 - Fix styling for AsciiDoc asides.
+- AsciiDoc rendering: fix "undefined" element IDs.
 
 -----
 

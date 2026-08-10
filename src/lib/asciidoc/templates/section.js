@@ -7,7 +7,7 @@ module.exports = ({ node }) => {
 
   let html = ''
 
-  html += `<h${level} id="${id}">${node.getTitle()}</h${level}>`
+  html += `<h${level}${id ? ` id="${id}"` : ''}>${node.getTitle()}</h${level}>`
   html += node.getContent()
 
   return html

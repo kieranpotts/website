@@ -9,7 +9,7 @@ module.exports = ({ node }) => {
   let html = ''
 
   html += '<aside>'
-  if (title) html += `<h${level} id="${id}">${title}</h${level}>`
+  if (title) html += `<h${level}${id ? ` id="${id}"` : ''}>${title}</h${level}>`
   html += node.getContent()
   html += '</aside>'
 
