@@ -10,7 +10,7 @@ module.exports = ({ node, img }) => {
   const attrs = node.attributes["$$smap"];
   let html = "";
 
-  html += "<figure>";
+  html += '<figure class="image">';
   if (attrs["link"]) {
     html += `<a href="${attrs["link"]}">`;
   }

@@ -326,12 +326,14 @@ to load, its alt text will be rendered in its place.
 
 /*
 FIGURES
-Images within <figure> elements are rendered as blocks
-filling the full width of their container.
+Baseline styles shared by every `<figure>` our templates emit – images
+(`.image`), code (`.code`), and Mermaid diagrams (`.mermaid`) alike. See
+CODE & LITERAL BLOCKS and MERMAID DIAGRAMS, below, for the type-specific
+rules layered on top.
 */
 
 .AsciiDoc figure {
-  margin: calc(var(--line-height) * 2) 4ch;
+  margin: calc(var(--line-height) * 2) 0;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -342,7 +344,13 @@ filling the full width of their container.
   text-align: center;
 }
 
-.AsciiDoc figure > img {
+/*
+IMAGE FIGURES
+Images within `<figure class="image">` are rendered as blocks filling
+the full width of their container.
+*/
+
+.AsciiDoc figure.image > img {
   display: block;
   object-fit: contain;
   overflow: hidden;
@@ -512,16 +520,21 @@ A bare grouping block with no chrome of its own.
 /*
 CODE & LITERAL BLOCKS
 Our custom code template (see ../../lib/asciidoc/templates/code.js), shared
-by listing and literal blocks, emits a bare `<figure><pre>…</pre></figure>`
-– no `.listingblock`/`.literalblock`/`.content` wrapper. The background matches
-inline code (see INLINE CODE, above) and hugs the text rather than filling
-the figure's full width: the `<pre>` is sized to its content (up to the
-container width), with padding inside it, so the tint only ever extends
-as far as the longest line.
+by listing and literal blocks, emits `<figure class="code"><pre>…</pre>
+</figure>` – no `.listingblock`/`.literalblock`/`.content` wrapper. The
+`.code` class scopes this padding/background away from image figures,
+which don't share it. The background matches inline code (see INLINE
+CODE, above) and hugs the text rather than filling the figure's full
+width: the `<pre>` is sized to its content (up to the container width),
+with padding inside it, so the tint only ever extends as far as the
+longest line.
 */
 
-.AsciiDoc figure > pre {
+.AsciiDoc figure.code {
   background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
+}
+
+.AsciiDoc figure.code > pre {
   display: inline-block;
   font-weight: var(--font-weight-bold);
   max-width: 100%;
@@ -536,7 +549,7 @@ or if JS is unavailable, the raw diagram source is shown as plain
 text via the LITERAL/LISTING rule above.
 */
 
-.AsciiDoc figure.Mermaid svg {
+.AsciiDoc figure.mermaid svg {
   display: block;
   height: auto;
   margin: 0 auto;
