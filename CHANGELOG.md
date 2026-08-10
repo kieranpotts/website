@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Add bookmarks content source. 
+- Add résumé as a download link.
 - Integrate the UI theme into this repo (`src/ui/`).
 - Retire the separate `kieranpotts/website-ui` repository and workflow.
 - Add custom AsciiDoc block converters (`src/lib/asciidoc/`) that emit semantic
