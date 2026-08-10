@@ -1,6 +1,7 @@
 'use strict'
 
 const templates = require('./templates')
+const footnotesTemplate = require('./templates/footnotes')
 
 /**
  * Install our custom HTML templates onto AsciiDoctor's base `Html5Converter`
@@ -13,6 +14,10 @@ const templates = require('./templates')
  */
 
 const IMG_TAG = /<img\b[^>]*>/i
+
+/* Matches the stock `<div id="footnotes">…</div>` endnote list Asciidoctor
+appends to the tail of the page body, if present – see installFootnotesTemplate. */
+const FOOTNOTES_DIV = /\n?<div id="footnotes">[\s\S]*$/
 
 function installTemplates (Opal) {
   const html5 = Opal.Asciidoctor.Html5Converter
@@ -43,6 +48,26 @@ function installTemplates (Opal) {
     Opal.defn(html5, `$convert_${nodeName}`, function (node) {
       return template({ node })
     })
+  })
+
+  installFootnotesTemplate(Opal, html5)
+}
+
+/**
+ * The endnote list at the foot of the page (see templates/footnotes.js) isn't
+ * a discrete block in the content tree – Asciidoctor's stock converter
+ * appends it itself, inline, while rendering the whole page body via
+ * `$convert_embedded` (the method Antora calls to get a page's body HTML).
+ * There's no smaller method to override just for this, so we wrap the whole
+ * method: call the stock implementation, then splice our own markup in over
+ * the trailing footnotes div it appended (a no-op if the page has none).
+ */
+function installFootnotesTemplate (Opal, html5) {
+  const baseConvertEmbedded = html5.$$prototype['$convert_embedded']
+  Opal.defn(html5, '$convert_embedded', function (node) {
+    const resolved = baseConvertEmbedded.call(this, node)
+    if (!FOOTNOTES_DIV.test(resolved)) return resolved
+    return resolved.replace(FOOTNOTES_DIV, footnotesTemplate({ node }))
   })
 }
 

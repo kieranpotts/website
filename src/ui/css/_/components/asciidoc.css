@@ -595,8 +595,8 @@ LINKS
 
 /*
 FOOTNOTES
-In-text reference markers are rendered inline – required resetting
-`sup` defaults.
+Our custom ../../lib/asciidoc/templates/inline-footnote.js template emits
+the in-text reference markers – required resetting `sup` defaults.
 */
 
 .AsciiDoc sup.footnote,
@@ -606,16 +606,20 @@ In-text reference markers are rendered inline – required resetting
 }
 
 /*
-The endnote list at the page foot.
-Separated by a rule, normal body size.
+The endnote list at the page foot. Our custom
+../../lib/asciidoc/templates/footnotes.js template emits a bare
+`<hr class="footnotes">` followed by `<ol id="footnotes">` – no wrapping
+`#footnotes`/`.footnote` div-per-item. List items number themselves
+(picking up the generic `.AsciiDoc ol` numbering above); each closes
+with a `↩` back-link to its inline reference.
 */
 
-.AsciiDoc #footnotes {
+.AsciiDoc hr.footnotes {
   margin-top: calc(var(--line-height) * 2);
 }
 
-.AsciiDoc #footnotes hr {
-  margin-bottom: var(--line-height);
+.AsciiDoc ol#footnotes li {
+  margin: calc(var(--line-height) * 0.5) 0;
 }
 
 /*

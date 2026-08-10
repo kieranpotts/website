@@ -12,6 +12,13 @@
  *
  * Any node type NOT listed here falls back to Antora's
  * built-in HTML converter.
+ *
+ * `./footnotes.js` is a special case NOT listed here – there's no
+ * discrete node it can be keyed against, since Asciidoctor's stock
+ * converter appends the endnote list itself while rendering the whole
+ * page body, rather than treating it as a block in the content tree.
+ * ../converter.js wires it in separately. See that file's comment for
+ * `installFootnotesTemplate`.
  */
 module.exports = {
   paragraph: require('./paragraph'),
@@ -33,4 +40,5 @@ module.exports = {
   table: require('./table'),
   thematic_break: require('./thematic-break'),
   pass: require('./pass'),
+  inline_footnote: require('./inline-footnote'),
 }
