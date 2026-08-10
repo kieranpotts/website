@@ -24,6 +24,7 @@
 - Consolidate template and refine the style of listing and litertal blocks.
 - Adjust presentation of inline code.
 - Custom AsciiDoc templates for processing all in-use AsciiDoc block types.
+- Add `./run/release` automation script.
 
 -----
 
