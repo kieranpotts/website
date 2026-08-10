@@ -403,6 +403,44 @@ Sidebars can contain:
 [sidebar]
 Aute consequat et ullamco occaecat est sint mollit enim in. Sit dolore labore velit minim aliquip ullamco eu reprehenderit velit in sunt et aliqua commodo.
 
+.Sidebar with a table
+****
+Sidebars can hold a table:
+
+|===
+|Name |Age |City
+
+|John Doe
+|30
+|New York
+
+|Jane Smith
+|25
+|London
+|===
+****
+
+.Sidebar with an image
+****
+Sidebars can hold block and inline images.
+
+image::earthrise.jpg[Earthrise over the lunar horizon]
+
+This sentence has an inline image image:picture.png[Picture, 16, 16] flowing with the text.
+****
+
+.Sidebar with nested blocks
+****
+Sidebars can nest other blocks, including admonitions and blockquotes.
+
+NOTE: This is a note admonition nested inside a sidebar.
+
+[quote, Ada Lovelace]
+____
+That brain of mine is something more than merely mortal, as time will show.
+____
+****
+
 === Example blocks
 
 .Title
@@ -414,6 +452,44 @@ This is an https://docs.asciidoctor.org/asciidoc/latest/blocks/example-blocks/[e
 $ echo "Hello, World!"
 Hello, World!
 ----
+====
+
+.Example block with a table
+====
+Example blocks can hold a table:
+
+.Table with merged cells
+|===
+|Name 2+|Details
+
+|John
+|Age: 30
+|City: NYC
+
+|Jane
+2+|Age: 25, City: London
+|===
+====
+
+.Example block with an image
+====
+Example blocks can hold block and inline images.
+
+.Diagram that responds to light/dark mode preference
+image::diagram.svg[Build pipeline diagram, 600, 240]
+
+This sentence has an inline image image:picture.png[Picture, 16, 16] flowing with the text.
+====
+
+.Example block with a list and nested admonition
+====
+Example blocks can hold lists:
+
+* All standard AsciiDoc formatting
+* Tables, lists, and code blocks
+* Images and other media
+
+TIP: This is a tip admonition nested inside an example block.
 ====
 
 == Images and media
