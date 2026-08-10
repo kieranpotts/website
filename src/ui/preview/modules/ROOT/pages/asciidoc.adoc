@@ -59,6 +59,16 @@ The best argument against democracy is a five-minute conversation with the avera
 
 Culpa ea mollit aliqua velit dolor proident. Enim deserunt pariatur in esse non id adipisicing elit culpa. Incididunt consectetur amet consequat cillum.
 
+== Footnotes
+
+This sentence has a footnote.footnote:[This is the footnote text.]
+
+This sentence has a footnote with an ID.footnote:fn1[This footnote can be referenced again.]
+
+This sentence references the previous footnote again.footnote:fn1[]
+
+The footnotes are printed at the end of the page (ie. they are implemented as endnotes).
+
 == Headings and sections
 
 Cillum pariatur est occaecat sunt. Magna irure sunt cillum cillum do. Ea nulla deserunt qui est est qui commodo voluptate ad eu sint sunt Lorem ipsum. Et nisi ipsum proident ea pariatur. Reprehenderit officia anim est proident eu quis.
@@ -543,13 +553,3 @@ Select menu:Edit[Find > Replace] to open the find and replace dialog.
 |kbd:[Cmd+S]
 |kbd:[Ctrl+S]
 |===
-
-== Footnotes
-
-This sentence has a footnote.footnote:[This is the footnote text.]
-
-This sentence has a footnote with an ID.footnote:fn1[This footnote can be referenced again.]
-
-This sentence references the previous footnote again.footnote:fn1[]
-
-The footnotes are printed at the end of the page (ie. they are implemented as endnotes).
