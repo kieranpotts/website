@@ -311,7 +311,7 @@ their own rendering via width/height attributes.
   display: block;
   object-fit: contain;
   overflow: hidden;
-  width: 100%;
+  margin: 0 auto;
 }
 
 /*
