@@ -1,5 +1,5 @@
 ---
-name: fix-cross-references
+name: fix-xrefs
 description: >-
   Find and repair broken cross-references between the Antora components
   aggregated into this site — ROOT (this repo), thoughts, standards, garden,

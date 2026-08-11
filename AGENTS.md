@@ -116,7 +116,7 @@ The Docker equivalents are `./run/install`, `./run/build`, `./run/serve`,
 
 ## Skills
 
-- **`fix-cross-references`** \
+- **`fix-xrefs`** \
   Finds and repairs broken cross-references between and within this site's
   Antora components (`ROOT`, `thoughts`, `standards`, `garden`, `bookmarks`),
   each aggregated from its own sibling repository per `site-ci.yml`.
