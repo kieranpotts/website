@@ -10,8 +10,8 @@ south-west of England. I work across three disciplines — software architecture
 computer programming, and technical writing — to design, build, and document
 cloud-based enterprise application software.
 
-This website is a sprawling aggregate of artifacts I maintain across multiple
-repositories.
+This website is a sprawling aggregate of AsciiDoc artifacts I maintain across
+multiple repositories.
 
 * My xref:thoughts::index.adoc[blog] is a space I use to capture my current
   thoughts on the past, present, and future of software development.
