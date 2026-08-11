@@ -26,10 +26,12 @@ repositories.
 * And my xref:bookmarks::index.adoc[bookmarks] are a structured index of
   everything I've found online, related to my work, that's worth holding on to.
 
-See https://github.com/kieranpotts[GitHub] for my open source projects. To be
-notified of shiny new things on this website, follow me on
+See also https://github.com/kieranpotts[GitHub] for my open source projects.
+
+To be notified of shiny new things on this website, follow me on
 https://bsky.app/profile/kieranpotts.com[Bluesky] or
-https://www.linkedin.com/in/kieranpotts/[LinkedIn], or subscribe via
-link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or
-link:/feeds/feed.json[JSON Feed]. You can contact me at
-mailto:code@kieranpotts.com[code@kieranpotts.com].
+https://www.linkedin.com/in/kieranpotts/[LinkedIn],
+or subscribe via link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or
+link:/feeds/feed.json[JSON Feed].
+
+You can contact me at mailto:code@kieranpotts.com[code@kieranpotts.com].
