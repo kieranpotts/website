@@ -32,7 +32,7 @@ tmp_files=()
 cleanup() { rm -f "${tmp_files[@]}"; }
 trap cleanup EXIT
 
-# Refuse to run with a dirty working tree, so the release commit contains
+# Refuse to run with a dirty working tree, so the version commit contains
 # only the changelog update.
 if [[ -n "$(git status --porcelain)" ]]; then
   echo "Working tree is not clean. First, commit or stash your changes." >&2
@@ -128,7 +128,7 @@ mv "${tmp}" "${changelog}"
 
 # 5. Commit the changelog change.
 git add "${changelog}"
-git commit -m "release: ${tag}"
+git commit -m "version: ${version}"
 
 # 6. Tag the commit. The tag message reuses the released changelog entries,
 # per the tip in TS-11: Versioning > Tagging.
