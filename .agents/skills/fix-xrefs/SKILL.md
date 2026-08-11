@@ -1,60 +1,19 @@
 ---
 name: fix-xrefs
 description: >-
-  Find and repair broken cross-references between the Antora components
-  aggregated into this site — ROOT (this repo), thoughts, standards, garden,
-  bookmarks — and within each one. Use when the user says "fix cross-
-  references", "check links between the standards/garden/bookmarks/thoughts",
-  "a link into <component> is broken", or "check for valid cross-references
-  across the Antora modules". Do not use it to restyle references that
-  already resolve correctly, or to edit content that has nothing to do with a
-  reference.
+  Find and repair broken cross-references within and between the Antora
+  components that are aggregated into this website. Use this skill when the
+  user says something like "fix cross-references", "check links",
+  "check for valid cross-references", or "a link into <component> is broken".
 compatibility: requires Read, Edit, Glob, Grep, Bash (npm)
 license: CC0-1.0
 ---
 
 # Fix cross-references
 
-Find and repair broken cross-references — stale titles, wrong TS numbers,
-and `xref:`/`include::` targets that no longer resolve — both *within* one
-Antora component of this site and *between* components. Repair only what is
-demonstrably broken, and leave anything you cannot resolve with certainty
-untouched.
-
-This site is built by aggregating several independently-versioned Git
-repositories, each one Antora component, per `site-ci.yml`'s `content.sources`:
-
-- **ROOT** — this repository, home/about pages, `src/content/`.
-- **thoughts**, **standards**, **garden**, **bookmarks** — sibling
-  repositories, each fetched at build time.
-
-Every component currently defines only a `ROOT` module. A reference within a
-component omits the component coordinate; a reference to a different
-component MUST state it (`component:module:file.adoc`, or the shorthand
-`component::file.adoc` when the module is `ROOT`).
-
-Two distinct reference mechanisms are in play, and a fix MUST use the right
-one for the file it's in:
-
-- **`.adoc` files** (pages and partials) use Antora resource IDs via `xref:`,
-  and a component's own includes use
-  `include::partial$<module>/<file>.adoc[leveloffset=+1]`. Neither is a
-  relative filesystem path. `include::` cannot cross a component boundary —
-  Antora has no cross-component include; treat one that looks like it's
-  trying to as a structural error to report, not a target to "fix" into an
-  xref, since that would change what the author meant.
-
-- **`standards`' `AGENTS.md`/`GAPS.md` files** are plain Markdown, outside
-  Antora's reach, and keep an older, standards-only convention: a relative
-  link to another standard's `AGENTS.md`, eg. `../031/AGENTS.md`. This
-  convention doesn't exist in the other components.
-
-- **`standards` alone** also numbers its pages (`TS-<N>`) and requires every
-  `xref:`/link naming a standard to carry its *exact* current title, per
-  `standards/src/modules/ROOT/pages/index.adoc`. The other components have no
-  equivalent numbering or title-index convention — for them, a same- or
-  cross-component `xref:` is either resolvable or it isn't; there's no
-  separate "title drift" check to run.
+Find and repair broken cross-references, both _within_ one Antora component of
+this website site and _between_ components. Repair only what is demonstrably
+broken, and leave untouched anything you cannot resolve with certainty.
 
 ## Parameters
 
@@ -62,65 +21,49 @@ Determine the following information from the surrounding context and
 environment, if possible. If you're uncertain about the required parameters,
 prompt the user for clarification.
 
-- **The scope — REQUIRED.** One component (`ROOT`, `thoughts`, `standards`,
-  `garden`, or `bookmarks`), or `all`. For a single component, scan every
-  `.adoc`/`.md` file under its `modules/` tree (plus, for `standards`, its
-  `AGENTS.md`/`GAPS.md` meta-docs). `all` means every component the registry
-  (step 1) can find checked out locally.
+- **The scope — REQUIRED.** One component, which might be `website`, `thoughts`,
+  `standards`, `garden`, or `bookmarks`. If not specified, assume _all_ Antora
+  components that are aggregated into the website are in play. Per in-scope
+  component, scan every `.adoc` file under its `modules/` tree.
 
 ## Success criteria
 
-- Every reference in scope — same-component or cross-component — MUST now
-  resolve to a page, partial, or (for `standards`) index entry that actually
-  exists, checked against the *target* component's own content, not assumed.
+- Every reference in scope MUST now resolve to a page, partial, or index entry.
+  Don't assume the target exists – validate by checking the target component's
+  own content.
 
-- Every `standards` reference that named a `TS-<N>` number or title MUST
-  match `standards/src/modules/ROOT/pages/index.adoc` exactly.
-
-- Every reference that could not be resolved with certainty — including one
-  whose target component has no local checkout available to verify against —
-  MUST still hold its original text, and MUST be listed in the report as
-  unresolved. A wrong guess is worse than a flagged uncertainty, because it
-  looks fixed.
+- Every reference that you cannot resolve with certainty — for example,
+  if the target component is not checked out in the current workspace,
+  providing you with content to verify against — MUST NOT be changed.
 
 - References that already resolved correctly MUST be byte-identical to how
-  they started, and the surrounding AsciiDoc or Markdown construct MUST be
-  unchanged around every reference that was fixed.
+  they started.
 
-- Each fix MUST land in whichever repository actually owns the file the
-  broken reference lives in — this skill freely edits any of the site's
-  component repositories, not only the one it's installed in. Nothing MUST
-  be staged or committed in any of them, and no file outside the identified
-  broken references MUST have been modified.
+- The surrounding AsciiDoc content MUST be unchanged around every reference
+  that was fixed.
+
+- Each fix MUST be applied in the relevant local repository, but MUST NOT be
+  committed.
 
 ## Instructions
 
-1.  Build the component registry from `site-ci.yml`'s `content.sources` (the
-    production source list — more complete than `site-dev.yml`). For the
+1.  Build the component registry from `content.sources` in `site-ci.yml`. For the
     local `.` source, the component name comes from `src/content/antora.yml`.
     For each remote `https://github.com/kieranpotts/<repo>.git` source, the
     component name comes from `<start_path>/antora.yml` in that repository.
 
     Resolve each remote component to a local working copy by matching
-    `<repo>` against this session's other working directories (they follow
-    the pattern `.../kieranpotts/<repo>/default`, siblings of this repo's own
-    checkout). If no matching working directory is available, or its
-    `antora.yml` `name:` doesn't match what the playbook expects, that
-    component has no local checkout — record it in the registry as
-    *unavailable*, not missing; references pointing into it can't be verified
-    and MUST be reported, never guessed at.
-
-    For `standards`, additionally read
-    `src/modules/ROOT/pages/index.adoc` from its local checkout and build the
-    `TS-<N>` → {title, page filename} mapping — the sole authority for
-    standards numbers, titles, and slugs.
+    `<repo>` against this session's other working directories — they are siblings
+    of this repository, following the pattern `.../kieranpotts/<repo>/default`.
+    If no matching working directory is available, or its `antora.yml` `name:`
+    doesn't match what the playbook expects, that component has no local checkout.
+    Record it in the registry as _unavailable_. Do not attempt to verify
+    any cross-references pointing to unavailable components.
 
 2.  Resolve the scope to one or more components using the registry.
 
-3.  Enumerate the `.adoc`/`.md` files each in-scope component covers, and
-    find candidate references: `xref:` and `include::` targets (same- and
-    cross-component forms), `TS-\d{1,3}` mentions, and — in `standards`'
-    `AGENTS.md`/`GAPS.md` files only — `../\d{3}/` relative paths.
+3.  Enumerate the `.adoc` files each in-scope component covers, and
+    find candidate references, eg. `xref:` and `include::` targets.
 
 4.  Validate each candidate on the axes that apply to its mechanism and
     target:
