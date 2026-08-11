@@ -33,10 +33,10 @@ lint-css: ## Lint the UI theme's stylesheets with stylelint
 linkcheck: ## Serve the built site and crawl it for broken links. Run 'make build' first
 	./run/linkcheck
 
-release: ## Tag a new release
-	./run/release
+version: ## Tag a new version
+	./run/version
 
 help: ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: install build clean watch preview serve preview-ui preview-ui-serve lint lint-css linkcheck release help
+.PHONY: install build clean watch preview serve preview-ui preview-ui-serve lint lint-css linkcheck version help
