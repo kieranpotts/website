@@ -42,10 +42,11 @@ possible. Ask the user if it's unclear.
 
 ## Instructions
 
-1.  Build the component registry from `content.sources` in `site-ci.yml`.
+1.  **Build the component registry** from `content.sources` in `site-ci.yml`.
     For the local `.` source, the name comes from `src/content/antora.yml`.
     For each remote `https://github.com/kieranpotts/<repo>.git` source, the
-    name comes from `<start_path>/antora.yml` in that repo.
+    name comes from `<start_path>/antora.yml` in that repo (`start_path` is
+    `src`).
 
     Resolve each remote component to a local checkout by matching `<repo>`
     against this session's other working directories (siblings of this repo,
@@ -53,30 +54,80 @@ possible. Ask the user if it's unclear.
     `antora.yml` `name:` disagrees, mark the component _unavailable_ in the
     registry — don't try to verify references into it.
 
-2.  For each in-scope component, find every `xref:` and `include::` target in
-    its `.adoc` files. These are the candidate cross-references to validate.
+2.  **Detect failures with an Antora build** — this is the authoritative
+    method. Antora resolves every `xref:`/`include::` against the aggregated
+    content catalog and logs a warning for anything it can't resolve, which
+    is far more reliable than walking files by hand. Antora owns the slug
+    algorithm and anchor resolution — don't reimplement this.
 
-3.  Validate each candidate.
+    - Run the build with `--log-failure-level=warn`. Unresolved `xref:` targets
+      and failed `include::` directives will be surfaced at the _warn_ level 
+      and fail the build. The exit code and warn-level lines are the failure 
+      list.
+    
+    - Antora cannot read this repo's working tree directly, because it's a Git
+      worktree where `.git` is a pointer file, not a directory. Also, the 
+      Antora playbooks fetch the four sub-repos from GitHub, which needs network. 
+      So, to validate offline, write a throwaway playbook that points _every_ 
+      source at its local bare repo on `latest/dev`. (It's the same trick `site-dev.yml` already uses for the website's own `../.bare`). Here's
+      the throwaway playbook template:
 
-    - Cross-component `xref:` — Check if the component is in the registry.
-      Is a checkout available? Does the file resolve under that component's
-      `modules/<module>/pages/` (or `partial$` under `partials/`)?
+      ```yaml
+      content:
+        sources:
+          - url: ../.bare            # website (ROOT)
+            branches: latest/dev
+            start_path: src/content
+          - url: ../../thoughts/.bare
+            branches: latest/dev
+            start_path: src
+          - url: ../../standards/.bare
+            branches: latest/dev
+            start_path: src
+          - url: ../../garden/.bare
+            branches: latest/dev
+            start_path: src
+          - url: ../../bookmarks/.bare
+            branches: latest/dev
+            start_path: src
+      ```
 
-    - Same-component `xref:`/`include::` — Does the target resolve within
-      this component's own content?
+      Confirm each `../../<repo>/.bare` exists and has `latest/dev` before
+      building. 
 
-4.  Fix only what failed validation. Fix only the cross-reference itself,
+      Delete the throwaway playbook and output when done.
+    
+    - The UI bundle must exist (`src/ui/dist/ui.yml`). Run `npm run bundle:ui`
+      first if it doesn't.
+
+    - Ignore _info_ level `"possible invalid reference: ..."` lines in the
+      verbose log. These are just Asciidoctor pre-processing noise, not Antora's
+      unresolved-xref warnings (which are at _warn_ level).
+
+3.  **Committed vs. working-tree.** Bare-repo builds read committed
+    `latest/dev`, not uncommitted working-tree edits. So you must run 
+    `git -C <worktree> status --short` in every in-scope repo first. If any 
+    `.adoc` is dirty, the build won't reflect those edits. Report that gap 
+    rather than trusting the build silently.
+
+4.  Get manual fallback only if a build is impossible. For each in-scope
+    component, find every `xref:` and `include::` target in its `.adoc` files
+    and resolve each. Check cross-component `xref:` against the target 
+    component's `modules/<module>/pages/` (`partial$` under `partials/`).
+    Check same-component refs within the component's own content. This is
+    best-effort and error-prone — prefer the build.
+
+5.  Fix only what failed validation. Fix only the cross-reference itself,
     not the linking text, title, or TS-* number. Never convert `xref:` ↔
     `link:`. Write the fix into the file in its _owning_ repository, which
     may not be this one. Do NOT commit.
 
 6.  Report your fixes, grouped by repository then file, followed by every
     unresolved reference and why (including ones left alone because their
-    component has no local checkout).
+    component has no local checkout, and any committed/working-tree gap you
+    couldn't close).
 
 ## Rules
-
-- The registry MUST come from `site-ci.yml`.
 
 - You MUST NOT invent a component or module name. A `component:module:file`
   reference naming something outside the registry is either external content
