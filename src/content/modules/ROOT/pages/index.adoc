@@ -3,7 +3,7 @@
   in the south-west of the UK, with two decades of experience building \
   software for enterprise.
 
-**🚧 UNDER RECONSTRUCTION**
+**🚧 UNDER RECONSTRUCTION 🚧**
 
 I'm Kieran. I'm a staff software developer based near Bristol and Bath in the
 south-west of England. I work across three disciplines — software architecture,
@@ -11,17 +11,18 @@ computer programming, and technical writing — to design, build, and document
 cloud-based enterprise application software.
 
 This website is a sprawling aggregate of artifacts I maintain across multiple
-repositories. My xref:thoughts::index.adoc[blog] is a space I use to explore the
-history of software development, to analyze the current state of the art, and to
-try to predict our future trajectory. My xref:garden::index.adoc[digital garden]
-is a sort of personal wiki, a place for me to capture notes, research, and
-reference materials on all sorts of computer science topics. And my
-xref:bookmarks::index.adoc[bookmarks] are a structured index of everything I've
-found online, related to my work, that's worth holding on to.
+repositories. My xref:thoughts::index.adoc[blog] is a space I use to capture my
+current thoughts on the state of the art of software development and where we're
+headed as a discipline. My xref:standards::index.adoc[technical standards] are
+a set of general guidelines for software development that I have curated over
+time. My xref:garden::index.adoc[digital garden] is a sort of personal wiki, a
+place for me to capture notes, research, and reference materials on all sorts of
+computer science topics. And my xref:bookmarks::index.adoc[bookmarks] are a
+structured index of everything I've found online, related to my work, that's
+worth holding on to.
 
-See https://github.com/kieranpotts[GitHub] for my open source projects and
-https://github.com/kieranpotts/resume/releases[résumé]. To be notified of shiny
-new things on this website, follow me on
+See https://github.com/kieranpotts[GitHub] for my open source projects. To be
+notified of shiny new things on this website, follow me on
 https://bsky.app/profile/kieranpotts.com[Bluesky] or
 https://www.linkedin.com/in/kieranpotts/[LinkedIn], or subscribe via
 link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or

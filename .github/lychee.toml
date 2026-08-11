@@ -1,3 +1,5 @@
+
+#
 # Config for the lychee link checker used by check-links.yaml.
 # See https://lychee.cli.rs/usage/config/ for all options.
 #
@@ -9,6 +11,7 @@
 # check-broken-links.yaml passes each of the 4 nested urlset sitemaps
 # (sitemap-bookmarks.xml, sitemap-garden.xml, sitemap-ROOT.xml,
 # sitemap-thoughts.xml) directly.
+#
 
 # Retry transient failures before reporting them as broken.
 max_retries = 3
