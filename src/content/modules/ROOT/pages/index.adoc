@@ -1,11 +1,11 @@
 = Hello
-:description: About Kieran Potts — a staff software developer based \
+:description: About Kieran Potts — a staff-level software developer based \
   in the south-west of the UK, with two decades of experience building \
   software for enterprise.
 
 **🚧 UNDER RECONSTRUCTION 🚧**
 
-I'm Kieran. I'm a staff software developer based near Bristol and Bath in the
+I'm Kieran. I'm a staff-level software developer based near Bristol and Bath in the
 south-west of England. I work across three disciplines — software architecture,
 computer programming, and technical writing — to design, build, and document
 cloud-based enterprise application software.
