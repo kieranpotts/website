@@ -114,9 +114,26 @@ The Docker equivalents are `./run/install`, `./run/build`, `./run/serve`,
   so changes there must be pushed to their published branches before they
   appear here.
 
-## Skills
+## References
 
-- `fix-xrefs` \
-  Finds and repairs broken cross-references between and within this site's
-  Antora components (`ROOT`, `thoughts`, `standards`, `garden`, `bookmarks`),
-  each aggregated from its own sibling repository per `site-ci.yml`.
+The following technical standards (TS) govern this project. Fetch and ingest
+the relevant standards as-and-when required for the task at hand.
+
+- [**TS-28: AsciiDoc**](https://kieranpotts.com/standards/028) \
+  Use when writing or reviewing AsciiDoc documents or websites built using
+  Antora.
+
+- [**TS-38: Node.js Applications**](https://kieranpotts.com/standards/038) \
+  Use when designing, building, or deploying Node.js applications.
+
+- [**TS-36: ECMAScript (JavaScript/TypeScript)**](https://kieranpotts.com/standards/036) \
+  Use when writing or reviewing JavaScript or TypeScript source code. Covers
+  syntax, modules, async programming, functional patterns, and testing.
+
+- [**TS-25: Technical Documentation**](https://kieranpotts.com/standards/025) \
+  Use when deciding what documentation a project needs, where it should live,
+  who it's for, or whether it's still trustworthy.
+
+- [**TS-9: Version Control**](https://kieranpotts.com/standards/009) \
+  Use when working with Git. Covers commits, branching, merging, integration
+  strategies, cutting releases, and configuring Git/PR/CI tooling.
