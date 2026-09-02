@@ -285,7 +285,7 @@ styling from the `<pre>` itself instead, see CODE & LITERAL BLOCKS below.
 */
 
 .AsciiDoc code {
-  background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
+  background: var(--color-text-code-background);
   color: var(--color-text-code-foreground);
   padding: 0 0.5ch;
 }
@@ -535,7 +535,7 @@ line.
 
 .AsciiDoc figure.listing,
 .AsciiDoc figure.literal {
-  background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
+  background: var(--color-text-code-background);
 }
 
 .AsciiDoc figure.listing > pre,
