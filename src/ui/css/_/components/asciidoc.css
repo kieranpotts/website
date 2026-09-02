@@ -363,6 +363,7 @@ DIAGRAMS, below, for the type-specific rules layered on top.
 
 .AsciiDoc figcaption {
   display: block;
+  font-weight: var(--font-weight-bold);
   margin: calc(var(--line-height) * 0.5) 0;
   text-align: center;
 }
