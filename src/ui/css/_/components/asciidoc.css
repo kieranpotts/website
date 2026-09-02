@@ -287,7 +287,6 @@ styling from the `<pre>` itself instead, see CODE & LITERAL BLOCKS below.
 .AsciiDoc code {
   background: color-mix(in srgb, var(--color-text-code-background), var(--color-text-default) 8%);
   color: var(--color-text-code-foreground);
-  font-weight: var(--font-weight-bold);
   padding: 0 0.5ch;
 }
 
@@ -541,7 +540,6 @@ line.
 .AsciiDoc figure.listing > pre,
 .AsciiDoc figure.literal > pre {
   display: inline-block;
-  font-weight: var(--font-weight-bold);
   max-width: 100%;
   padding: var(--line-height) 2ch;
 }

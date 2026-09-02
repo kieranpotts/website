@@ -12,6 +12,7 @@ via Netlify.
 
 - Typography tweaks.
 - Fix QandA rendering.
+- Remove bold for inline and block-level code.
 
 ## [0.7.0] - 2026-08-10
 
