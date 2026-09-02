@@ -186,6 +186,12 @@
   --spacing-lg: 8rem;
   --spacing-sm: 6rem;
 
+  /*
+  OTHER CUSTOM PROPERTIES
+  */
+
+  --text-underline-offset: 0.2em;
+
 }
 
 /*

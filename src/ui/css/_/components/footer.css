@@ -33,7 +33,7 @@ Same treatment as `.AsciiDoc a` – an accent-colored underline at rest.
   text-decoration: underline;
   text-decoration-color: var(--color-hyperlink-underline);
   text-decoration-thickness: var(--border-thickness);
-  text-underline-offset: 0.3em;
+  text-underline-offset: var(--text-underline-offset);
 }
 
 .Footer a:visited { color: var(--color-hyperlink-visited); }

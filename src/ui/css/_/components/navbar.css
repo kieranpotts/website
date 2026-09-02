@@ -146,7 +146,7 @@ is an icon too — it dims instead, like the social icon below.)
   text-decoration: underline;
   text-decoration-color: var(--color-hyperlink-underline);
   text-decoration-thickness: var(--border-thickness);
-  text-underline-offset: 0.3em;
+  text-underline-offset: var(--text-underline-offset);
 }
 
 /*

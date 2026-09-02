@@ -16,6 +16,7 @@ via Netlify.
 - Fix QandA rendering.
 - Remove bold for inline and block-level code.
 - Add bold for figcaptions.
+- Narrow text-underline-offset
 
 ## [0.7.0] - 2026-08-10
 
