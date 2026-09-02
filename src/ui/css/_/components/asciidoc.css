@@ -175,12 +175,29 @@ indent the description by whole character units.
 /*
 QUESTION & ANSWER LISTS
 dlist.js's `[qanda]` branch emits a plain `<ol class="qanda">`, so it
-already picks up the generic `.AsciiDoc ol` numbering above; only the
-question line needs its own emphasis here.
+already picks up the generic `.AsciiDoc ol` numbering above. But that
+numbering is a hanging indent (padding-left + negative text-indent) built
+for an `<li>` whose content starts as inline text; here the li's content
+is a block-level `.question` `<p>`, which forces the `::before` marker
+onto a line of its own above it. Swap in absolute positioning for the
+marker instead, so it sits in the li's left gutter beside the question's
+first line regardless of block children.
 */
+
+.AsciiDoc ol.qanda > li {
+  padding-left: 3ch;
+  position: relative;
+  text-indent: 0;
+}
+
+.AsciiDoc ol.qanda > li::before {
+  left: 0;
+  position: absolute;
+}
 
 .AsciiDoc ol.qanda > li > .question {
   font-weight: var(--font-weight-bold);
+  margin-top: 0;
 }
 
 /*

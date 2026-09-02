@@ -1,18 +1,21 @@
 # Changelog
 
-The changelog is hand-maintained. Keep the [Unreleased] section up-to-date with 
-new revisions introduced to the development trunk. The format is loosely based 
+The changelog is hand-maintained. Keep the [Unreleased] section up-to-date with
+new revisions introduced to the development trunk. The format is loosely based
 on <https://keepachangelog.com/en/1.1.0/>.
 
 The version numbers reflect major milestones, rather than releases. The site
-is deployed continuuously, on every update to the upstream `latest/dev` trunk,
+is deployed continuously, on every update to the upstream `latest/dev` trunk,
 via Netlify.
 
 ## [Unreleased]
 
+- Typography tweaks.
+- Fix QandA rendering.
+
 ## [0.7.0] - 2026-08-10
 
-- Add bookmarks content source. 
+- Add bookmarks content source.
 - Add résumé as a download link.
 - Add light/dark mode toggle.
 - Integrate the UI theme into this repo (`src/ui/`).
