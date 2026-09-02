@@ -98,6 +98,11 @@ at the same level.
   text-indent: -1.6ch;
 }
 
+.AsciiDoc ol li {
+  padding-left: 3ch;
+  text-indent: -3ch;
+}
+
 .AsciiDoc ol ul,
 .AsciiDoc ol ol,
 .AsciiDoc ul ol,
