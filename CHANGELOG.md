@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-09-02
+
 - Typography tweaks.
 - Fix QandA rendering.
 - Remove bold for inline and block-level code.
