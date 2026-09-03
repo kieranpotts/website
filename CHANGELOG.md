@@ -11,6 +11,7 @@ via Netlify.
 ## [Unreleased]
 
 - Further AsciiDoc typography tweaks.
+- Tighten margins between block-level components (tables, images, etc.).
 
 ## [0.8.0] - 2026-09-02
 
