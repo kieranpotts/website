@@ -450,7 +450,6 @@ with a left rule to set the block off from surrounding prose.
 }
 
 .AsciiDoc .admonition > .label {
-  color: var(--color-text-light);
   font-weight: var(--font-weight-bold);
   margin-bottom: 0;
   margin-top: 0;
