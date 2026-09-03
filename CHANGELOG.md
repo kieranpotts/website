@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+- Further AsciiDoc typography tweaks.
+
 ## [0.8.0] - 2026-09-02
 
 - Typography tweaks.

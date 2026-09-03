@@ -356,7 +356,7 @@ DIAGRAMS, below, for the type-specific rules layered on top.
 */
 
 .AsciiDoc figure {
-  margin: calc(var(--line-height) * 2) 0;
+  margin: calc(var(--line-height) * 1) 0;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -366,6 +366,14 @@ DIAGRAMS, below, for the type-specific rules layered on top.
   font-weight: var(--font-weight-bold);
   margin: calc(var(--line-height) * 0.5) 0;
   text-align: center;
+}
+
+.AsciiDoc figcaption:first-child {
+  margin-bottom: 0;
+}
+
+.AsciiDoc figcaption:last-child {
+  margin-top: 0;
 }
 
 /*
@@ -540,8 +548,6 @@ line.
 
 .AsciiDoc figure.listing > pre,
 .AsciiDoc figure.literal > pre {
-  display: inline-block;
-  max-width: 100%;
   padding: var(--line-height) 2ch;
 }
 
