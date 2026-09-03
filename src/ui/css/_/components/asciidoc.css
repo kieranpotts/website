@@ -456,7 +456,7 @@ with a left rule to set the block off from surrounding prose.
   text-transform: uppercase;
 }
 
-.AsciiDoc .admonition > p:nth-of-type(2) {
+.AsciiDoc .admonition > .label + p {
   margin-top: calc(var(--line-height) * 0.5);
 }
 
@@ -464,7 +464,7 @@ with a left rule to set the block off from surrounding prose.
   margin-top: 0;
 }
 
-.AsciiDoc .admonition > :last-child {
+.AsciiDoc .admonition > *:last-child {
   margin-bottom: 0;
 }
 
