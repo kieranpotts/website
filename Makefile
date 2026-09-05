@@ -1,42 +1,57 @@
-.DEFAULT_GOAL := help
+#
+# Task runners for this project's development lifecycle.
+#
 
-install: ## Install project dependencies
+.PHONY: install build clean watch preview serve preview-ui preview-ui-serve lint lint-css lintcheck version help
+
+help:
+	@echo "Available targets:"
+	@echo "  install           - Install project dependencies"
+	@echo "  build             - Build the site and write the output to public/"
+	@echo "  clean             - Remove build output and caches (public/, cache/, src/ui/dist/, www/, tmp/)"
+	@echo "  watch             - Watch src/ and rebuild the site automatically, without serving it"
+	@echo "  preview           - Watch src/ and serve the site at http://localhost:8080, rebuilding on change"
+	@echo "  serve             - Serve the already-built site at http://localhost:8080"
+	@echo "  preview-ui        - Build the UI theme against a dummy sample site, output to www/"
+	@echo "  preview-ui-serve  - Build the UI theme against a dummy sample site and serve it at http://localhost:8081"
+	@echo "  lint              - Build the site, failing on broken links or other content warnings"
+	@echo "  lint-css          - Lint the UI theme's stylesheets with stylelint"
+	@echo "  linkcheck         - Serve the built site and crawl it for broken links. Run 'make build' first"
+	@echo "  version           - Tag a new version"
+	@echo "  help              - Show this help message"
+
+install:
 	./run/install
 
-build: ## Build the site and write the output to public/
+build:
 	./run/build
 
-clean: ## Remove build output and caches (public/, cache/, src/ui/dist/, www/, tmp/)
+clean:
 	./run/clean
 
-watch: ## Watch src/ and rebuild the site automatically, without serving it
+watch:
 	./run/watch
 
-preview: ## Watch src/ and serve the site at http://localhost:8080, rebuilding on change
+preview:
 	./run/preview
 
-serve: ## Serve the already-built site at http://localhost:8080
+serve:
 	./run/serve
 
-preview-ui: ## Build the UI theme against a dummy sample site, output to www/
+preview-ui:
 	./run/preview-ui
 
-preview-ui-serve: ## Build the UI theme against a dummy sample site and serve it at http://localhost:8081
+preview-ui-serve:
 	./run/preview-ui-serve
 
-lint: ## Build the site, failing on broken links or other content warnings
+lint:
 	./run/lint
 
-lint-css: ## Lint the UI theme's stylesheets with stylelint
+lint-css:
 	./run/lint-css
 
-linkcheck: ## Serve the built site and crawl it for broken links. Run 'make build' first
+linkcheck:
 	./run/linkcheck
 
-version: ## Tag a new version
+version:
 	./run/version
-
-help: ## Show this help message
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
-
-.PHONY: install build clean watch preview serve preview-ui preview-ui-serve lint lint-css linkcheck version help
