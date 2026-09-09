@@ -154,6 +154,18 @@ li's hanging text-indent. Make it a block and align it manually.
 }
 
 /*
+A `+` continuation paragraph renders as its own `<p>` block inside the
+`<li>`. It inherits the li's negative text-indent (text-indent is an
+inherited property) but not its padding-left, so its first line pulls
+left of the item's own wrapped lines. Reset the indent so continuation
+paragraphs align flush with the rest of the item's text.
+*/
+
+.AsciiDoc li > p {
+  text-indent: 0;
+}
+
+/*
 DESCRIPTION LISTS
 Our custom ../../lib/asciidoc/templates/dlist.js template emits a bare
 `<dl><dt>…</dt><dd>…</dd></dl>` – no `.dlist` wrapper. Bold the term and
