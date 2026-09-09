@@ -131,7 +131,7 @@ The item text stays ink.
   line-height: 0;
 }
 
-.AsciiDoc ol li::before {
+.AsciiDoc ol > li::before {
   color: var(--color-text-default);
   content: counters(item, ".") ". ";
   counter-increment: item;
