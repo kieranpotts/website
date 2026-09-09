@@ -226,16 +226,31 @@ table wrapper. Its markers are restyled here to match the conum badges
 above, rather than the dotted-decimal counters used by ordinary `<ol>`s.
 */
 
+/*
+The border is drawn in the code block's own background color, not
+--color-border (which matches the badge's ink fill and so is
+invisible against it). Consecutive callout badges stacked on adjacent
+lines would otherwise abut with no visible gap and read as a single
+block; this border acts as a hairline gutter between them instead.
+
+At this font/size, 2ch computes to almost exactly --line-height-code,
+leaving no room to visually separate the badge from the code line
+above/below it. Shrinking the badge below 2ch is not an option here:
+the digit glyph itself needs the full 2ch line-height to render
+without clipping (tested down to 1.8ch, where it visibly garbles).
+*/
+
 .AsciiDoc .conum[data-value] {
   background: var(--color-text-default);
-  border: var(--border-thickness) solid var(--color-border);
+  border: 0;
   color: var(--color-page-background);
   display: inline-block;
   font-style: normal;
   font-weight: var(--font-weight-bold);
   height: 2ch;
-  line-height: calc(2ch - var(--border-thickness) * 2);
+  line-height: 2ch;
   text-align: center;
+  vertical-align: middle;
   width: 2ch;
 }
 
