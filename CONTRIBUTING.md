@@ -274,3 +274,53 @@ pages that contain a `[mermaid]` block, and initial page render is not blocked.
 
 This deployment model fits better with my website's self-contained,
 statically-hosted asset bundle.
+
+### Hand-drawn diagrams (draw.io SVGs)
+
+Where a diagram isn't a good fit for Mermaid's text-based syntax, it's drafted
+in [draw.io](https://www.drawio.com/), then exported as SVG and hand-edited to
+optimize for the web.
+
+The following conventions apply to all hand-drawn diagrams across all of this
+site's content sources.
+
+- **Fonts** are inherited from the embedding page (`font-family: inherit` on
+  each label's `<div>`), 14px, bold. This lets a diagram's text render in
+  whatever font the page itself uses, rather than a fixed font baked into the
+  diagram.
+
+- **Colors** use `light-dark()` CSS values (eg. `light-dark(#000000, #ffffff)`)
+  so shapes and text adapt to light/dark mode automatically.
+
+- **Shape strokes:** 2px, black (adapting via `light-dark()`).
+
+- **Shape fills:** white in light mode, dark in dark mode, via the same
+  `light-dark()` pattern.
+
+- The draw.io "text is not SVG" fallback (a `<switch>` wrapping a truncated
+  `<text>` element, used only if `foreignObject` isn't supported) is removed,
+  since `opts=inline` guarantees these always render via the `foreignObject`
+  path.
+
+- Draw.io's embedded metadata is removed. This is the `content="..."`
+  attribute on the root `<svg>` element.
+
+The SVGs are inlined/embedded into the document at build time (`opts=inline`).
+The reason for this is to guarantee the highest level of cross-browser
+compatibility for light/dark mode switches and font inheritance. Both
+`light-dark()` and `font-family: inherit` only take effect when the SVG's CSS
+is evaluated in the context of the embedding page. If an SVG is referenced as
+a normal raster-style image (ie. rendered to an `<img src="...">` tag), it
+gets its own independent, opaque rendering context that does not inherit the
+page's styles, so `light-dark()` silently resolves to its default light-mode
+value, and `font-family: inherit` resolves to the browser default font. This
+is a browser/spec limitation. There's an open CSSWG issue
+([w3c/csswg-drafts#8634](https://github.com/w3c/csswg-drafts/issues/8634))
+tracking the general inability to pass page CSS into `<img>`-loaded SVGs.
+
+Because of this, every `image::` macro that references one of these `.svg`
+files must include the `opts=inline` attribute.
+
+```asciidoc
+image::diagrams/some-diagram.svg["Alt text",opts=inline]
+```

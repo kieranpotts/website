@@ -34,7 +34,7 @@ Antora's native Asciidoctor rendering, unchanged.
   `listing` and `literal` both special-case blocks with an AsciiDoc style of
   `mermaid` (i.e. `[mermaid]`, however delimited) — shared in `templates/mermaid.js`
   — to render Mermaid diagrams client-side instead of as plain text. See
-  [../../../docs/diagrams.md](../../../docs/diagrams.md) for the rationale
+  [CONTRIBUTING.md](../../../CONTRIBUTING.md) for the rationale
   and how it fits together with the theme's `src/ui/js/vendor/mermaid/`.
 
 - `converter.js` \
