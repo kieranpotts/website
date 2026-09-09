@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-09-09
+
 - Extend AsciiDoc custom template processors.
 - Further AsciiDoc typography tweaks.
 - Tighten margins between block-level components (tables, images, etc.).
