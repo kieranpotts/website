@@ -552,12 +552,10 @@ This paragraph contains an inline image image:picture.png[Picture, 16, 16] withi
 
 === External diagrams
 
-Both renderings of this diagram should respond to light/dark mode preferences.
-
-.External diagram
+.External diagram — does not theme
 image::diagram.svg[Build pipeline diagram, 600, 240]
 
-.Inlined diagram
+.Inlined diagram — themes correctly
 image::diagram.svg[Build pipeline diagram, 600, 240, opts=inline]
 
 === Video

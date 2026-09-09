@@ -1,72 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="240" viewBox="0 0 600 240" font-family="monospace">
-  <style>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="240" viewBox="0 0 600 240" font-family="inherit">
 
-    /* When referenced as an &lt;img&gt; (external), this SVG is an isolated
-    document and cannot inherit the page's colors – it can only fall back to
-    the OS-level prefers-color-scheme media query. But when inlined
-    (opts=inline) it becomes part of the host page's own DOM, so it can also
-    see the page's `data-theme` attribute – set by the site's manual
-    light/dark toggle (src/ui/js/45-theme-toggle.js), which overrides the OS
-    preference. Both cases are covered here: prefers-color-scheme is the
-    default/fallback, and :root[data-theme] – reachable only when inlined –
-    takes precedence, mirroring src/ui/css/_/properties.css. */
+  <!-- No hardcoded colors. Ink (shapes, strokes, text) uses currentColor, so
+  it inherits the embedding page's own themed text color once this SVG is
+  inlined (opts=inline) into the host page's DOM — no local <style> block or
+  custom properties of its own are needed. The one exception is the frame's
+  "paper" background, which isn't foreground ink but the page background
+  showing through: it reads var(--base-page, ...) directly from the site's
+  own token (src/ui/css/_/properties.css, scoped to :root, reachable because
+  this SVG is inlined), tracking both prefers-color-scheme and the manual
+  data-theme toggle (src/ui/js/45-theme-toggle.js) that --base-page itself
+  responds to. See CONTRIBUTING.md, "Hand-drawn diagrams (draw.io SVGs)". -->
 
-    svg {
-      --ink: #000;
-      --paper: #fff;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      svg {
-        --ink: #e6e6e6;
-        --paper: #141414;
-      }
-    }
-
-    :root[data-theme='light'] svg {
-      --ink: #000;
-      --paper: #fff;
-    }
-
-    :root[data-theme='dark'] svg {
-      --ink: #e6e6e6;
-      --paper: #141414;
-    }
-
-    .frame {
-      fill: var(--paper);
-      stroke: var(--ink);
-    }
-
-    .stroke {
-      fill: none;
-      stroke: var(--ink);
-    }
-
-    .fill {
-      fill: var(--ink);
-      stroke: none;
-    }
-
-    text {
-      fill: var(--ink);
-    }
-
-  </style>
-
-  <rect class="frame" x="1" y="1" width="598" height="238" stroke-width="2"/>
-  <rect class="stroke" x="40" y="90" width="120" height="60" stroke-width="2"/>
-  <text x="100" y="125" text-anchor="middle" font-size="14">source</text>
-  <rect class="stroke" x="240" y="90" width="120" height="60" stroke-width="2"/>
-  <text x="300" y="125" text-anchor="middle" font-size="14">build</text>
-  <rect class="stroke" x="440" y="90" width="120" height="60" stroke-width="2"/>
-  <text x="500" y="125" text-anchor="middle" font-size="14">site</text>
-  <line class="stroke" x1="160" y1="120" x2="240" y2="120" stroke-width="2" marker-end="url(#a)"/>
-  <line class="stroke" x1="360" y1="120" x2="440" y2="120" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="1" y="1" width="598" height="238" stroke-width="2" fill="var(--base-page, #ffffff)" stroke="currentColor"/>
+  <rect x="40" y="90" width="120" height="60" stroke-width="2" fill="none" stroke="currentColor"/>
+  <text x="100" y="125" text-anchor="middle" font-size="14" fill="currentColor">source</text>
+  <rect x="240" y="90" width="120" height="60" stroke-width="2" fill="none" stroke="currentColor"/>
+  <text x="300" y="125" text-anchor="middle" font-size="14" fill="currentColor">build</text>
+  <rect x="440" y="90" width="120" height="60" stroke-width="2" fill="none" stroke="currentColor"/>
+  <text x="500" y="125" text-anchor="middle" font-size="14" fill="currentColor">site</text>
+  <line x1="160" y1="120" x2="240" y2="120" stroke-width="2" stroke="currentColor" marker-end="url(#a)"/>
+  <line x1="360" y1="120" x2="440" y2="120" stroke-width="2" stroke="currentColor" marker-end="url(#a)"/>
 
   <defs>
     <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path class="fill" d="M0,0 L8,3 L0,6 Z"/>
+      <path d="M0,0 L8,3 L0,6 Z" fill="currentColor" stroke="none"/>
     </marker>
   </defs>
 </svg>

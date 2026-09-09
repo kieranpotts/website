@@ -284,23 +284,105 @@ optimize for the web.
 The following conventions apply to all hand-drawn diagrams across all of this
 site's content sources.
 
-- **Fonts** are inherited from the embedding page (`font-family: inherit` on
-  each label's `<div>`), 14px, bold. This lets a diagram's text render in
-  whatever font the page itself uses, rather than a fixed font baked into the
-  diagram.
+- **Text labels are native SVG `<text>`/`<tspan>` elements, not
+  `foreignObject`.** Draw.io exports labels as a `foreignObject` wrapping an
+  HTML `<div>`, centered with a `height: 1px` + `padding-top` hack tuned to
+  the diagram's original fixed pixel canvas. This breaks under this site's
+  theme, which forces every inlined SVG to `width: 100%; height: auto` (see
+  below) — the height calculation collapses or misbehaves at non-native
+  sizes, and label text can render off-position, overlapping surrounding
+  page content. Replace each `foreignObject` label with a plain `<text>`
+  element (`text-anchor="middle"`, `dominant-baseline="central"`,
+  `font-family="inherit"` to preserve font inheritance, `fill="currentColor"`
+  for theming — see below). If a label doesn't fit the diagram's original
+  column width at the target font size, wrap it onto multiple lines with
+  `<tspan x="..." dy="...">` rather than widening the SVG's viewBox, unless
+  the wider proportions genuinely read better.
 
-- **Colors** use `light-dark()` CSS values (eg. `light-dark(#000000, #ffffff)`)
-  so shapes and text adapt to light/dark mode automatically.
+- **Fonts** are inherited from the embedding page via `font-family="inherit"`
+  set directly on each `<text>` element, as an SVG presentation attribute —
+  not a CSS declaration in a `style` block (see the note on root-`<svg>`
+  `style` stripping, below) — 14px, bold. This lets a diagram's text render
+  in whatever font the page itself uses, rather than a fixed font baked into
+  the diagram.
 
-- **Shape strokes:** 2px, black (adapting via `light-dark()`).
+- **No hardcoded colors.** Nothing in the SVG should carry a literal hex/rgb/hsl
+  value as its live color — every fill and stroke must theme itself off the
+  embedding page, not off a value baked into the diagram at draw.io export
+  time. This is why the SVG is inlined at all (see below): inlining is what
+  makes page-derived theming possible in the first place, so every color in
+  the file should actually take advantage of that.
 
-- **Shape fills:** white in light mode, dark in dark mode, via the same
-  `light-dark()` pattern.
+  - **Foreground shapes and labels** (ink: text, strokes, filled shapes read
+    as content rather than background) use `fill="currentColor"` /
+    `stroke="currentColor"`, inheriting the page's own themed text color. No
+    `color` declaration is needed on the SVG itself — a root-level one would
+    be dead weight, per the root-`<svg>` `style`-stripping note below. This
+    is required by the theme's own `fill:none; stroke:none` reset in any
+    case — see below.
+
+  - **A shape that represents the *page background* showing through a
+    cutout** (eg. a fulcrum notch) is the one case that isn't foreground ink,
+    so it can't use `currentColor`. Use `fill="var(--base-page, #ffffff)"`
+    instead — referencing the site's real background custom property
+    directly (`src/ui/css/_/properties.css`, scoped to `:root`, which the
+    inlined SVG sits inside) rather than duplicating its value as a literal.
+    Keep a literal fallback in the `var()`'s second argument only as
+    resilience for the rare case the SVG is viewed somewhere the property
+    isn't defined (eg. opened standalone, outside the Antora build) — that
+    fallback is not "a hardcoded color" in the sense this rule forbids, since
+    it never applies when the diagram is viewed on the site.
+
+  Referencing `var(--base-page, ...)` directly like this is preferable to
+  `light-dark(<light>, <dark>)` with literal values for the same reason
+  `currentColor` beats a `light-dark()` literal for ink: it tracks the site's
+  actual custom property, including the manual `data-theme` toggle override
+  (`src/ui/js/45-theme-toggle.js` sets `data-theme` on `:root`, which
+  `--base-page` itself responds to — see `_/properties.css`), not just the
+  OS-level `prefers-color-scheme` that a bare `light-dark()` is limited to.
+
+- **Shape strokes:** 2px, `currentColor`.
+
+- **Shape fills:** `currentColor` for foreground shapes; `var(--base-page, ...)`
+  for background cutouts (see above).
+
+- **The theme's global reset sets `svg { fill: none; stroke: none; }`**
+  (`src/ui/css/_/resets.css`) to stop browsers' default black-fill from
+  bleeding through unstyled SVGs. An external stylesheet rule like this beats
+  an SVG presentation attribute (`fill="currentColor"`) in the cascade, since
+  presentation attributes carry the lowest possible specificity — so shapes
+  can silently render invisible. Every shape that needs a fill/stroke must
+  therefore either repeat it as an inline `style="fill: ...; stroke: ...;"`
+  (inline styles beat external stylesheet rules of any specificity) or rely
+  on a more specific selector. In practice, `fill="currentColor"` /
+  `stroke="currentColor"` as plain presentation attributes have worked
+  because there is no site rule targeting fill/stroke more specifically than
+  the blanket `svg { fill: none; stroke: none; }` reset — but this is worth
+  re-checking if shapes ever appear to vanish.
+
+- Asciidoctor's SVG inliner strips the `style` attribute from the root
+  `<svg>` element on build (confirmed against built output; inner elements'
+  `style` attributes survive). Don't put anything load-bearing — font or
+  color declarations included — in the root's `style` attribute; it never
+  reaches the published page.
+
+- **The theme's global reset also sets `svg { display: block; width: 100%;
+  height: auto; }`** (`src/ui/css/_/resets.css`), making every inlined SVG
+  fluid-width regardless of its own `width`/`height` attributes or the
+  `image::` macro's positional width/height args (which are inert under
+  `opts=inline` — Asciidoctor inlines the SVG file's own root attributes, not
+  the macro's args; omit them from the macro rather than leaving misleading
+  numbers). Any hand-edited internal layout — label positioning in
+  particular — must degrade gracefully when scaled to an arbitrary width,
+  not assume the diagram's original fixed pixel canvas.
 
 - The draw.io "text is not SVG" fallback (a `<switch>` wrapping a truncated
-  `<text>` element, used only if `foreignObject` isn't supported) is removed,
-  since `opts=inline` guarantees these always render via the `foreignObject`
-  path.
+  `<text>` element, used only if `foreignObject` isn't supported) is removed.
+  This is moot for diagrams using native `<text>` labels (see above), since
+  there's no `foreignObject` to need a fallback from; for any diagram that
+  still legitimately needs `foreignObject`, `opts=inline` guarantees it
+  always renders via the `foreignObject` path, so the fallback can still be
+  safely removed.
 
 - Draw.io's embedded metadata is removed. This is the `content="..."`
   attribute on the root `<svg>` element.
