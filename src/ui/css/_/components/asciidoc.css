@@ -583,7 +583,7 @@ optionally opening with a `.title` div when the block has a title – no
   padding: calc(var(--line-height) * 0.5) 2ch;
 }
 
-.AsciiDoc aside > .title {
+.AsciiDoc aside > *:first-child {
   margin-top: 0;
 }
 

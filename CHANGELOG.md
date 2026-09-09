@@ -14,6 +14,7 @@ via Netlify.
 - Further AsciiDoc typography tweaks.
 - Tighten margins between block-level components (tables, images, etc.).
 - Small adjustments to admonitions. Remove titles from admonitions.
+- Small adjustments to sidebar rendering.
 
 ## [0.8.0] - 2026-09-02
 
