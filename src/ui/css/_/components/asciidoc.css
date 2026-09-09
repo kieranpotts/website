@@ -415,13 +415,21 @@ the full width of their container. A descendant (not direct-child)
 selector, since a `link`-attributed image (see image.js) wraps the `<img>`
 in an `<a class="image">` – the anchor also gets block display so it
 doesn't stay a shrink-to-fit inline box around its block-level child.
+The same rule targets a bare `svg` too: an `opts=inline` image (see
+image.js/converter.js) is rendered as raw inlined `<svg>…</svg>` markup
+instead of an `<img>`, so without this it wouldn't pick up the sizing/
+centering applied here, and – having no HTML `width`/`height` attributes
+of its own to fall back on – would render at its intrinsic SVG size
+instead of the `600x240` set on the AsciiDoc image macro.
 */
 
-.AsciiDoc figure.image img {
+.AsciiDoc figure.image img,
+.AsciiDoc figure.image svg {
   display: block;
   object-fit: contain;
   overflow: hidden;
   margin: 0 auto;
+  width: auto; /* Reset */
 }
 
 .AsciiDoc figure.image > a.image {

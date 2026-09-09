@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="240" viewBox="0 0 600 240" font-family="monospace">
   <style>
 
-    /* The diagram is referenced as an &lt;img&gt;, so it is an isolated
-    document and cannot inherit the page's colors. However, SVGs can define
-    their own light/dark palettes and be configured to respond to the
-    prefers-color-scheme switch. */
+    /* When referenced as an &lt;img&gt; (external), this SVG is an isolated
+    document and cannot inherit the page's colors – it can only fall back to
+    the OS-level prefers-color-scheme media query. But when inlined
+    (opts=inline) it becomes part of the host page's own DOM, so it can also
+    see the page's `data-theme` attribute – set by the site's manual
+    light/dark toggle (src/ui/js/45-theme-toggle.js), which overrides the OS
+    preference. Both cases are covered here: prefers-color-scheme is the
+    default/fallback, and :root[data-theme] – reachable only when inlined –
+    takes precedence, mirroring src/ui/css/_/properties.css. */
 
     svg {
       --ink: #000;
@@ -16,6 +21,16 @@
         --ink: #e6e6e6;
         --paper: #141414;
       }
+    }
+
+    :root[data-theme='light'] svg {
+      --ink: #000;
+      --paper: #fff;
+    }
+
+    :root[data-theme='dark'] svg {
+      --ink: #e6e6e6;
+      --paper: #141414;
     }
 
     .frame {
