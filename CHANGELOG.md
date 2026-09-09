@@ -10,6 +10,7 @@ via Netlify.
 
 ## [Unreleased]
 
+- Extend AsciiDoc custom template processors.
 - Further AsciiDoc typography tweaks.
 - Tighten margins between block-level components (tables, images, etc.).
 - Small adjustments to admonitions.
