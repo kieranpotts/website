@@ -401,11 +401,11 @@ DIAGRAMS, below, for the type-specific rules layered on top.
 }
 
 .AsciiDoc figcaption:first-child {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .AsciiDoc figcaption:last-child {
-  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /*
@@ -666,7 +666,7 @@ IMAGE BLOCKS & INLINE IMAGES
 An inline image flows within the text. No width/height is set, so its HTML
 `width`/`height` attributes size it.
 */
-
+/* 
 .AsciiDoc .image {
   display: inline;
 }
@@ -675,7 +675,7 @@ An inline image flows within the text. No width/height is set, so its HTML
   display: inline;
   max-width: 100%;
   vertical-align: baseline;
-}
+} */
 
 /*
 LINKS

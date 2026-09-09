@@ -15,6 +15,13 @@ const footnotesTemplate = require('./templates/footnotes')
 
 const IMG_TAG = /<img\b[^>]*>/i
 
+/* Matches the stock `<div class="content">…</div>` wrapper Asciidoctor's
+image converter puts the media markup in – the `<img>`, or for an inlined
+SVG (opts=inline) the raw `<svg>…</svg>` – so it can be pulled out on its
+own, without the stock `<div class="title">…</div>` caption alongside it
+that the custom image template (../templates/image.js) re-renders itself. */
+const IMAGEBLOCK_CONTENT_DIV = /<div class="content">([\s\S]*?)<\/div>\s*(?:<div class="title">[\s\S]*?<\/div>\s*)?<\/div>/i
+
 /* Matches the stock `<div id="footnotes">…</div>` endnote list Asciidoctor
 appends to the tail of the page body, if present – see installFootnotesTemplate. */
 const FOOTNOTES_DIV = /\n?<div id="footnotes">[\s\S]*$/
@@ -38,8 +45,9 @@ function installTemplates (Opal) {
       const baseConvertImage = html5.$$prototype['$convert_image']
       Opal.defn(html5, '$convert_image', function (node) {
         const resolved = baseConvertImage.call(this, node)
-        const match = IMG_TAG.exec(resolved)
-        const img = match ? match[0] : resolved
+        const imgMatch = IMG_TAG.exec(resolved)
+        const contentMatch = IMAGEBLOCK_CONTENT_DIV.exec(resolved)
+        const img = imgMatch ? imgMatch[0] : contentMatch ? contentMatch[1] : resolved
         return template({ node, img })
       })
       return

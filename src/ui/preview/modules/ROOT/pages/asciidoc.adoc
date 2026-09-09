@@ -519,14 +519,10 @@ Example blocks can hold a table:
 |===
 ====
 
-.Example block with an image
+.Example block with a nested block image
 ====
-Example blocks can hold block and inline images.
-
-.Diagram that responds to light/dark mode preference
-image::diagram.svg[Build pipeline diagram, 600, 240]
-
-This sentence has an inline image image:picture.png[Picture, 16, 16] flowing with the text.
+.Inlined diagram
+image::diagram.svg[Build pipeline diagram, 600, 240, opts=inline]
 ====
 
 .Example block with a list and nested admonition
@@ -547,15 +543,22 @@ TIP: This is a tip admonition nested inside an example block.
 .Earthrise, photographed from lunar orbit
 image::earthrise.jpg[Earthrise over the lunar horizon]
 
-.Diagram that responds to light/dark mode preference
-image::diagram.svg[Build pipeline diagram, 600, 240]
-
 .Linked image – click through to the source
 image::earthrise.jpg[Earthrise over the lunar horizon, link=https://en.wikipedia.org/wiki/Earthrise]
 
 === Inline images
 
 This paragraph contains an inline image image:picture.png[Picture, 16, 16] within the text, flowing with the words around it.
+
+=== External diagrams
+
+Both renderings of this diagram should respond to light/dark mode preferences.
+
+.External diagram
+image::diagram.svg[Build pipeline diagram, 600, 240]
+
+.Inlined diagram
+image::diagram.svg[Build pipeline diagram, 600, 240, opts=inline]
 
 === Video
 
