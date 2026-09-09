@@ -266,9 +266,10 @@ above, rather than the dotted-decimal counters used by ordinary `<ol>`s.
   display: inline-block;
   font-weight: var(--font-weight-bold);
   height: 2ch;
-  line-height: calc(2ch - var(--border-thickness) * 2);
+  line-height: 2ch;
   margin-right: 1ch;
   text-align: center;
+  vertical-align: middle;
   width: 2ch;
 }
 
