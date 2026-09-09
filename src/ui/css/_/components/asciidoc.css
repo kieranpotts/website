@@ -672,18 +672,23 @@ IMAGE BLOCKS & INLINE IMAGES
 
 /*
 An inline image flows within the text. No width/height is set, so its HTML
-`width`/`height` attributes size it.
+`width`/`height` attributes size it. Asciidoctor's stock inline-image
+converter wraps it in `<span class="image">` – scoped to `span` here since
+block images (see ../../lib/asciidoc/templates/image.js) reuse the bare
+`image` class on their `<figure>` (and on the `<a>` wrapping a linked
+image), and MUST NOT be pulled into this inline layout by an unscoped
+`.image` selector matching those too.
 */
-/* 
-.AsciiDoc .image {
+
+.AsciiDoc span.image {
   display: inline;
 }
 
-.AsciiDoc .image > img {
+.AsciiDoc span.image > img {
   display: inline;
   max-width: 100%;
   vertical-align: baseline;
-} */
+}
 
 /*
 LINKS
