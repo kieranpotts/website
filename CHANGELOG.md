@@ -13,7 +13,7 @@ via Netlify.
 - Extend AsciiDoc custom template processors.
 - Further AsciiDoc typography tweaks.
 - Tighten margins between block-level components (tables, images, etc.).
-- Small adjustments to admonitions.
+- Small adjustments to admonitions. Remove titles from admonitions.
 
 ## [0.8.0] - 2026-09-02
 

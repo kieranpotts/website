@@ -13,9 +13,11 @@ module.exports = ({ node }) => {
 
   html += `<div${id ? ` id="${id}"` : ''} class="admonition ${type}">`
   html += `<p class="label">${node.getCaption()}</p>`
-  if (node.getTitle()) {
-    html += `<div class="title">${node.getTitle()}</div>`
-  }
+  // Titles are intentionally not rendered. An admonition's type label
+  // already serves as its heading; a user-supplied title would duplicate
+  // that role and read as a second, conflicting heading (see screenshot
+  // in the originating discussion – "CAUTION" followed immediately by
+  // "OPTIONAL TITLE").
   // A shorthand admonition (`NOTE: …`, no delimiters) has a "simple"
   // content model – its content is the paragraph's raw substituted text,
   // not pre-wrapped in a <p>. Delimited admonition blocks (`[NOTE]` +

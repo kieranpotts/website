@@ -517,10 +517,6 @@ with a left rule to set the block off from surrounding prose.
   margin-top: calc(var(--line-height) * 0.5);
 }
 
-.AsciiDoc .admonition > .title {
-  margin-top: 0;
-}
-
 .AsciiDoc .admonition > *:last-child {
   margin-bottom: 0;
 }

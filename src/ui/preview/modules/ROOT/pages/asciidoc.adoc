@@ -404,6 +404,8 @@ A -> B
 
 == Admonitions
 
+The customer AsciiDoc template processor for admonitions does not support titles being applied to admonitions.
+
 [[admonition-anchor]]
 NOTE: This is a note admonition. It provides additional information that might be helpful.
 
@@ -411,10 +413,9 @@ TIP: This is a tip admonition. It offers helpful suggestions or best practices.
 
 IMPORTANT: This is an important admonition. It highlights crucial information that shouldn't be missed.
 
-.Optional title
 [CAUTION]
 ====
-This is a caution admonition with a title. It advises careful consideration or action.
+This is a caution admonition using the delimited block form. It advises careful consideration or action. Admonition titles are not supported – the type label already serves as the heading.
 ====
 
 [WARNING]
