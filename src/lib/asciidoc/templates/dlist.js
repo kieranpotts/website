@@ -10,12 +10,22 @@
  * renders any further nested blocks (continuation paragraphs) – both must
  * be concatenated or nested content is silently dropped, same as in
  * ulist.js/olist.js.
+ *
+ * A role is carried through as a class – appended alongside `qanda` when
+ * both are set (eg. `[qanda.role]`).
  */
 module.exports = ({ node }) => {
   const items = node.getItems()
   const isQanda = node.getStyle() === 'qanda'
+  const role = node.getRole()
+  const hasRole = typeof role === 'string' && role
 
-  let html = isQanda ? '<ol class="qanda">' : '<dl>'
+  let html
+  if (isQanda) {
+    html = `<ol class="qanda${hasRole ? ` ${role}` : ''}">`
+  } else {
+    html = `<dl${hasRole ? ` class="${role}"` : ''}>`
+  }
 
   items.forEach(([terms, desc]) => {
     const hasDescription = desc && typeof desc.getText === 'function'

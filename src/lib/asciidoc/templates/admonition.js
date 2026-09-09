@@ -7,10 +7,11 @@
  * type.
  */
 module.exports = ({ node }) => {
+  const id = node.getId()
   const type = node.getStyle().toLowerCase()
   let html = ''
 
-  html += `<div class="admonition ${type}">`
+  html += `<div${id ? ` id="${id}"` : ''} class="admonition ${type}">`
   html += `<p class="label">${node.getCaption()}</p>`
   if (node.getTitle()) {
     html += `<div class="title">${node.getTitle()}</div>`

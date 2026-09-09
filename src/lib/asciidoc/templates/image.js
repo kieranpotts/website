@@ -5,6 +5,11 @@
  * `<img>` markup produced by Antora's default image converter – see
  * `../converter.js`, which calls `super` then passes the rendered
  * `<img>` here.
+ *
+ * A linked image's `<a>` carries the `image` class too – same convention
+ * Asciidoctor's stock inline-image converter uses – so the IMAGE FIGURES
+ * rule in asciidoc.css (`figure.image > img`) still matches the `<img>`
+ * regardless of whether it's wrapped in a link.
  */
 module.exports = ({ node, img }) => {
   const attrs = node.attributes["$$smap"];
@@ -12,7 +17,7 @@ module.exports = ({ node, img }) => {
 
   html += '<figure class="image">';
   if (attrs["link"]) {
-    html += `<a href="${attrs["link"]}">`;
+    html += `<a class="image" href="${attrs["link"]}">`;
   }
   html += img;
   if (attrs["link"]) {

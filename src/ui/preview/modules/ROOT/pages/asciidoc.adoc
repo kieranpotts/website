@@ -29,6 +29,8 @@ Internal cross-reference: <<lists-section>>
 
 <<custom-anchor,Internal cross-reference with custom text>>
 
+Custom anchors also work on quote (<<quote-anchor,link>>), verse (<<verse-anchor,link>>), and admonition (<<admonition-anchor,link>>) blocks.
+
 === Special characters and symbols
 
 Copyright (C), Registered (R), Trademark (TM)
@@ -43,6 +45,7 @@ Em dash -- and ellipsis...
 
 [%unbreakable]
 --
+[[verse-anchor]]
 [verse, William Blake, Songs of Innocence]
 ____
 Tiger, tiger, burning bright
@@ -54,6 +57,7 @@ ____
 
 Cupidatat quis ex consequat nulla mollit. Veniam magna enim magna ipsum aliquip fugiat incididunt do nisi officia ipsum. Irure tempor mollit quis quis. Fugiat cupidatat cillum adipisicing exercitation qui esse ad sit nisi do proident enim nostrud.
 
+[[quote-anchor]]
 [quote, Winston Churchill]
 The best argument against democracy is a five-minute conversation with the average voter.
 
@@ -85,6 +89,15 @@ Veniam voluptate voluptate do ullamco deserunt reprehenderit consectetur ea sit 
 
 Consequat nisi cupidatat cillum cillum voluptate eiusmod. Proident dolor in tempor nulla sunt eu anim officia. Eiusmod culpa enim reprehenderit dolor dolore sint aliquip velit dolor exercitation reprehenderit aliquip Lorem.
 
+====== Level 6 heading
+
+Sunt ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+[discrete]
+=== A discrete (floating) heading
+
+A `[discrete]` heading isn't wrapped in a `<section>`, doesn't nest the headings after it, and is excluded from the page's TOC. It's a different node type to a regular section, and isn't one of the block types our custom templates own (see `src/lib/asciidoc/templates/index.js`), so it falls back to Antora's native rendering – which happens to already emit a bare `<h3 class="discrete">`, so it still picks up this theme's own heading styles.
+
 [[custom-anchor]]
 === Section with a custom anchor
 
@@ -102,22 +115,25 @@ An unordered list with multiple levels:
 ***** Fifth level item
 ****** Sixth level item
 
-An unordered list with long paragraphs of text, and a title:
+An unordered list with long paragraphs of text, a title, and a role (`role-example` – carried through as a class on the `<ul>`, though this theme doesn't currently give any list role its own styling):
 
 .List title
+[.role-example]
 * Amet consectetur enim quis adipisicing tempor veniam ipsum nulla. Elit est enim eu do proident mollit quis elit et Lorem ex culpa irure pariatur. Tempor irure aliqua aute elit elit dolor ad deserunt fugiat eiusmod duis minim deserunt.
 * Enim eu enim est esse et eu ipsum non laborum est. Eiusmod adipisicing aute ullamco officia cupidatat elit sunt.
 * Nisi proident Lorem fugiat non nulla labore esse nisi consequat duis in. Officia eu aliquip ipsum tempor. Dolore excepteur et non aliqua dolor sunt magna.
 
-An unordered list with continuation lines and multiple paragraphs:
+An unordered list with a continuation paragraph attached to an item via the `+` marker:
 
 * Ut esse tempor deserunt cillum veniam irure quis et commodo.
-  This line is a continuation of the prior one. Do occaecat pariatur reprehenderit laboris anim id tempor do irure.
++
+This is a separate continuation paragraph, attached to the item above. Do occaecat pariatur reprehenderit laboris anim id tempor do irure.
 
-* This list item is composed of multiple paragraphs. Excepteur voluptate adipisicing pariatur voluptate ipsum est dolor ex mollit anim. Nostrud incididunt pariatur consectetur velit mollit amet et.
+* This list item has just the one paragraph, for comparison.
 
-An ordered list:
+An ordered list with a role (`role-example`):
 
+[.role-example]
 . First item
 .. Nested item
 ... Deeply nested item
@@ -140,9 +156,24 @@ An ordered list with longer paragraphs of text:
 
 === Description lists
 
+A role (`role-example`) is carried through as a class on the `<dl>`:
+
+[.role-example]
 CPU:: Central Processing Unit
 RAM:: Random Access Memory
 SSD:: Solid State Drive
+
+GPU::
+Graphics card:: Multiple terms can share a single description.
+
+Term with a continuation::
+This is the principal description line.
++
+This is a continuation paragraph, attached to the same description via the `+` marker.
+
+--
+Term with no description::
+--
 
 === Question and answer lists
 
@@ -152,6 +183,8 @@ AsciiDoc is a lightweight markup language for authoring notes, documentation, ar
 
 Why use AsciiDoc?::
 AsciiDoc is highly configurable and extensible, with excellent toolchain support and multiple output formats.
++
+This is a continuation paragraph, attached to the answer above via the `+` marker.
 
 == Tables
 
@@ -270,9 +303,12 @@ function createUser(name, email) {
   };
 }
 ----
+[.role-example]
 <1> User's display name
 <2> User's email address
 <3> Generate unique identifier
++
+This is a continuation paragraph, attached to the explanation above via the `+` marker.
 
 === Listing blocks
 
@@ -368,6 +404,7 @@ A -> B
 
 == Admonitions
 
+[[admonition-anchor]]
 NOTE: This is a note admonition. It provides additional information that might be helpful.
 
 TIP: This is a tip admonition. It offers helpful suggestions or best practices.
@@ -507,6 +544,9 @@ image::earthrise.jpg[Earthrise over the lunar horizon]
 
 .Diagram that responds to light/dark mode preference
 image::diagram.svg[Build pipeline diagram, 600, 240]
+
+.Linked image – click through to the source
+image::earthrise.jpg[Earthrise over the lunar horizon, link=https://en.wikipedia.org/wiki/Earthrise]
 
 === Inline images
 

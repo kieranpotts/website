@@ -4,10 +4,11 @@
  * verbatim, as verse (poetry, song lyrics) requires.
  */
 module.exports = ({ node }) => {
+  const id = node.getId();
   const attr = node.attributes["$$smap"];
   let html = "";
 
-  html += "<blockquote>";
+  html += `<blockquote${id ? ` id="${id}"` : ""}>`;
   html += `<pre>${node.getContent()}</pre>`;
   if (attr["attribution"] || attr["citetitle"]) {
     html += "<p>";

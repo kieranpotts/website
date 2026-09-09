@@ -47,6 +47,17 @@ grid at its larger size.
   text-transform: uppercase;
 }
 
+.AsciiDoc h4 {
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+}
+
+.AsciiDoc h5,
+.AsciiDoc h6 {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+}
+
 /*
 TITLES
 Asciidoctor labels many blocks with a `.title`,
@@ -379,14 +390,21 @@ DIAGRAMS, below, for the type-specific rules layered on top.
 /*
 IMAGE FIGURES
 Images within `<figure class="image">` are rendered as blocks filling
-the full width of their container.
+the full width of their container. A descendant (not direct-child)
+selector, since a `link`-attributed image (see image.js) wraps the `<img>`
+in an `<a class="image">` – the anchor also gets block display so it
+doesn't stay a shrink-to-fit inline box around its block-level child.
 */
 
-.AsciiDoc figure.image > img {
+.AsciiDoc figure.image img {
   display: block;
   object-fit: contain;
   overflow: hidden;
   margin: 0 auto;
+}
+
+.AsciiDoc figure.image > a.image {
+  display: block;
 }
 
 /*
@@ -433,6 +451,24 @@ the cell open beyond its padding.
 
 .AsciiDoc th {
   font-weight: var(--font-weight-bold);
+}
+
+/*
+TABLE STRIPES
+Opt-in row banding via the `stripes` attribute (`all`, `even`, `odd`, or
+`hover`) – table.js carries the value through as a `stripes-<value>` class
+on the `<table>`. Only body rows are banded; header/footer rows keep the
+plain cell background.
+*/
+
+.AsciiDoc table.stripes-all tbody tr,
+.AsciiDoc table.stripes-even tbody tr:nth-of-type(even),
+.AsciiDoc table.stripes-odd tbody tr:nth-of-type(odd) {
+  background: var(--color-header-background);
+}
+
+.AsciiDoc table.stripes-hover tbody tr:hover {
+  background: var(--color-header-background);
 }
 
 /*
@@ -493,7 +529,7 @@ optional `<cite>` on its own line) – no `.quoteblock`/`.verseblock`/
 
 .AsciiDoc blockquote > p:last-child {
   color: var(--color-text-default);
-  margin: calc(var(--line-height) * 0.5) 0 0 0;
+  margin: calc(var(--line-height) * 0.5) 0 0;
 }
 
 .AsciiDoc blockquote > p:last-child cite {

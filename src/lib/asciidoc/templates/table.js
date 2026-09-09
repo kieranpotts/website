@@ -1,18 +1,35 @@
 /**
  * Custom rendering of tables. Emits a bare `<table>` – no `.tableblock`
- * class soup, `<colgroup>`, or per-cell `class="tableblock halign-left
- * valign-top"`/`<p class="tableblock">` wrapper. Column alignment is
- * only emitted as an inline style when it diverges from the (left, top)
- * default, so plain tables stay attribute-free.
+ * class soup or per-cell `class="tableblock halign-left valign-top"`/
+ * `<p class="tableblock">` wrapper. Column alignment is only emitted as
+ * an inline style when it diverges from the (left, top) default, so
+ * plain tables stay attribute-free. The `stripes` attribute (eg.
+ * `stripes=even`), when set, is carried through as a `stripes-<value>`
+ * class on the `<table>` – mirroring how the stock converter surfaces it
+ * – for the row-banding rules in asciidoc.css to match against. A
+ * `<colgroup>` is only emitted when the author explicitly sets `cols`
+ * (eg. `cols="1,2,1,2"`) – Asciidoctor resolves that ratio to a
+ * `colpcwidth` percentage per column, which becomes each `<col>`'s width;
+ * an autowidth table (no `cols`) stays free of it, left to the browser.
  */
 module.exports = ({ node }) => {
   const rows = node.getRows()
   const title = node.getTitle()
+  const stripes = node.getAttribute('stripes')
+  const hasColumnWidths = node.hasAttribute('cols')
   let html = ''
 
   if (title) html += `<div class="title">${title}</div>`
 
-  html += '<table>'
+  const classAttr = stripes ? ` class="stripes-${stripes}"` : ''
+  html += `<table${classAttr}>`
+  if (hasColumnWidths) {
+    html += '<colgroup>'
+    node.getColumns().forEach((column) => {
+      html += `<col style="width:${column.getAttribute('colpcwidth')}%">`
+    })
+    html += '</colgroup>'
+  }
   if (rows.head.length) {
     html += '<thead>'
     rows.head.forEach((row) => (html += renderRow(row, 'th')))
