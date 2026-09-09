@@ -45,10 +45,7 @@ grid at its larger size.
   font-size: var(--font-size-lg);
 }
 
-.AsciiDoc h4 {
-  font-size: var(--font-size-sm);
-}
-
+.AsciiDoc h4,
 .AsciiDoc h5,
 .AsciiDoc h6 {
   font-size: var(--font-size-sm);
@@ -526,10 +523,26 @@ optional `<cite>` on its own line) – no `.quoteblock`/`.verseblock`/
 .AsciiDoc blockquote > p:last-child {
   color: var(--color-text-default);
   margin: calc(var(--line-height) * 0.5) 0 0;
+
+  /*
+  Hanging indent: the "– " dash sits flush with the left
+  margin, and the author name is indented one dash-width (2ch).
+  */
+
+  padding-left: 2ch;
+  text-indent: -2ch;
 }
+
+/*
+The `<cite>` line renders as inline text after a `<br>`, so
+it does not pick up the p's hanging text-indent (`text-indent`
+only affects a block's first line). Make it a block and align
+it manually, flush with the author name above it.
+*/
 
 .AsciiDoc blockquote > p:last-child cite {
   display: block;
+  margin-left: 2ch;
 }
 
 /*
