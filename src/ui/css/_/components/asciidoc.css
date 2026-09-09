@@ -27,6 +27,7 @@ grid at its larger size.
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height);
   margin: calc(var(--line-height) * 2) 0 var(--line-height);
+  text-transform: uppercase;
 }
 
 .AsciiDoc h1 {
@@ -34,28 +35,23 @@ grid at its larger size.
   letter-spacing: -0.05rem;
   margin-bottom: calc(var(--line-height) * 2);
   margin-top: calc(var(--line-height) * 4);
-  text-transform: uppercase;
 }
 
 .AsciiDoc h2 {
   font-size: var(--font-size-xl);
-  text-transform: uppercase;
 }
 
 .AsciiDoc h3 {
   font-size: var(--font-size-lg);
-  text-transform: uppercase;
 }
 
 .AsciiDoc h4 {
   font-size: var(--font-size-sm);
-  text-transform: uppercase;
 }
 
 .AsciiDoc h5,
 .AsciiDoc h6 {
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
+  font-size: var(--font-size-sm);
 }
 
 /*
