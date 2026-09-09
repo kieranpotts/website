@@ -85,14 +85,15 @@
 
   /*
   LINKS + OUTLINES
-  Ink-colored text with an ink-colored underline and outline.
+  Link text colors are inherited from context, so underlines
+  always inherit their color from the current text color too.
   */
 
   --color-hyperlink-active: inherit;
   --color-hyperlink-default: inherit;
   --color-hyperlink-focus: inherit;
   --color-hyperlink-hover: inherit;
-  --color-hyperlink-underline: var(--color-text-default);
+  --color-hyperlink-underline: currentColor;
   --color-hyperlink-visited: inherit;
   --color-outline: var(--color-text-default);
 
