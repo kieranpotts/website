@@ -442,6 +442,10 @@ Sidebars can contain:
 * Images and other media
 ****
 
+****
+This is a simple sidebar block with no title.
+****
+
 .Single-paragraph sidebar
 [sidebar]
 Aute consequat et ullamco occaecat est sint mollit enim in. Sit dolore labore velit minim aliquip ullamco eu reprehenderit velit in sunt et aliqua commodo.
