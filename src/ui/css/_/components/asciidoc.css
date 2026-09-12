@@ -429,7 +429,10 @@ instead of the `600x240` set on the AsciiDoc image macro.
   object-fit: contain;
   overflow: hidden;
   margin: 0 auto;
-  width: auto; /* Reset */
+}
+
+.AsciiDoc figure.image svg {
+  width: auto; /* Reset. */
 }
 
 .AsciiDoc figure.image > a.image {
