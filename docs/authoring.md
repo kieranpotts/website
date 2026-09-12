@@ -77,10 +77,15 @@ diagrams across all of this site's content sources.
   whatever font the page itself uses, rather than a fixed font baked into the
   diagram. Diagrams automatically evolve with the site theme.
 
-- No hardcoded colors. Nothing in the SVG should carry a literal hex/rgb/hsl
-  value. Instead, every fill and stroke must theme itself off the parent page.
+- Simply diagrams should have no hardcoded colors — no literal hex/rgb/hsl
+  values. Instead, every fill and stroke must theme itself off the parent page.
+  The exception is for diagrams where color itself carries meaning. These
+  diagrams MAY use literal color values. They SHOULD still pick values that
+  work in both light and dark themes (eg. via `light-dark()` or a light/dark-safe
+  palette).
 
-- All foreground shapes and labels use `fill="currentColor"` / `stroke="currentColor"`.
+- All foreground shapes and labels use `fill="currentColor"` / `stroke="currentColor"`,
+  except where the color exception above applies.
 
 - Shape strokes: 2px, `currentColor`.
 
