@@ -34,13 +34,13 @@ Therefore, supporting PlantUML would require a Java-based rendering step at
 build time, or calling out to a third-party rendering service from client-side
 scripting.
 
-Mermaid is better support for client-side web rendering. The project provides
+Mermaid has better support for client-side web rendering. The project provides
 a self-contained JS bundle that parses diagram syntax and renders it to SVG
 directly in the browser.
 
 Mermaid's engine is not small. However, it only loads a minimal core framework
 and then lazy-loads extensions as required for specific diagram types. Fetching
-the coe engine plus one diagram-type chunk (eg. flowchart) typically runs
+the core engine plus one diagram-type chunk (eg. flowchart) typically runs
 several hundred KB to ~1 MB gzipped. But most of this cost is paid only by
 pages that contain a `[mermaid]` block, and initial page render is not blocked.
 
@@ -52,19 +52,41 @@ statically-hosted asset bundle.
 Diagrams are created in Draw.io then exported and hand-edited to optimize
 for inline rendering in the context of this site's theme.
 
+### Sizing
+
+When rendered in AsciiDoc content, inline diagrams are sized by their own
+`width`/`height`. Because of this, the root `<svg>` element's `viewBox` MUST be
+1:1 with its `width`/`height` attributes.
+
+```xml
+<svg width="500px" height="320px" viewBox="-0.5 -0.5 500 320">
+```
+
 Diagrams SHOULD be sized between 320px and 800px wide.
 
-- The lower bound is the narrowest viewport the theme supports (`html { min-width: 320px; }`).
-  Below this, a diagram would force horizontal scrolling on the smallest
-  supported screens.
+- The lower bound is the narrowest viewport the theme supports
+  (`html { min-width: 320px; }`). A diagram no wider than 320px fits every
+  supported screen without scaling, so its labels always render at their
+  nominal size.
 
 - The upper bound is the widest a content column ever renders. Prose columns
   cap out at `80ch`, which resolves to roughly 700–800px at the theme's largest
-  root font size. A diagram wider than this would be scaled down to fit its
-  container.
+  root font size.
+
+Within the band, width is a trade-off against small screens.
+`.AsciiDoc figure.image svg` pairs `width: auto` (for fluidity to the container
+size) with `max-width: 100%` (to prevent clipping), so a diagram wider than the
+column scales down proportionally to fit. Nothing is lost, but the labels shrink
+with it. A 500px-wide diagram in a 320px viewport renders its `font-size="14"`
+labels at about 8px.
+
+So the narrower a diagram is, the better it holds up on a phone. Size to the
+content, and prefer the lower end of the band where the drawing allows it.
+
+### Conventions
 
 SVG source content MUST follow
-https://kieranpotts.com/standards/039#vector-graphics[TS-9].
+[TS-39](https://kieranpotts.com/standards/039#vector-graphics).
 
 In addition, the following conventions and guidelines apply to all hand-drawn
 diagrams across all of this site's content sources.
@@ -88,7 +110,7 @@ diagrams across all of this site's content sources.
   whatever font the page itself uses, rather than a fixed font baked into the
   diagram. Diagrams automatically evolve with the site theme.
 
-- Simply diagrams should have no hardcoded colors — no literal hex/rgb/hsl
+- Simple diagrams should have no hardcoded colors — no literal hex/rgb/hsl
   values. Instead, every fill and stroke must theme itself off the parent page.
   The exception is for diagrams where color itself carries meaning. These
   diagrams MAY use literal color values. They SHOULD still pick values that
@@ -102,6 +124,8 @@ diagrams across all of this site's content sources.
 
 - Draw.io's embedded metadata — embedded in the `content="..."` attribute on the
   root `<svg>` element — MUST be removed.
+
+### Inlining
 
 SVGs are inlined using the following AsciiDoc image macro syntax. The
 `opts=inline` bit is important. This is the signal to the `asciidoctor`
@@ -122,5 +146,10 @@ consequences.
   to stop browsers' default black-fill from bleeding through unstyled SVGs.
 
 - The theme's global reset also sets
-  `svg { display: block; width: 100%; height: auto; }`, making every inlined SVG
-  fluid-width regardless of its own `width`/`height` attributes.
+  `svg { display: block; width: 100%; height: auto; }`. Image figures opt out
+  of the fluid width, however: the AsciiDoc component sets
+  `.AsciiDoc figure.image svg { width: auto; max-width: 100%; }`, so an inlined
+  diagram is sized by its own `width`/`height` attributes, capped at the column.
+  It is never upscaled past its intrinsic size. See [Sizing](#sizing) above —
+  this is why the `viewBox` has to match those attributes. Mermaid figures are
+  sized the same way, from their intrinsic dimensions.

@@ -410,17 +410,16 @@ DIAGRAMS, below, for the type-specific rules layered on top.
 
 /*
 IMAGE FIGURES
-Images within `<figure class="image">` are rendered as blocks filling
-the full width of their container. A descendant (not direct-child)
-selector, since a `link`-attributed image (see image.js) wraps the `<img>`
-in an `<a class="image">` – the anchor also gets block display so it
-doesn't stay a shrink-to-fit inline box around its block-level child.
+Images within `<figure class="image">` are rendered as centered blocks.
+A descendant (not direct-child) selector, since a `link`-attributed image
+(see image.js) wraps the `<img>` in an `<a class="image">` – the anchor
+also gets block display so it doesn't stay a shrink-to-fit inline box
+around its block-level child.
+
 The same rule targets a bare `svg` too: an `opts=inline` image (see
 image.js/converter.js) is rendered as raw inlined `<svg>…</svg>` markup
 instead of an `<img>`, so without this it wouldn't pick up the sizing/
-centering applied here, and – having no HTML `width`/`height` attributes
-of its own to fall back on – would render at its intrinsic SVG size
-instead of the `600x240` set on the AsciiDoc image macro.
+centering applied here.
 */
 
 .AsciiDoc figure.image img,
@@ -431,8 +430,22 @@ instead of the `600x240` set on the AsciiDoc image macro.
   margin: 0 auto;
 }
 
+/*
+Inlined SVGs are sized by their own `width`/`height` attributes rather
+than stretched to the column, so a diagram drawn at 500px stays at 500px
+in a wider column instead of being upscaled – `width: auto` resets the
+global `svg { width: 100%; }` (see resets.css) to do that.
+
+`max-width` then caps that intrinsic width at the container, so a diagram
+wider than the column scales down proportionally (`height` is already
+`auto` from the same reset). Without the cap it would overflow and be
+clipped by `.MAIN { overflow-x: hidden; }` – silently losing its right-
+hand edge on narrow viewports. See docs/authoring.md.
+*/
+
 .AsciiDoc figure.image svg {
   width: auto; /* Reset. */
+  max-width: 100%;
 }
 
 .AsciiDoc figure.image > a.image {
