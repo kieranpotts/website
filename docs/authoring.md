@@ -52,6 +52,17 @@ statically-hosted asset bundle.
 Diagrams are created in Draw.io then exported and hand-edited to optimize
 for inline rendering in the context of this site's theme.
 
+Diagrams SHOULD be sized between 320px and 800px wide.
+
+- The lower bound is the narrowest viewport the theme supports (`html { min-width: 320px; }`).
+  Below this, a diagram would force horizontal scrolling on the smallest
+  supported screens.
+
+- The upper bound is the widest a content column ever renders. Prose columns
+  cap out at `80ch`, which resolves to roughly 700–800px at the theme's largest
+  root font size. A diagram wider than this would be scaled down to fit its
+  container.
+
 SVG source content MUST follow
 https://kieranpotts.com/standards/039#vector-graphics[TS-9].
 
