@@ -223,6 +223,47 @@ TS-39, the conventions below take precedence. In particular:
   See [Inlining](#inlining) for why the image macro's alt text isn't used for
   this.
 
+### Exception: animated Git diagrams
+
+The commit-graph diagrams in TS-9 (Version Control), under
+`images/009/branch-lines.svg`, `images/009/branches/`, and
+`images/009/integration-*/`, animate commits and branches step by step. They
+follow the conventions above for fonts and strokes. Labels, lines, and label
+pointers use `currentColor`, text is 14px bold with `font-family: inherit`,
+strokes are 2px, and dotted connectors use `stroke-dasharray="2 4"`. The
+following exceptions apply to them, and only to them.
+
+- **Animation.** They MAY be animated with CSS keyframes, defined in a
+  `<style>` block, which the conventions above otherwise ban. SMIL animation
+  (`<animate>`, `<animateTransform>`) SHOULD NOT be used for new diagrams, per
+  TS-39.
+
+- **Scoped CSS.** A `<style>` block in an inlined SVG is not scoped to that SVG.
+  It applies to the whole page, so two diagrams on the same page that both
+  define `.commit-A` or `@keyframes commit-A-fade` override each other. Each
+  diagram MUST therefore set a unique `id` on its root `<svg>`, eg.
+  `id="git-is-merge-no-ff"`. Every CSS selector MUST be scoped under that ID
+  (`#git-is-merge-no-ff .commit-A`), and every keyframe name and element `id`
+  MUST carry the same prefix (`git-is-merge-no-ff--commit-A-fade`,
+  `git-is-merge-no-ff-scene`).
+
+- **Reduced motion.** Each animated diagram MUST include a
+  `@media (prefers-reduced-motion: reduce)` rule that freezes the animation on
+  its last complete frame, just before any closing fade-out. Use a negative
+  `animation-delay` together with `animation-play-state: paused`, rather than
+  `animation: none`, which would leave commits at their initial `opacity: 0`.
+
+- **Hard-coded colors.** Commit fills and outlines MAY use hard-coded colors,
+  because the color carries meaning: green for commits on a trunk, orange for
+  commits on a temporary or release branch, and purple for merge commits. The
+  commit letters inside the circles MAY use a fixed dark or light fill, chosen
+  for contrast against the commit's own fill rather than the page. All other
+  ink MUST use `currentColor`.
+
+- **Branch names.** Branch and ref labels (`dev`, `test`, `ready`, `temp`,
+  `release/v1.0.0`, `source`, `target`) are Git identifiers, so they keep their
+  lowercase and are exempt from the Title Case rule.
+
 ### Inlining
 
 SVGs are inlined using the following AsciiDoc image macro syntax. The
