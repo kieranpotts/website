@@ -111,7 +111,8 @@ diagrams across all of this site's content sources.
   diagram. Diagrams automatically evolve with the site theme.
 
 - Simple diagrams should have no hardcoded colors — no literal hex/rgb/hsl
-  values. Instead, every fill and stroke must theme itself off the parent page.
+  values, other than the `var()` fallback for paper fills described below.
+  Instead, every fill and stroke must theme itself off the parent page.
   The exception is for diagrams where color itself carries meaning. These
   diagrams MAY use literal color values. They SHOULD still pick values that
   work in both light and dark themes (eg. via `light-dark()` or a light/dark-safe
@@ -119,6 +120,22 @@ diagrams across all of this site's content sources.
 
 - All foreground shapes and labels use `fill="currentColor"` / `stroke="currentColor"`,
   except where the color exception above applies.
+
+- Shapes that need an opaque "paper" fill — a box that masks lines behind it, or
+  a label knocked out of a solid `currentColor` shape — MUST use the theme's page
+  background token, `var(--base-page, #ffffff)`. This is the one place a literal
+  color value is allowed in a simple diagram, and only as the fallback argument
+  of `var()`, never on its own.
+
+  The fallback is REQUIRED. The `--base-page` custom property only exists when
+  the SVG is inlined into a page built with this site's theme. Anywhere else —
+  opening the `.svg` file directly, GitHub's file preview, an editor's image
+  preview, or re-importing into Draw.io — the property is undefined. A `fill`
+  referencing an undefined property with no fallback does not render as
+  transparent. It inherits the SVG's initial fill, which is black, so every
+  paper shape becomes a solid black block that hides the `currentColor` ink
+  on top of it. The white fallback keeps the source file legible outside the
+  site, matching the default black-on-white rendering of `currentColor` there.
 
 - Shape strokes: 2px, `currentColor`.
 
