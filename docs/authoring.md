@@ -115,14 +115,24 @@ TS-39, the conventions below take precedence. In particular:
   size, consider wrapping it onto multiple lines with `<tspan x="..." dy="...">`,
   rather than widening the SVG's viewBox.
 
+- Labels MUST use a base font size of 14px, `font-size="14"`, set on each
+  `<text>` element. Keeping one size across every diagram means labels render
+  at the same size as each other wherever they appear on the site. Emphasis
+  comes from `font-weight="bold"`, not from a bigger size.
+
 - Multi-line labels MUST use a line spacing of 16 at `font-size="14"`. For a
   two-line label vertically centered on its anchor point, that's `dy="-8"` on
-  the first `<tspan>` and `dy="16"` on the second.
+  the first `<tspan>` and `dy="16"` on the second. In general, a label of _n_
+  lines sets `dy` to −8 × (_n_ − 1) on the first `<tspan>`, eg. `dy="-16"` for
+  three lines, and `dy="16"` on each one after.
 
 - Labels MUST use Title Case: capitalize every word, except articles,
   conjunctions, and short prepositions ("a", "and", "per", "of", etc.) that are
   not the first word. For example, "Accidental Complexity" and "Bugs Found per
-  Month".
+  Month". Labels MUST NOT be set in all capitals.
+
+  The exception is text that reads as a sentence, such as a question or a
+  statement. This MUST use sentence case, eg. "What is the pricing strategy?"
 
 - Labels MUST NOT be rotated. This includes chart axis labels. A y-axis label
   sits horizontally to the left of the axis, wrapped onto multiple lines if
@@ -142,8 +152,36 @@ TS-39, the conventions below take precedence. In particular:
   work in both light and dark themes (eg. via `light-dark()` or a light/dark-safe
   palette).
 
+  The RECOMMENDED pattern sets the light-theme hex value as the presentation
+  attribute, and overrides it with `light-dark()` in the element's own `style`
+  attribute. The hex value is the fallback wherever `light-dark()` isn't
+  supported. Record why the color carries meaning in an XML comment in the SVG.
+
+  ```xml
+  <!-- Colors carry meaning here: ... -->
+  <rect fill="#f0a30a" stroke="#bd7000" stroke-width="2"
+      style="fill: light-dark(rgb(240, 163, 10), rgb(154, 88, 0)); stroke: light-dark(rgb(189, 112, 0), rgb(193, 127, 31));"/>
+  ```
+
+  A `style` attribute on a child element is fine. Only the root `<svg>`'s
+  `style` is stripped on build, and the ban on `<style>` blocks still applies.
+
 - All foreground shapes and labels use `fill="currentColor"` / `stroke="currentColor"`,
   except where the color exception above applies.
+
+- Neutral tint fills — greys or other low-contrast shades used only to group
+  or set off areas, including `light-dark()` greys — SHOULD NOT be used. A shape
+  is either unfilled (`fill="none"`), filled with paper
+  (`var(--base-page, #ffffff)`), or filled solid with `currentColor`. Grouping is
+  shown with outlines, dashed borders, or position instead. A tint MAY be used
+  only when there's a good reason that those can't serve, and that reason
+  SHOULD be recorded in an XML comment in the SVG.
+
+- Diagrams MUST use clean, geometric shapes: straight lines, true rectangles,
+  circles, and smooth curves. Draw.io's "sketch" style (wobbly hand-drawn
+  outlines, rough fills, and hachures) and its handwriting-style fonts MUST NOT
+  be used. Sketch shapes are exported as dense, filled outline paths rather than
+  strokes, so they can't follow the stroke rule below, and they bloat the file.
 
 - Shapes that need an opaque "paper" fill — a box that masks lines behind it, or
   a label knocked out of a solid `currentColor` shape — MUST use the theme's page
@@ -165,6 +203,12 @@ TS-39, the conventions below take precedence. In particular:
   every stroked element, not only closed shapes: box outlines, connector and
   leader lines, dotted or dashed dividers, chart axes, and chart data curves.
   Dashed and dotted lines use `stroke-dasharray="2 4"`.
+
+- Arrowheads are drawn as separate filled triangles, `fill="currentColor"` and
+  `stroke="none"`, about 10px long and 10px wide, with the line ending just
+  inside the triangle's base. They MUST NOT use `<marker>` elements, because a
+  marker needs an `id`, and inlined SVGs on the same page share one ID
+  namespace (see TS-39).
 
 - Draw.io's embedded metadata — embedded in the `content="..."` attribute on the
   root `<svg>` element — MUST be removed.
