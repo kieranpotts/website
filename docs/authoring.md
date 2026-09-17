@@ -89,7 +89,17 @@ SVG source content MUST follow
 [TS-39](https://kieranpotts.com/standards/039#vector-graphics).
 
 In addition, the following conventions and guidelines apply to all hand-drawn
-diagrams across all of this site's content sources.
+diagrams across all of this site's content sources. Where they conflict with
+TS-39, the conventions below take precedence. In particular:
+
+- Presentation attributes (`fill`, `stroke`, `font-size`, `font-family`, and so
+  on) MUST be set directly on each element, even where the same value repeats
+  across many elements. They MUST NOT be moved to a `<style>` block, as TS-39
+  otherwise recommends. Each element stays self-describing, and the diagram
+  renders the same whether it's inlined into the site or opened standalone.
+
+- Attributes are not required to be in alphabetical order. The order Draw.io
+  exports them in MAY be kept.
 
 - Draw.io exports labels as `foreignObject` instances wrapping an HTML `<div>`.
   Under this site's theme, this can result in label text rendering off-position.
@@ -104,6 +114,20 @@ diagrams across all of this site's content sources.
 - If a label doesn't fit the diagram's original column width at the target font
   size, consider wrapping it onto multiple lines with `<tspan x="..." dy="...">`,
   rather than widening the SVG's viewBox.
+
+- Multi-line labels MUST use a line spacing of 16 at `font-size="14"`. For a
+  two-line label vertically centered on its anchor point, that's `dy="-8"` on
+  the first `<tspan>` and `dy="16"` on the second.
+
+- Labels MUST use Title Case: capitalize every word, except articles,
+  conjunctions, and short prepositions ("a", "and", "per", "of", etc.) that are
+  not the first word. For example, "Accidental Complexity" and "Bugs Found per
+  Month".
+
+- Labels MUST NOT be rotated. This includes chart axis labels. A y-axis label
+  sits horizontally to the left of the axis, wrapped onto multiple lines if
+  needed, with the plot area narrowed to make room. Rotated text is harder to
+  read, and it doesn't wrap.
 
 - Fonts SHOULD be inherited from the embedding page via `font-family="inherit"`
   set directly on each `<text>` element. This lets a diagram's text render in
@@ -137,10 +161,23 @@ diagrams across all of this site's content sources.
   on top of it. The white fallback keeps the source file legible outside the
   site, matching the default black-on-white rendering of `currentColor` there.
 
-- Shape strokes: 2px, `currentColor`.
+- Strokes MUST be 2px (`stroke-width="2"`) and `currentColor`. This applies to
+  every stroked element, not only closed shapes: box outlines, connector and
+  leader lines, dotted or dashed dividers, chart axes, and chart data curves.
+  Dashed and dotted lines use `stroke-dasharray="2 4"`.
 
 - Draw.io's embedded metadata — embedded in the `content="..."` attribute on the
   root `<svg>` element — MUST be removed.
+
+- Draw.io's other export cruft MUST also be removed: the unused
+  `xmlns:xlink` namespace declaration (unless the diagram actually uses
+  `xlink:href`), empty `<defs/>` elements, and `pointer-events` and
+  `stroke-miterlimit` attributes. None of these affect rendering on this site.
+
+- Every diagram MUST have a `<title>` as the first child of the root `<svg>`,
+  describing what the diagram shows. This is the diagram's accessible name.
+  See [Inlining](#inlining) for why the image macro's alt text isn't used for
+  this.
 
 ### Inlining
 
@@ -149,8 +186,14 @@ SVGs are inlined using the following AsciiDoc image macro syntax. The
 compiler to inline the image at build time.
 
 ```asciidoc
-image::diagrams/some-diagram.svg["Alt text",opts=inline]
+image::diagrams/some-diagram.svg[opts=inline]
 ```
+
+Alt text MAY be omitted from the macro. When an SVG is inlined, Asciidoctor
+writes the `<svg>` markup straight into the page and discards the alt text. It
+only uses the alt text as a fallback if it can't read the SVG file. Screen
+readers get the diagram's accessible name from the SVG's own `<title>` element
+instead, so that's where the description belongs.
 
 This gives the diagrams the highest possible level of cross-browser compatibility
 for light/dark mode switches and font inheritance. This has the following
