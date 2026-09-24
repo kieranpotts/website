@@ -29,6 +29,7 @@
 /contact                              /                                      301
 
 # --- Redirect /cv -> latest CV release asset on GitHub -------------------------
+# Also used as the Résumé link in the site navbar (src/ui/partials/nav-menu.hbs).
 /cv                                   https://github.com/kieranpotts/resume/releases/latest/download/kieran-potts-cv.pdf  301
 
 # --- 404 ----------------------------------------------------------------------
