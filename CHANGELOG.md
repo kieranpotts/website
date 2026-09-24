@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-09-24
+
 - Add redirect from https://kieranpotts.com/cv
 
 ## [0.9.0] - 2026-09-09
