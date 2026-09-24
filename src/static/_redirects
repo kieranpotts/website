@@ -28,5 +28,8 @@
 /about                                /                                      301
 /contact                              /                                      301
 
+# --- Redirect /cv -> latest CV release asset on GitHub -------------------------
+/cv                                   https://github.com/kieranpotts/resume/releases/latest/download/kieran-potts-cv.pdf  301
+
 # --- 404 ----------------------------------------------------------------------
 /*                                    /404.html                              404

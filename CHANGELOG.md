@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+- Add redirect from https://kieranpotts.com/cv
+
 ## [0.9.0] - 2026-09-09
 
 - Extend AsciiDoc custom template processors.
