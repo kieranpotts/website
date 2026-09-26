@@ -19,9 +19,6 @@ science topics. And my xref:bookmarks::index.adoc[bookmarks] are a structured
 index of everything I've found online, related to my work, that's worth holding
 on to.
 
-🚧 Everything's still a bit of a mess, while I continue to migrate content from
-various legacy formats!
-
 See also https://github.com/kieranpotts[GitHub] for my open source projects.
 
 To be notified of shiny new things on this website, follow me on
