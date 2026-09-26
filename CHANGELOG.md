@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+- Adjust breakpoint for TOC visibility.
+
 ## [0.10.0] - 2026-09-24
 
 - Add redirect from https://kieranpotts.com/cv

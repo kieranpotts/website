@@ -31,22 +31,29 @@ right edge of the page.
     max-height: calc(100vh - var(--line-height) * 2);
 
     /*
-    Cap the width of the TOC. Entries longer than this
-    are clipped – see `.TOC__List a`.
+    Cap the width of the TOC to the space left in the gutter
+    (see below), and no wider than 36ch. Entries longer than
+    this are clipped – see `.TOC__List a`.
     */
 
+    box-sizing: border-box;
     max-width: 36ch;
+    width: calc(50% - 42.4rem);
     overflow-y: auto;
     padding-left: 2ch;
     padding-bottom: 1ch;
 
     /*
-    Pinned to the far right of the viewport,
-    just inside the scrollbar.
+    Pinned to the gutter just right of the content column,
+    so it never overlaps the body text. The column is 80ch
+    of body text (0.6em per cell × 1.6rem × 80 = 76.8rem)
+    centered on the page, so its right edge sits 38.4rem
+    right of center. The TOC starts 2rem beyond that and
+    leaves 2rem spare at the viewport edge.
     */
 
+    left: calc(50% + 40.4rem);
     position: fixed;
-    right: 2ch;
     top: calc(var(--line-height) * 2);
   }
 }
