@@ -67,7 +67,6 @@ The small-caps label above the list.
   font-weight: var(--font-weight-bold);
   margin-bottom: calc(var(--line-height) / 2);
   margin-top: calc(var(--line-height) / 2);
-  text-transform: uppercase;
 }
 
 /*

@@ -13,7 +13,7 @@
 
 /*
 HEADINGS
-Uppercase, bold, and spaced in whole lines.
+Bold, and spaced in whole lines.
 h1 occupies a double line box, so it still lands on the
 grid at its larger size.
 */
@@ -27,7 +27,6 @@ grid at its larger size.
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height);
   margin: calc(var(--line-height) * 2) 0 var(--line-height);
-  text-transform: uppercase;
 }
 
 .AsciiDoc h1 {
@@ -61,7 +60,6 @@ which serves as a heading for images, listings, tables, etc.
   color: var(--color-text-default);
   font-weight: var(--font-weight-bold);
   margin: calc(var(--line-height) * 0.5) 0;
-  text-transform: uppercase;
 }
 
 /*
