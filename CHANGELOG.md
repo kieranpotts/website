@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-09-28
+
 - Adjust breakpoint for TOC visibility.
 - Swap body font to Inter.
 - Remove uppercase text transform for headings, etc.
