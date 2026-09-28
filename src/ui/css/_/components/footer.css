@@ -19,7 +19,8 @@
 }
 
 .Footer li + li::before {
-  content: "\25aa";
+  /*content: "\25aa"; /* ▪ */
+  content: "\2022"; /* Bullet (•) */
   margin-right: 1ch;
 }
 
