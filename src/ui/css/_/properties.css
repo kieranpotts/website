@@ -108,10 +108,11 @@
 
   /*
   FONTS
-  Monospace throughout.
+  Experimental: body/headings on Inter, code stays on
+  `--font-family-monospace`.
   */
 
-  --font-family-default: 'JetBrains Mono', ui-monospace, monospace;
+  --font-family-default: 'Inter', ui-sans-serif, sans-serif;
   --font-family-monospace: 'JetBrains Mono', ui-monospace, monospace;
 
   /*

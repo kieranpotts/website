@@ -11,6 +11,7 @@ via Netlify.
 ## [Unreleased]
 
 - Adjust breakpoint for TOC visibility.
+- Swap body font to Inter.
 
 ## [0.10.0] - 2026-09-24
 
