@@ -3,28 +3,13 @@
   in the south-west of the UK, with two decades of experience building \
   software for enterprise.
 
-I'm Kieran. I'm a staff-level software developer based near Bristol and Bath in
-the south-west of England. I work across three disciplines — software
-architecture, computer programming, and technical writing — to design, build,
-and document cloud-based enterprise application software.
+I'm Kieran. I'm a staff-level software developer based near Bristol and Bath in the south-west of England. I work as an independent consultant and freelancer across three disciplines — software architecture, computer programming, and technical writing — to design, build, and document cloud-based enterprise application software.
 
-This website is a sprawling aggregate of AsciiDoc artifacts I maintain across
-multiple repositories. My xref:thoughts::index.adoc[blog] is a space I use to
-capture my current thoughts on the past, present, and future of software
-development. My xref:standards::index.adoc[technical standards] are a set of
-general guidelines for software development that I have curated over time. My
-xref:garden::index.adoc[digital garden] is a sort of personal wiki, a place for
-me to capture notes, research, and reference materials on all sorts of computer
-science topics. And my xref:bookmarks::index.adoc[bookmarks] are a structured
-index of everything I've found online, related to my work, that's worth holding
-on to.
+My main interests are resilient service-oriented architectures, domain-driven design, and continuous delivery.
 
-See also https://github.com/kieranpotts[GitHub] for my open source projects.
+This website is a perpetual work in progress, aggregated from AsciiDoc sources I maintain across several repositories. My xref:thoughts::index.adoc[blog] is where I write about the past, present, and future of software development. My xref:standards::index.adoc[technical standards] are the guidelines I've developed for building great software. My xref:garden::index.adoc[digital garden] is a personal wiki of notes, research, and reference material on software design and wider computer science topics. And my xref:bookmarks::index.adoc[bookmarks] are a structured index of everything I've found online that's worth holding on to. There's eveen more on https://github.com/kieranpotts[GitHub].
 
-To be notified of shiny new things on this website, follow me on
-https://bsky.app/profile/kieranpotts.com[Bluesky] or
-https://www.linkedin.com/in/kieranpotts/[LinkedIn],
-or subscribe via link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or
-link:/feeds/feed.json[JSON Feed].
+To be notified of shiny new things on this website, follow me on https://bsky.app/profile/kieranpotts.com[Bluesky] or
+https://www.linkedin.com/in/kieranpotts/[LinkedIn], or subscribe via link:/feeds/rss.xml[RSS], link:/feeds/atom.xml[Atom], or link:/feeds/feed.json[JSON Feed].
 
 You can contact me at mailto:code@kieranpotts.com[code@kieranpotts.com].
