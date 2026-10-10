@@ -3,5 +3,22 @@
 # https://www.robotstxt.org/
 #
 
-# Allow crawling of all content.
+# Block crawlers that collect content for training AI models.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: FacebookBot
+Disallow: /
+
+# Allow crawlers that power AI search and user-initiated browsing.
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+User-agent: Applebot-Extended
+Allow: /
+
+# Allow crawling by all other user agents.
 User-agent: *
+Disallow:
