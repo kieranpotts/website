@@ -605,11 +605,13 @@ optionally opening with a `.title` div when the block has a title – no
   padding: calc(var(--line-height) * 0.5) 2ch;
 }
 
-.AsciiDoc aside > *:first-child {
+.AsciiDoc aside > *:first-child
+.AsciiDoc aside > ul li:first-child {
   margin-top: 0;
 }
 
-.AsciiDoc aside > *:last-child {
+.AsciiDoc aside > *:last-child
+.AsciiDoc aside > ul li:last-child {
   margin-bottom: 0;
 }
 
