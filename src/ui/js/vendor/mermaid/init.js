@@ -21,6 +21,10 @@ if (nodes.length) {
   mermaid.initialize({
     startOnLoad: false,
     securityLevel: 'strict',
+    // Number the diagrams (mermaid-0, mermaid-1, …) instead of naming each
+    // one after Date.now(). Two diagrams rendered in the same clock tick
+    // otherwise share an SVG id, and the later one draws over the earlier.
+    deterministicIds: true,
     theme: prefersDark ? 'dark' : 'default'
   })
 
