@@ -47,7 +47,7 @@ grid at its larger size.
 .AsciiDoc h4,
 .AsciiDoc h5,
 .AsciiDoc h6 {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
 }
 
 /*
