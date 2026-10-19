@@ -726,13 +726,29 @@ LINKS
 /*
 FOOTNOTES
 Our custom ../../lib/asciidoc/templates/inline-footnote.js template emits
-the in-text reference markers – required resetting `sup` defaults.
+the in-text reference markers as `<sup>` elements, which pick up the
+generic sub/sup sizing and positioning from resets.css. Tabular figures
+keep multi-digit markers tidy. A full-weight underline is too heavy at
+superscript size, so the marker links are underlined on hover/focus only
+– their position and brackets already mark them out as references.
 */
 
 .AsciiDoc sup.footnote,
 .AsciiDoc sup.footnoteref {
-  font-size: 100%;
-  top: 0;
+  font-variant-numeric: tabular-nums;
+  margin-left: 0.1ch;
+}
+
+.AsciiDoc sup.footnote a,
+.AsciiDoc sup.footnoteref a {
+  text-decoration: none;
+}
+
+.AsciiDoc sup.footnote a:hover,
+.AsciiDoc sup.footnote a:focus,
+.AsciiDoc sup.footnoteref a:hover,
+.AsciiDoc sup.footnoteref a:focus {
+  text-decoration: underline;
 }
 
 /*

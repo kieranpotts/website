@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+- Render footnote reference markers as true superscripts.
+
 ## [0.10.0] - 2026-09-28
 
 - Adjust breakpoint for TOC visibility.
