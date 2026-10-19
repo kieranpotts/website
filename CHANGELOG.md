@@ -11,6 +11,7 @@ via Netlify.
 ## [Unreleased]
 
 - Render footnote reference markers as true superscripts.
+- Remove the hanging indent from ordered lists.
 
 ## [0.10.0] - 2026-09-28
 

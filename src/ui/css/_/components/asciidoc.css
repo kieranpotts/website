@@ -76,9 +76,10 @@ PARAGRAPHS
 /*
 LISTS - BASELINE STYLES
 Square bullets for ul. Dotted decimal counters for ol.
-A hanging indent is applied: the markers sits flush with the
+A hanging indent is applied to ul: the bullet sits flush with the
 left margin with the first line and wrapped lines of text indented
-at the same level.
+at the same level. ol items have no hanging indent: the counter sits
+flush with the left margin and wrapped lines return to it.
 */
 
 .AsciiDoc ul,
@@ -98,11 +99,6 @@ at the same level.
 .AsciiDoc ul li {
   padding-left: 1.6ch;
   text-indent: -1.6ch;
-}
-
-.AsciiDoc ol li {
-  padding-left: 3ch;
-  text-indent: -3ch;
 }
 
 .AsciiDoc ol ul,
@@ -190,12 +186,11 @@ indent the description by whole character units.
 QUESTION & ANSWER LISTS
 dlist.js's `[qanda]` branch emits a plain `<ol class="qanda">`, so it
 already picks up the generic `.AsciiDoc ol` numbering above. But that
-numbering is a hanging indent (padding-left + negative text-indent) built
-for an `<li>` whose content starts as inline text; here the li's content
-is a block-level `.question` `<p>`, which forces the `::before` marker
-onto a line of its own above it. Swap in absolute positioning for the
-marker instead, so it sits in the li's left gutter beside the question's
-first line regardless of block children.
+numbering is an inline `::before` built for an `<li>` whose content starts
+as inline text; here the li's content is a block-level `.question` `<p>`,
+which forces the `::before` marker onto a line of its own above it. Swap
+in absolute positioning for the marker instead, so it sits in the li's
+left gutter beside the question's first line regardless of block children.
 */
 
 .AsciiDoc ol.qanda > li {
