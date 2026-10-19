@@ -575,15 +575,26 @@ optional `<cite>` on its own line) – no `.quoteblock`/`.verseblock`/
 }
 
 /*
-The `<cite>` line renders as inline text after a `<br>`, so
-it does not pick up the p's hanging text-indent (`text-indent`
-only affects a block's first line). Make it a block and align
-it manually, flush with the author name above it.
+The "– " dash is wrapped in its own `<span>`. Fix its width to
+the hanging indent, so the author name starts exactly 2ch in,
+whatever the font's actual dash and space glyph widths.
+*/
+
+.AsciiDoc blockquote > p:last-child > span:first-child {
+  display: inline-block;
+  text-indent: 0;
+  width: 2ch;
+}
+
+/*
+Make the `<cite>` a block so it sits on its own line, flush
+with the author name above it. It inherits the p's negative
+text-indent (text-indent is an inherited property), so reset it.
 */
 
 .AsciiDoc blockquote > p:last-child cite {
   display: block;
-  margin-left: 2ch;
+  text-indent: 0;
 }
 
 /*

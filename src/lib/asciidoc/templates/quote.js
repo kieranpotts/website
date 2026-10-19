@@ -17,8 +17,9 @@ module.exports = ({ node }) => {
   html += node.content_model === "simple" ? `<p>${node.getContent()}</p>` : node.getContent();
   if (attr["attribution"] || attr["citetitle"]) {
     html += "<p>";
-    if (attr["attribution"]) html += `– ${attr["attribution"]}`;
-    if (attr["citetitle"]) html += `<br><cite>${attr["citetitle"]}</cite>`;
+    if (attr["attribution"]) html += `<span>– </span>${attr["attribution"]}`;
+    if (attr["attribution"] && attr["citetitle"]) html += "<br>";
+    if (attr["citetitle"]) html += `<cite>${attr["citetitle"]}</cite>`;
     html += "</p>";
   }
   html += "</blockquote>";

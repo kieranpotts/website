@@ -12,6 +12,7 @@ via Netlify.
 
 - Render footnote reference markers as true superscripts.
 - Remove the hanging indent from ordered lists.
+- Fix hanging text on blockquote citation.
 
 ## [0.10.0] - 2026-09-28
 
