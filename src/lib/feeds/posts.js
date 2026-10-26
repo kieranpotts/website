@@ -3,7 +3,7 @@
 /**
  * Extracts the list of blog posts (for the feeds) from the aggregated content.
  *
- * Each post is an AsciiDoc page in the `thoughts` component. Its feed metadata
+ * Each post is an AsciiDoc page in the `essays` component. Its feed metadata
  * comes from the parsed document model Antora attaches to every page file as
  * `file.asciidoc` ({ doctitle, attributes }) plus the computed `file.pub.url`.
  *
@@ -61,7 +61,7 @@ function parseAuthorName (author) {
  */
 function collectPosts (contentCatalog, siteUrl, limit) {
   const base = (siteUrl || '').replace(/\/+$/, '')
-  const pages = contentCatalog.findBy({ component: 'thoughts', family: 'page' })
+  const pages = contentCatalog.findBy({ component: 'essays', family: 'page' })
 
   const posts = []
   for (const file of pages) {

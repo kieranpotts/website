@@ -20,7 +20,7 @@ Leave anything you can't resolve with certainty untouched, and report it.
 Determine the following from the surrounding context and environment, if
 possible. Ask the user if it's unclear.
 
-- **The scope — REQUIRED.** One component — `website`, `thoughts`,
+- **The scope — REQUIRED.** One component — `website`, `essays`,
   `standards`, `garden`, or `bookmarks` — or, if unspecified, all of them.
   For each in-scope component, scan every `.adoc` file under its `modules/`
   tree.
@@ -61,14 +61,14 @@ possible. Ask the user if it's unclear.
     algorithm and anchor resolution — don't reimplement this.
 
     - Run the build with `--log-failure-level=warn`. Unresolved `xref:` targets
-      and failed `include::` directives will be surfaced at the _warn_ level 
-      and fail the build. The exit code and warn-level lines are the failure 
+      and failed `include::` directives will be surfaced at the _warn_ level
+      and fail the build. The exit code and warn-level lines are the failure
       list.
-    
+
     - Antora cannot read this repo's working tree directly, because it's a Git
-      worktree where `.git` is a pointer file, not a directory. Also, the 
-      Antora playbooks fetch the four sub-repos from GitHub, which needs network. 
-      So, to validate offline, write a throwaway playbook that points _every_ 
+      worktree where `.git` is a pointer file, not a directory. Also, the
+      Antora playbooks fetch the four sub-repos from GitHub, which needs network.
+      So, to validate offline, write a throwaway playbook that points _every_
       source at its local bare repo on `latest/dev`. (It's the same trick `site-dev.yml` already uses for the website's own `../.bare`). Here's
       the throwaway playbook template:
 
@@ -78,7 +78,7 @@ possible. Ask the user if it's unclear.
           - url: ../.bare            # website (ROOT)
             branches: latest/dev
             start_path: src/content
-          - url: ../../thoughts/.bare
+          - url: ../../essays/.bare
             branches: latest/dev
             start_path: src
           - url: ../../standards/.bare
@@ -93,10 +93,10 @@ possible. Ask the user if it's unclear.
       ```
 
       Confirm each `../../<repo>/.bare` exists and has `latest/dev` before
-      building. 
+      building.
 
       Delete the throwaway playbook and output when done.
-    
+
     - The UI bundle must exist (`src/ui/dist/ui.yml`). Run `npm run bundle:ui`
       first if it doesn't.
 
@@ -105,14 +105,14 @@ possible. Ask the user if it's unclear.
       unresolved-xref warnings (which are at _warn_ level).
 
 3.  **Committed vs. working-tree.** Bare-repo builds read committed
-    `latest/dev`, not uncommitted working-tree edits. So you must run 
-    `git -C <worktree> status --short` in every in-scope repo first. If any 
-    `.adoc` is dirty, the build won't reflect those edits. Report that gap 
+    `latest/dev`, not uncommitted working-tree edits. So you must run
+    `git -C <worktree> status --short` in every in-scope repo first. If any
+    `.adoc` is dirty, the build won't reflect those edits. Report that gap
     rather than trusting the build silently.
 
 4.  Get manual fallback only if a build is impossible. For each in-scope
     component, find every `xref:` and `include::` target in its `.adoc` files
-    and resolve each. Check cross-component `xref:` against the target 
+    and resolve each. Check cross-component `xref:` against the target
     component's `modules/<module>/pages/` (`partial$` under `partials/`).
     Check same-component refs within the component's own content. This is
     best-effort and error-prone — prefer the build.

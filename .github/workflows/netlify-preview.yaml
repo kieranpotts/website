@@ -1,11 +1,11 @@
 #
 # Manually trigger a Netlify build that previews a draft branch of the
-# `thoughts` repo, instead of always building from latest/dev.
+# `essays` repo, instead of always building from latest/dev.
 #
-# Use this to eyeball a new blog post before merging its PR in `thoughts`.
+# Use this to eyeball a new blog post before merging its PR in `essays`.
 # Netlify's own Deploy Previews only cover changes to *this* repo (the
 # website-repo PR build); they can't see content-repo branches at all,
-# because the playbooks always pull thoughts/garden/bookmarks from
+# because the playbooks always pull essays/garden/bookmarks from
 # latest/dev. This workflow is the manual escape hatch for that.
 #
 # To set up (one-time):
@@ -21,9 +21,9 @@
 #
 # How it works: this posts a JSON body to the Netlify build hook. Netlify
 # exposes that body to the build as INCOMING_HOOK_BODY; netlify.toml's build
-# command extracts `thoughts_branch` from it into THOUGHTS_BRANCH, which the
+# command extracts `essays_branch` from it into ESSAYS_BRANCH, which the
 # content-preview Antora extension (src/lib/content-preview/extension.js)
-# then uses to override the thoughts content source's branch for that build
+# then uses to override the essays content source's branch for that build
 # only. See site-ci.yml.
 #
 
@@ -32,8 +32,8 @@ name: Netlify Preview
 on:
   workflow_dispatch:
     inputs:
-      thoughts_branch:
-        description: 'Branch on kieranpotts/thoughts to preview (eg. a draft post branch)'
+      essays_branch:
+        description: 'Branch on kieranpotts/essays to preview (eg. a draft post branch)'
         required: true
         type: string
 
@@ -47,7 +47,7 @@ jobs:
           # Passed via env (not interpolated into the script) so an unset secret
           # is an empty string we can check, rather than a blank URL curl POSTs to.
           NETLIFY_PREVIEW_HOOK: ${{ secrets.NETLIFY_PREVIEW_HOOK }}
-          THOUGHTS_BRANCH: ${{ inputs.thoughts_branch }}
+          ESSAYS_BRANCH: ${{ inputs.essays_branch }}
         run: |
           if [ -z "$NETLIFY_PREVIEW_HOOK" ]; then
             echo "::error::NETLIFY_PREVIEW_HOOK secret is not set. See the workflow header for setup instructions." >&2
@@ -55,7 +55,7 @@ jobs:
           fi
           curl --fail --silent --show-error -X POST \
             -H "Content-Type: application/json" \
-            -d "$(node -e "process.stdout.write(JSON.stringify({trigger_title: 'thoughts-preview', thoughts_branch: process.env.THOUGHTS_BRANCH}))")" \
+            -d "$(node -e "process.stdout.write(JSON.stringify({trigger_title: 'essays-preview', essays_branch: process.env.ESSAYS_BRANCH}))")" \
             "$NETLIFY_PREVIEW_HOOK"
 
       # Netlify branch-deploy URLs are deterministic: the deploy context's
@@ -65,5 +65,5 @@ jobs:
       # triggered build has finished or succeeded — just where it will land.
       - name: Print preview URL
         run: |
-          echo "Netlify build triggered for thoughts branch '${{ inputs.thoughts_branch }}'." >> "$GITHUB_STEP_SUMMARY"
+          echo "Netlify build triggered for essays branch '${{ inputs.essays_branch }}'." >> "$GITHUB_STEP_SUMMARY"
           echo "Preview (once the build finishes): https://latest-netlify-preview--kieranpotts.netlify.app" >> "$GITHUB_STEP_SUMMARY"

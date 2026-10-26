@@ -43,7 +43,7 @@ to the site.
 
 ## 📰 Post selection and metadata
 
-Posts are the pages in the `thoughts` component that have a date. The
+Posts are the pages in the `essays` component that have a date. The
 date is the non-obvious part:
 
 - The posts use an author line like `Kieran Potts, 28 December 2025`.
@@ -66,7 +66,7 @@ Posts are sorted newest-first and capped at the 20 most recent
 (`FEED_LIMIT` in `extension.js`).
 
 URLs are absolute, built from the playbook's `site.url` plus the page's
-canonical `pub.url` (`https://kieranpotts.com/thoughts/<slug>.html`). On
+canonical `pub.url` (`https://kieranpotts.com/essays/<slug>.html`). On
 dev preview builds `site.url` differs (e.g. `http://localhost:8080`), which
 only affects local feed correctness.
 

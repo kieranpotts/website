@@ -3,34 +3,37 @@
 # https://docs.netlify.com/routing/redirects/
 #
 
-# --- Redirect legacy root-level /<slug> blog posts -> /thoughts/<slug> ----------------------
-/hello-world                             /thoughts/hello-world                             301
-/centos-vs-ubuntu                        /thoughts/centos-vs-ubuntu                        301
-/rebranding-javascript                   /thoughts/rebranding-javascript                   301
-/rethinking-rest                         /thoughts/rethinking-rest                         301
-/software-attributes                     /thoughts/software-attributes                     301
-/gmail-is-20                             /thoughts/gmail-is-20                             301
-/rfcs                                    /thoughts/rfcs                                    301
-/30-years-of-cybercafes                  /thoughts/30-years-of-cybercafes                  301
-/essential-versus-accidental-complexity  /thoughts/essential-versus-accidental-complexity  301
-/php-is-30                               /thoughts/php-is-30                               301
-/the-quality-without-a-name              /thoughts/the-quality-without-a-name              301
-/mythical-man-month-50                   /thoughts/mythical-man-month-50                   301
+# --- Redirect legacy root-level /<slug> blog posts -> /essays/<slug> ------------------------------
+/hello-world                                  /essays/hello-world                                301
+/centos-vs-ubuntu                             /essays/centos-vs-ubuntu                           301
+/rebranding-javascript                        /essays/rebranding-javascript                      301
+/rethinking-rest                              /essays/rethinking-rest                            301
+/software-attributes                          /essays/software-attributes                        301
+/gmail-is-20                                  /essays/gmail-is-20                                301
+/rfcs                                         /essays/rfcs                                       301
+/30-years-of-cybercafes                       /essays/30-years-of-cybercafes                     301
+/essential-versus-accidental-complexity       /essays/essential-versus-accidental-complexity     301
+/php-is-30                                    /essays/php-is-30                                  301
+/the-quality-without-a-name                   /essays/the-quality-without-a-name                 301
+/mythical-man-month-50                        /essays/mythical-man-month-50                      301
 
-# --- Redirect /blog/* -> /thoughts/* ------------------------------------------
-/blog/*                               /thoughts/:splat                       301
+# --- Redirect /blog/* -> /essays/* ----------------------------------------------------------------
+/blog/*                                       /essays/:splat                                     301
 
-# --- Redirect historical one-off slug changes ---------------------------------
-/rebranding-rest                      /thoughts/rethinking-rest              301
-/blog/rebranding-rest                 /thoughts/rethinking-rest              301
+# --- Redirect /thoughts/* -> /essays/* ------------------------------------------------------------
+/thoughts/*                                   /essays/:splat                                     301
 
-# --- Redirect retired static pages to homepage --------------------------------
-/about                                /                                      301
-/contact                              /                                      301
+# --- Redirect historical one-off slug changes -----------------------------------------------------
+/rebranding-rest                              /essays/rethinking-rest                            301
+/blog/rebranding-rest                         /essays/rethinking-rest                            301
 
-# --- Redirect /cv -> latest CV release asset on GitHub -------------------------
+# --- Redirect retired static pages to homepage ----------------------------------------------------
+/about                                        /                                                  301
+/contact                                      /                                                  301
+
+# --- Redirect /cv -> latest CV release asset on GitHub --------------------------------------------
 # Also used as the Résumé link in the site navbar (src/ui/partials/nav-menu.hbs).
-/cv                                   https://github.com/kieranpotts/resume/releases/latest/download/kieran-potts-cv.pdf  301
+/cv      https://github.com/kieranpotts/resume/releases/latest/download/kieran-potts-cv.pdf      301
 
-# --- 404 ----------------------------------------------------------------------
-/*                                    /404.html                              404
+# --- 404 ------------------------------------------------------------------------------------------
+/*                                            /404.html                                          404

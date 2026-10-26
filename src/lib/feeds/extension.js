@@ -16,7 +16,7 @@ const { renderRss, renderAtom, renderJson } = require('./render')
  * (so `file.asciidoc` metadata and `file.pub.url` are available) and the
  * siteCatalog is still open for new files.
  *
- * The post list is derived from the `thoughts` component pages — see ./posts.js
+ * The post list is derived from the `essays` component pages — see ./posts.js
  * for selection and date parsing. The feeds are added to the siteCatalog so they
  * publish to /feeds/rss.xml, /feeds/atom.xml, and /feeds/feed.json alongside the
  * themed .xsl stylesheets (which remain static, as the browser presentation

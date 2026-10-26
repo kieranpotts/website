@@ -6,7 +6,7 @@ bookmarks are public repositories referenced by URL in the playbooks.
 | Source         | Repository                                                        | Branch       | Published under |
 |----------------|-------------------------------------------------------------------|--------------|-----------------|
 | Home / about   | This repo                                                         | `HEAD`       | `/`             |
-| Blog           | [kieranpotts/thoughts](https://github.com/kieranpotts/thoughts)   | `latest/dev` | `/thoughts/`    |
+| Blog           | [kieranpotts/essays](https://github.com/kieranpotts/essays)       | `latest/dev` | `/essays/`    |
 | Digital Garden | [kieranpotts/garden](https://github.com/kieranpotts/garden)       | `latest/dev` | `/garden/`      |
 | Bookmarks      | [kieranpotts/bookmarks](https://github.com/kieranpotts/bookmarks) | `latest/dev` | `/bookmarks/`   |
 

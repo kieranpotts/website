@@ -10,6 +10,7 @@ via Netlify.
 
 ## [Unreleased]
 
+- Change "thoughts" to "essays".
 - Render footnote reference markers as true superscripts.
 - Remove the hanging indent from ordered lists.
 - Fix hanging text on blockquote citation.

@@ -10,7 +10,7 @@
 # nested sitemap URLs rather than the pages inside them. So
 # check-broken-links.yaml passes each of the 4 nested urlset sitemaps
 # (sitemap-bookmarks.xml, sitemap-garden.xml, sitemap-ROOT.xml,
-# sitemap-thoughts.xml) directly.
+# sitemap-essays.xml) directly.
 #
 
 # Retry transient failures before reporting them as broken.

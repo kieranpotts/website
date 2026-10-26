@@ -25,8 +25,8 @@
   blog content at build time.
 
 - **`src/lib/content-preview/`** \
-  Antora extension that overrides the `thoughts` content source's branch from
-  `THOUGHTS_BRANCH`, when set, for one-off previews of draft blog posts. No-op
+  Antora extension that overrides the `essays` content source's branch from
+  `ESSAYS_BRANCH`, when set, for one-off previews of draft blog posts. No-op
   on normal builds.
 
 - **`site-dev.yml`** / **`site-ci.yml`** \
@@ -62,6 +62,6 @@
 
   - **`netlify-preview.yaml`** \
     Manually triggered (`workflow_dispatch`). Builds a one-off Netlify preview
-    of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post
+    of a draft branch of `kieranpotts/essays`, for eyeballing a new blog post
     before merging its PR. Requires a `NETLIFY_PREVIEW_HOOK` secret pointing
     at a dedicated non-production Netlify context.

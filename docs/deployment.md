@@ -28,19 +28,19 @@ absolute links and the sitemap.
 Netlify automatically serves previews with `X-Robots-Tag: noindex`, keeping
 preview URLs out of search engines.
 
-## Previewing a draft `thoughts` branch
+## Previewing a draft `essays` branch
 
 A website-repo preview only reflects changes in _this_ repo. The blog, garden,
 and bookmarks are pulled from their published branches at build time. However,
 there is a way to preview draft blog posts.
 
-To preview an unmerged `thoughts` branch within the aggregated site — rather
+To preview an unmerged `essays` branch within the aggregated site — rather
 than waiting for it to land on `latest/dev` — trigger the `Netlify Preview`
 workflow.
 
-1.  Push the draft branch to `kieranpotts/thoughts`.
+1.  Push the draft branch to `kieranpotts/essays`.
 2.  In this repo on GitHub, go to **Actions → Netlify Preview → Run workflow**.
-3.  Enter the `thoughts` branch name in the `thoughts_branch` input, and run.
+3.  Enter the `essays` branch name in the `essays_branch` input, and run.
 4.  The workflow's job summary prints the preview URL once triggered, eg.
     `https://latest-netlify-preview--kieranpotts.netlify.app` (the branch
     `latest/netlify-preview` is slugified).

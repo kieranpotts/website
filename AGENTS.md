@@ -4,7 +4,7 @@ Source and build for [kieranpotts.com](https://kieranpotts.com). This is a
 static site built with [Antora](https://antora.org) from
 [AsciiDoc](https://asciidoc.org) sources.
 
-The build aggregates the home/about pages (in this repo) with the blog,
+The build aggregates the home/about pages (in this repo) with the essays,
 digital garden, and bookmarks (each its own repository, pulled in at
 build time), and applies a custom UI theme and custom AsciiDoc block
 converters — both maintained in this repo.
@@ -41,7 +41,7 @@ converters — both maintained in this repo.
 
 - `src/lib/feeds/` \
   Antora extension (playbooks' `antora.extensions`) that
-  generates the RSS/Atom/JSON feeds from the aggregated blog content at build
+  generates the RSS/Atom/JSON feeds from the aggregated essays content at build
   time. See `src/lib/feeds/README.md`.
 
 - `site-dev.yml` / `site-ci.yml` \
@@ -109,7 +109,7 @@ The Docker equivalents are `./run/install`, `./run/build`, `./run/serve`,
 - The UI bundle MUST contain `ui.yml` at its root. Antora rejects a bundle
   without it. It is at `src/ui/ui.yml` and copied into `src/ui/dist/`.
 
-- The blog/garden/bookmarks are submodules and cannot be read as local
+- The essays/garden/bookmarks are submodules and cannot be read as local
   content sources. They are referenced by public remote URL in the playbooks,
   so changes there must be pushed to their published branches before they
   appear here.

@@ -21,7 +21,7 @@
 
 - `netlify-preview.yaml` \
   Manually triggered (`workflow_dispatch`). Builds a one-off Netlify preview
-  of a draft branch of `kieranpotts/thoughts`, for eyeballing a new blog post
+  of a draft branch of `kieranpotts/essays`, for eyeballing a new blog post
   before merging its PR. Requires a `NETLIFY_PREVIEW_HOOK` secret pointing
   at a dedicated non-production Netlify context.
 
