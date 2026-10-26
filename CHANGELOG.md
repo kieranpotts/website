@@ -10,6 +10,8 @@ via Netlify.
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-10-26
+
 - Change "thoughts" to "essays".
 - Fix: remove ".html" on feed URLs, not consistent with canonical.
 - Style changes:
