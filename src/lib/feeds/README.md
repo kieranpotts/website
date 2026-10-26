@@ -66,7 +66,8 @@ Posts are sorted newest-first and capped at the 20 most recent
 (`FEED_LIMIT` in `extension.js`).
 
 URLs are absolute, built from the playbook's `site.url` plus the page's
-canonical `pub.url` (`https://kieranpotts.com/essays/<slug>.html`). On
+`pub.url` with the `.html` extension removed, because the canonical form
+is extensionless (`https://kieranpotts.com/essays/<slug>`). On
 dev preview builds `site.url` differs (e.g. `http://localhost:8080`), which
 only affects local feed correctness.
 

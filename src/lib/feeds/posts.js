@@ -72,7 +72,7 @@ function collectPosts (contentCatalog, siteUrl, limit) {
     if (!file.pub || !file.pub.url) continue
 
     posts.push({
-      url: base + file.pub.url,
+      url: base + file.pub.url.replace(/\.html$/, ''),
       title: meta.doctitle || '',
       description: attrs.description || '',
       author: parseAuthorName(attrs.author),

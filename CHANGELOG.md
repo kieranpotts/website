@@ -11,9 +11,11 @@ via Netlify.
 ## [Unreleased]
 
 - Change "thoughts" to "essays".
-- Render footnote reference markers as true superscripts.
-- Remove the hanging indent from ordered lists.
-- Fix hanging text on blockquote citation.
+- Fix: remove ".html" on feed URLs, not consistent with canonical.
+- Style changes:
+  - Render footnote reference markers as true superscripts.
+  - Remove the hanging indent from ordered lists.
+  - Fix hanging text on blockquote citation.
 
 ## [0.10.0] - 2026-09-28
 
