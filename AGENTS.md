@@ -11,13 +11,13 @@ converters — both maintained in this repo.
 
 ## Tech stack
 
-- Node.js (version pinned in `.nvmrc`).
+- Node.js (version pinned in `.nvmrc`), installed by
+  [mise](https://mise.jdx.dev), which reads `.nvmrc` (see `mise.toml`).
 - Antora (content aggregation + site generation).
 - Asciidoctor.js, extended with custom block converters (`src/lib/asciidoc/`).
 - A custom Antora UI theme (`src/ui/`). Handlebars layouts/partials/helpers,
   PostCSS-built CSS, minified JS, web fonts — built by Gulp.
 - Stylelint for the theme's CSS.
-- Docker (optional): `run/` wrapper scripts run the build with no local Node.
 
 ## Project structure
 
@@ -52,7 +52,8 @@ converters — both maintained in this repo.
   Builds the `src/ui/` theme. Runs automatically before Antora.
 
 - `run/` \
-  Docker wrapper scripts for the build tasks.
+  Wrapper scripts for the build tasks. Each runs npm under the pinned Node.js
+  via `mise exec`, the same on the host and in the devcontainer.
 
 - `docs/` \
   Design notes (architecture decisions).
@@ -67,6 +68,10 @@ converters — both maintained in this repo.
   from `kieranpotts/.github`.
 
 ## Tools
+
+- `./run/install` \
+  Install the pinned Node.js and the npm dependencies. Run it first, on a new
+  machine or devcontainer, and again after `.nvmrc` or `package.json` changes.
 
 - `npm run build` \
   Build the site into `public/` (dev playbook).
@@ -94,8 +99,9 @@ converters — both maintained in this repo.
 - `npm run linkcheck` \
   Crawl the built site for broken internal links.
 
-The Docker equivalents are `./run/install`, `./run/build`, `./run/serve`,
-`./run/preview`.
+Each has a `./run/*` equivalent (`./run/build`, `./run/serve`,
+`./run/preview`, and so on), which runs it under the pinned Node.js, whether
+or not mise is activated in the calling shell. Prefer those.
 
 ## Rules
 

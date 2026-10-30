@@ -1,0 +1,12 @@
+#
+# The project's development toolchain, for both the host and the devcontainer.
+# Run `./run/install` to install it.
+# https://mise.jdx.dev/configuration.html
+#
+# Node.js is pinned in .nvmrc, not here, because CI (actions/setup-node) and
+# Netlify read the version from that file too. This setting tells mise to read
+# it, so .nvmrc stays the single pin.
+#
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]

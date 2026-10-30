@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 #
-# Installs project dependencies inside the container. Run this once after
-# building the container, and again whenever package.json changes.
+# Installs the pinned Node.js version and the project's dependencies. Run this
+# once on a new machine or devcontainer, and again whenever .nvmrc or
+# package.json changes.
 #
 
 # Exit immediately on error (-e), treat unset variables as errors (-u), and
@@ -11,23 +12,27 @@
 set -euo pipefail
 
 # Resolve the project root (parent of the run/ directory) and change into it.
-# This ensures docker compose always finds docker-compose.yml, regardless of
-# where this script is invoked from.
+# This ensures npm always finds package.json, and mise finds mise.toml,
+# regardless of where this script is invoked from.
 
 cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 
-# This working tree is a git worktree: its git data lives in a sibling .bare/
-# directory, referenced by absolute path. Export WEBSITE_DIR (the parent of the
-# project root) so docker-compose.yml can mount that whole directory at the
-# same absolute path inside the container, keeping the worktree's git pointers
-# valid so Antora can read the local content source.
+if ! command -v mise >/dev/null 2>&1; then
+  echo "mise is required to install this project's toolchain." >&2
+  echo "Install it from https://mise.jdx.dev, then re-run this script." >&2
+  exit 1
+fi
 
-WEBSITE_DIR="$(cd .. && pwd)"
-export WEBSITE_DIR
+# mise refuses to read a project's `mise.toml` until it has been trusted.
+# Running this script is already a decision to trust this repository, so trust
+# its `mise.toml` here, rather than as a separate manual step. This is
+# idempotent.
 
-# Run npm install inside a one-off container (--rm removes it on exit).
-# --user passes the host user's UID and GID so that node_modules is written
-# into the bind-mounted project directory owned by the host user, making it
-# accessible to scripts run outside of the container.
+mise trust
+mise install
 
-docker compose run --rm --user "$(id -u):$(id -g)" website npm install
+# Run npm under the Node.js version pinned in .nvmrc, via mise (see mise.toml).
+# This is the same on the host and in the devcontainer, whether or not mise is
+# activated in the calling shell.
+
+mise exec -- npm install

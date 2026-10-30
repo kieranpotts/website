@@ -3,13 +3,16 @@
 The easiest way to get started is to run `make` from this project's root to
 see what devtools are available to you.
 
-Alternatively, use the bundled `./run/*` scripts. These execute everything in
-a container. Besides Docker, no additional local software is required. Or you
-can run things directly through a local Node install.
+Alternatively, use the bundled `./run/*` scripts. These run each npm script
+under the Node.js version pinned in `.nvmrc`, installed by
+[mise](https://mise.jdx.dev), the same on the host and in the devcontainer.
+Besides mise, no additional local software is required. Run `./run/install`
+first. Or you can run the npm scripts directly, through whatever Node is on
+your `PATH`.
 
-| Docker                   | Node (local)               | Description                                                                                                   |
+| Script                   | npm                        | Description                                                                                                   |
 |--------------------------|----------------------------|---------------------------------------------------------------------------------------------------------------|
-| `./run/install`          | `npm run install`          | Install build dependencies. Run after `package.json` changes.                                                 |
+| `./run/install`          | `npm install`              | Install the pinned Node.js and the build dependencies. Run after `.nvmrc` or `package.json` changes.          |
 | `./run/build`            | `npm run build`            | Build the site into `public/`.                                                                                |
 | `./run/serve`            | `npm run serve`            | Serve `public/` at `http://localhost:8080`.                                                                   |
 | `./run/preview`          | `npm run preview`          | Watch sources and rebuild on change, served at `:8080`.                                                       |

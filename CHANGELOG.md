@@ -10,6 +10,10 @@ via Netlify.
 
 ## [Unreleased]
 
+- Run the `run/*` scripts natively, under the Node.js version pinned in
+  `.nvmrc`, installed by mise, instead of in a Docker container. Remove the
+  `Dockerfile` and `docker-compose.yml`.
+
 ## [0.11.0] - 2026-10-26
 
 - Change "thoughts" to "essays".
